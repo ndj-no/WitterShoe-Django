@@ -1,0 +1,190 @@
+{% extends 'mainapp/layout/main_frame_no_sidebar.html' %}
+{% load static %}
+{% block custom_css %}
+    <style>
+        .hidelongtext {
+            width: 250px;
+            overflow-wrap: break-word;
+            display: inline-block;
+        }
+
+        .linethrough {
+            text-decoration: line-through;
+        }
+    </style>
+{% endblock %}
+{% block body_section %}
+    <div class="row">
+        <div class="span12">
+            <ul class="breadcrumb">
+                <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
+                <li class="active">Giỏ hàng</li>
+            </ul>
+            <div class="well well-small">
+                <h1>Giỏ hàng <small class="pull-right"> {{ number_item }} đôi giày trong giỏ hàng </small></h1>
+                <hr class="soften"/>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Chi tiết</th>
+                        <th>Trạng thái</th>
+                        <th>Mua</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th style="text-align: right; width: 150px;">Tổng</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for detailShoe in detail_shoes %}
+                        <tr>
+                            <td><img width="100" src="
+                                    {% static 'mainapp/img/products/' %}{{ shoe_thumbnails|get_item:detailShoe.id }}"
+                                     alt=""></td>
+                            <td>
+                                <p class="hidelongtext
+                                {% if status_code|get_item:detailShoe.id == False %}
+                                linethrough
+                                {% endif %} ">
+                                    <a href="{% url 'mainapp:product_detail' product_id=shoe_ids|get_item:detailShoe.id %}"> {{ shoe_names|get_item:detailShoe.id }}</a>
+                                </p><br/>
+                                <p>Màu: <span>{{ shoe_colors|get_item:detailShoe.id }}</span></p>
+                                <p>Size: <span>{{ detailShoe.size }}</span></p>
+                            </td>
+                            <td>
+                                {% if status_code|get_item:detailShoe.id %}
+                                    <p style="color: green">{{ status|get_item:detailShoe.id }}</p>
+                                {% endif %}
+                                {% if status_code|get_item:detailShoe.id == False %}
+                                    <p style="color: red">{{ status|get_item:detailShoe.id }}</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if status_code|get_item:detailShoe.id %}
+                                    <input type="checkbox" checked id="checkbox_{{ detailShoe.id }}"
+                                           onclick="check_the_box(this.id)">
+                                {% endif %}
+                                {% if status_code|get_item:detailShoe.id == False %}
+                                    <span class="icon-remove-sign"></span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if status_code|get_item:detailShoe.id == False %}
+                                    <span id="unitprice_{{ detailShoe.id }}" class="linethrough">
+                                        {{ detailShoe.newPrice|template_price_format }}
+                                    </span> đ
+                                {% endif %}
+                                {% if status_code|get_item:detailShoe.id %}
+                                    <span id="unitprice_{{ detailShoe.id }}">
+                                        {{ detailShoe.newPrice|template_price_format }}
+                                    </span> đ
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                <input class="span1" style="max-width:34px" id="qt_{{ detailShoe.id }}"
+                                       size="16" type="number" value="{{ shoe_quantity|get_item:detailShoe.id }}"
+                                       onchange="quantity_change(this.id)">
+                                <div class="input-append">
+                                    <button class="btn btn-mini btn-danger" type="button"
+                                            onclick="location.href='{% url 'cart:remove_from_cart_url' %}?next={{ request.path }}&detail_shoe_id={{ detailShoe.id }}';"><span
+                                            class="icon-remove"></span>
+                                    </button>
+                                </div>
+                            </td>
+                            {% if status_code|get_item:detailShoe.id %}
+                                <td style="text-align: right;">
+                            {% endif %}
+                            {% if status_code|get_item:detailShoe.id == False %}
+                                <td style="text-align: right;" class="linethrough">
+                            {% endif %}
+                            {#                            <span id="totalprice_{{ detailShoe.id }}"></span> đ#}
+                            <span id="totalprice_{{ detailShoe.id }}">{{ totalprice|get_item:detailShoe.id }}</span> đ
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="6" class="alignR">Thanh toán:</td>
+                        <td style="text-align: right"><span id="total_products_price">{{ total_products_price }}</span>
+                            đ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="alignR">Giảm giá:</td>
+                        <td style="text-align: right"> - <span id="total_discount">{{ total_discount }}</span> đ</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="alignR">Tổng thanh toán:</td>
+                        <td class="label label-primary pull-right" style="font-size: large"><span
+                                id="final_price">{{ final_price }}</span> <sup>đ</sup></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <form class="form-inline">
+                                <label style="min-width:159px"> COUPON Code: </label>
+                                <input type="text" class="input-medium" placeholder="CODE" value="{{ coupon_code }}">
+                                <button type="submit" class="shopBtn"> ADD</button>
+                            </form>
+                            {% if discount_rate %}
+                                <p style="font-size: medium;">Giảm <span style="font-weight: bold;"
+                                                                         id="discount_rate">{{ discount_rate }}</span> %
+                                </p>
+                            {% endif %}
+                            {% if discount_amount %}
+                                <p style="font-size: medium;">Giảm <span style="font-weight: bold; font-size: medium"
+                                                                         id="discount_amount">{{ discount_amount }}</span>
+                                    đ</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>ESTIMATE YOUR SHIPPING & TAXES</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="span2 control-label" for="inputEmail">Country</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="Country">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="span2 control-label" for="inputPassword">Post Code/ Zipcode</label>
+                                    <div class="controls">
+                                        <input type="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button type="submit" class="shopBtn">Click to check the price</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="{% url 'mainapp:index' %}" class="shopBtn btn-large"><span class="icon-arrow-left"></span>
+                    Quay lại mua sắm
+                </a>
+                <a href="login.html" class="shopBtn btn-large pull-right">Xác nhận <span
+                        class="icon-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block insert_script %}
+    <script src="{% static 'cart/js/change_price.js' %}"></script>
+
+{% endblock %}

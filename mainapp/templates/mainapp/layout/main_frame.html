@@ -1,0 +1,69 @@
+{% extends 'mainapp/layout/main_frame_no_sidebar.html' %}
+{% load static %}
+
+{% block sidebar %}
+    <div class="row">
+    <div id="sidebar" class="span3">
+        <div class="well well-small">
+            <ul class="nav nav-list">
+                {% if categories %}
+                    {% for category in categories %}
+                        <li><a href="{% url 'mainapp:products_url' %}?category_id={{ category.id }}"><span
+                                class="icon-chevron-right"></span>{{ category.categoryName }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                <li><a href="{% url 'mainapp:products_url' %}"><span class="icon-chevron-right"></span>Xem tất cả sản
+                    phẩm </a>
+                </li>
+                <li style="border:0"> &nbsp;</li>
+                <li><a class="totalInCart" href="cart.html"><strong>Giỏ hàng <span
+                        class="badge badge-warning pull-right"
+                        style="line-height:18px;">0 <sup>đ</sup></span></strong></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="well well-small alert alert-warning cntr">
+            <h2> Giảm giá 15%</h2>
+            <p>
+                khi thanh toán online. <br><br><a class="defaultBtn" href="{% url 'coupon:coupon_url' %}">Chi tiết </a>
+            </p>
+        </div>
+        <div class="well well-small"><a href="#"><img src="{% static 'mainapp/assets/img/paypal.jpg' %}"
+                                                      alt="payment method paypal"></a></div>
+
+        <a class="shopBtn btn-block" href="#">Sản phẩm sắp ra mắt <br><small>Xem ngay</small></a>
+        <br>
+        <br>
+        <ul class="nav nav-list promowrapper">
+            {% if nav_list_quantity_sold_shoes %}
+                {% for shoe in nav_list_quantity_sold_shoes %}
+                    <li>
+                        <div class="thumbnail">
+                            <a class="zoomTool" href="product_details.html" title="add to cart"><span
+                                    class="icon-search"></span> QUICK VIEW</a>
+                            <img src="{% static 'mainapp/img/products/' %}{{ shoe.shoeThumbnail }}"
+                                 alt="{{ shoe.name }}">
+                            <div class="caption">
+                                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
+                                        class="pull-right">{{ nav_list_quantity_sold_shoes_price|get_item:shoe.id }} <sup>₫</sup></span>
+                                </h4>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="border:0"> &nbsp;</li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+    </div>
+{% endblock %}
+<!--
+Body Section
+-->
+{% block body_section %}
+{% endblock %}
+{% block end_body_section %}
+    </div>
+{% endblock %}

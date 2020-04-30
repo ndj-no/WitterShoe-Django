@@ -1,0 +1,93 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <div class="well well-small">
+            {% if coupons %}
+                {% for coupon in coupons %}
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <img src="assets/img/a.jpg" alt="">
+                        </div>
+                        <div class="span6">
+                            <h5>{{ coupon.couponTitle }}</h5>
+                            <p>{{ coupon.couponDescription }}</p>
+                        </div>
+                        <div class="span4 alignR">
+                            <form class="form-horizontal qtyFrm">
+                                {% ifequal coupon.discountAmount 0 %}
+                                    <h3>giảm ngay {{ coupon.discountRate }} %</h3>
+                                {% endifequal %}
+                                {% ifequal coupon.discountRate 0 %}
+                                    <h3>giảm ngay {{ coupon.discountAmount }} đ</h3>
+                                {% endifequal %}
+                                <div class="btn-group">
+                                    <p class="defaultBtn" id="copyTarget">
+                                        <span class="icon-double-angle-left"></span>{{ coupon.couponCode }}<span class="icon-double-angle-right"></span>
+                                    </p>
+                                    <a href="" class="shopBtn" id="copyButton">Copy</a>
+                                </div>
+                            </form>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                    <hr class="soften">
+                {% endfor %}
+            {% endif %}
+    </div>
+    <script>
+        document.getElementById("copyButton").addEventListener("click", function () {
+            copyToClipboard(document.getElementById("copyTarget"));
+        });
+
+        function copyToClipboard(elem) {
+            // create hidden text element, if it doesn't already exist
+            var targetId = "_hiddenCopyText_";
+            var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+            var origSelectionStart, origSelectionEnd;
+            if (isInput) {
+                // can just use the original source element for the selection and copy
+                target = elem;
+                origSelectionStart = elem.selectionStart;
+                origSelectionEnd = elem.selectionEnd;
+            } else {
+                // must use a temporary form element for the selection and copy
+                target = document.getElementById(targetId);
+                if (!target) {
+                    var target = document.createElement("textarea");
+                    target.style.position = "absolute";
+                    target.style.left = "-9999px";
+                    target.style.top = "0";
+                    target.id = targetId;
+                    document.body.appendChild(target);
+                }
+                target.textContent = elem.textContent.toString().trim();
+            }
+            // select the content
+            var currentFocus = document.activeElement;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
+
+            // copy the selection
+            var succeed;
+            try {
+                succeed = document.execCommand("copy");
+            } catch (e) {
+                succeed = false;
+            }
+            // restore original focus
+            if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+            }
+
+            if (isInput) {
+                // restore prior selection
+                elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+            } else {
+                // clear temporary content
+                target.textContent = "";
+            }
+            return succeed;
+        }
+    </script>
+{% endblock %}

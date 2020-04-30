@@ -1,0 +1,44 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% load static %}
+{% block body_section %}
+    <div class="span9">
+        <div class="well well-small">
+            <h3>{{ category_name }} </h3>
+            {% if shoes_groups %}
+                {% for shoes_group in shoes_groups %}
+                    <div class="row-fluid">
+                        <ul class="thumbnails">
+                            {% for shoe in shoes_group %}
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                           class="overlay"></a>
+                                        <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                           title="{{ shoe.shoeName }}"><span
+                                                class="icon-search"></span> Xem</a>
+                                        <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
+                                                style="height: 200px"
+                                                src="
+                                                        {% static 'mainapp/img/products/' %}{{ shoes_image|get_item:shoe.id }}"
+                                                alt=""></a>
+                                        <div class="caption cntr">
+                                            <p style="height: 50px">{{ shoe.shoeName }}</p>
+                                            <p><strong> {{ shoes_price_new|get_item:shoe.id }} đ</strong></p>
+                                            <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+                                            <div class="actionList">
+                                                <a class="pull-left" href="#">Favourite </a>
+                                                <a class="pull-left" href="#"> Add to Compare </a>
+                                            </div>
+                                            <br class="clr">
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'mainapp:index' %}">Home</a> <span class="divider">/</span></li>
+            <li class="active">Login</li>
+        </ul>
+        <h3> Login</h3>
+        <hr class="soft"/>
+
+        <div class="row">
+            {#            <div class="span4">#}
+            {#                <div class="well">#}
+            {#                    <h5>CREATE YOUR ACCOUNT</h5><br/>#}
+            {#                    Enter your e-mail address to create an account.<br/><br/><br/>#}
+            {#                    <form>#}
+            {#                        <div class="control-group">#}
+            {#                            <label class="control-label" for="inputEmail">E-mail address</label>#}
+            {#                            <div class="controls">#}
+            {#                                <input class="span3" type="text" placeholder="Email">#}
+            {#                            </div>#}
+            {#                        </div>#}
+            {#                        <div class="controls">#}
+            {#                            <button type="submit" class="btn block">Create Your Account</button>#}
+            {#                        </div>#}
+            {#                    </form>#}
+            {#                </div>#}
+            {#            </div>#}
+            {#            <div class="span1"> &nbsp;</div>#}
+            <div class="span4" style="margin-left: 30%">
+                <div class="well">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="control-group">
+                            <label class="control-label" for="username">Username</label>
+                            <div class="controls">
+                                <input class="span3" type="text" id="username" placeholder="Username" name="username">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" class="span3" id="password" placeholder="Password"
+                                       name="password">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="checkbox">
+                                <input type="checkbox" name="remember_me"> Ghi nhớ đăng nhập
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="shopBtn">Đăng nhập</button>
+                                <a href="#">Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
