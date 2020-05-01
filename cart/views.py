@@ -44,7 +44,8 @@ def cart_view(request):
         shoe = Shoe.objects.filter(detailshoe=detail_shoe).first()
         shoe_names[detail_shoe.id] = shoe.shoeName
         shoe_ids[detail_shoe.id] = shoe.id
-        shoe_thumbnails[detail_shoe.id] = shoe.shoeThumbnail
+        shoe_thumbnails[detail_shoe.id] = shoe.shoeThumbnail.url
+        print(shoe.shoeThumbnail.url)
         shoe_colors[detail_shoe.id] = Color.objects.filter(detailshoe=detail_shoe).first().colorName
         shoe_quantity[detail_shoe.id] = Cart.objects.filter(detailShoe=detail_shoe).first().quantityOnCart
         if detail_shoe.quantityAvailable > 0:

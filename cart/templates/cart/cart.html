@@ -38,9 +38,7 @@
                     <tbody>
                     {% for detailShoe in detail_shoes %}
                         <tr>
-                            <td><img width="100" src="
-                                    {% static 'mainapp/img/products/' %}{{ shoe_thumbnails|get_item:detailShoe.id }}"
-                                     alt=""></td>
+                            <td><img width="100" src="{{ shoe_thumbnails|get_item:detailShoe.id }}" alt=""></td>
                             <td>
                                 <p class="hidelongtext
                                 {% if status_code|get_item:detailShoe.id == False %}

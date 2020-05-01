@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="" />
+    <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/db_backup/backup_db_1.0.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db_backup/backup_db_1.1.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WitterShoe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WitterShoe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/product_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/product_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +45,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1auBXaD9zHFfvGvrlwSUpdtG3rq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,22 +57,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cart/templates/cart" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/db_backup" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/coupon/templates/coupon" />
-      <recent name="$PROJECT_DIR$/news/templates/news" />
-      <recent name="$PROJECT_DIR$/contact/templates/contact" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/db_backup" />
       <recent name="$PROJECT_DIR$/cart/templates/cart" />
       <recent name="$PROJECT_DIR$/mainapp/templates/mainapp" />
       <recent name="$PROJECT_DIR$/contact_us/templates/contact_us" />
       <recent name="$PROJECT_DIR$/contact_us" />
-      <recent name="$PROJECT_DIR$/mainapp/static/mainapp/img/background" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/coupon/templates/coupon" />
+      <recent name="$PROJECT_DIR$/news/templates/news" />
+      <recent name="$PROJECT_DIR$/contact/templates/contact" />
     </key>
   </component>
   <component name="RunManager">
@@ -102,6 +119,9 @@
       <workItem from="1588084329471" duration="7408000" />
       <workItem from="1588142463629" duration="27754000" />
       <workItem from="1588230528387" duration="8272000" />
+      <workItem from="1588241090568" duration="48000" />
+      <workItem from="1588344602191" duration="235000" />
+      <workItem from="1588347499096" duration="4647000" />
     </task>
     <servers />
   </component>
@@ -113,26 +133,30 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="416" y="133" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1588069964942" />
-    <state width="1324" height="123" key="GridCell.Tab.0.bottom" timestamp="1588238803912">
+    <state x="280" y="0" width="795" height="763" key="CommitChangelistDialog2" timestamp="1588352193552">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="280" y="0" width="795" height="763" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1588352193552" />
+    <state width="1324" height="241" key="GridCell.Tab.0.bottom" timestamp="1588352169721">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.bottom/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="1324" height="123" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1588238803912" />
-    <state width="1324" height="123" key="GridCell.Tab.0.center" timestamp="1588238803911">
+    <state width="1324" height="241" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1588352169721" />
+    <state width="1324" height="241" key="GridCell.Tab.0.center" timestamp="1588352169720">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.center/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="1324" height="123" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1588238803911" />
-    <state width="1324" height="123" key="GridCell.Tab.0.left" timestamp="1588238803911">
+    <state width="1324" height="241" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1588352169720" />
+    <state width="1324" height="241" key="GridCell.Tab.0.left" timestamp="1588352169719">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.left/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="1324" height="123" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1588238803911" />
-    <state width="1324" height="123" key="GridCell.Tab.0.right" timestamp="1588238803911">
+    <state width="1324" height="241" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1588352169719" />
+    <state width="1324" height="241" key="GridCell.Tab.0.right" timestamp="1588352169720">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.right/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="1324" height="123" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1588238803911" />
+    <state width="1324" height="241" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1588352169720" />
     <state x="346" y="89" key="search.everywhere.popup" timestamp="1588155660402">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

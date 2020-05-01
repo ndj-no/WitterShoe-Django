@@ -13,7 +13,7 @@ Body Section
                             <div class="item">
                                 <a href="{% url 'mainapp:product_detail' product_id=rotate_shoe.id %}">
                                     <img style="width:100%"
-                                         src="{% static 'mainapp/img/products/' %}{{ rotate_shoe.shoeThumbnail }}"
+                                         src="{{ rotate_shoe.shoeThumbnail.url }}"
                                          alt="{{ rotate_shoe.shoeName }}">
                                 </a>
                             </div>
@@ -23,7 +23,7 @@ Body Section
                         <div class="item active"><a
                                 href="{% url 'mainapp:product_detail' product_id=rotate_shoes_first.id %}">
                             <img style="width:100%"
-                                 src="{% static 'mainapp/img/products/' %}{{ rotate_shoes_first.shoeThumbnail }}"
+                                 src="{{ rotate_shoes_first.shoeThumbnail.url }}"
                                  alt="{{ rotate_shoes_first.shoeName }}"></a>
                         </div>
                     {% endif %}
@@ -53,8 +53,7 @@ Body Section
                                                         class="icon-search"></span> Xem chi tiết</a>
 
                                                 <a href="{% url 'mainapp:product_detail' product_id=new_shoe.id %}"><img
-                                                        src="
-                                                                {% static 'mainapp/img/products/' %}{{ new_shoe.shoeThumbnail }}"
+                                                        src="{{ new_shoe.shoeThumbnail.url }}"
                                                         alt="{{ new_shoe.shoeName }}"></a>
                                             </div>
                                         </li>
@@ -74,13 +73,7 @@ Body Section
                                                         class="icon-search"></span> Xem chi tiết</a>
                                                 <a href="#" class="tag"></a>
                                                 <a href="{% url 'mainapp:product_detail' product_id=new_shoe.id %}"><img
-                                                        src="
-
-
-
-
-                                                                {% static 'mainapp/img/products/' %}{{ new_shoe.shoeThumbnail }}"
-                                                        alt="{{ new_shoe.shoeName }}"></a>
+                                                        src="{{ new_shoe.shoeThumbnail.url }}" alt="{{ new_shoe.shoeName }}"></a>
                                             </div>
                                         </li>
                                     {% endfor %}
@@ -102,7 +95,7 @@ Body Section
                                        title="{{ shoe.shoeName }}"><span
                                             class="icon-search"></span> Xem chi tiết </a>
                                     <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
-                                            src="{% static 'mainapp/img/products/' %}{{ shoe.shoeThumbnail }}"
+                                            src="{{ shoe.shoeThumbnail.url }}"
                                             alt="{{ shoe.shoeName }}"></a>
                                     <div class="caption cntr">
                                         <p style="height: 50px">{{ shoe.shoeName }}</p>
@@ -139,7 +132,7 @@ Body Section
                                        title="{{ shoe.shoeName }}"><span
                                             class="icon-search"></span> Xem chi tiết</a>
                                     <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
-                                            src="{% static 'mainapp/img/products/' %}{{ shoe.shoeThumbnail }}"
+                                            src="{{ shoe.shoeThumbnail.url }}"
                                             alt=""></a>
                                     <div class="caption">
                                         <h5 style="height: 50px">{{ shoe.shoeName }}</h5>

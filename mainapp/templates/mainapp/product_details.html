@@ -17,12 +17,12 @@
                             {% if images %}
                                 {% for image in images %}
                                     <div class="item">
-                                        <img src="{% static 'mainapp/img/products/' %}{{ image.imageName }}" alt=""
+                                        <img src="{{ image.shoeImage.url }}" alt="{{ image.imageDesc }}"
                                              style="width:100%">
                                     </div>
                                 {% endfor %}
                                 <div class="item active">
-                                    <img src="{% static 'mainapp/img/products/' %}{{ last_image.imageName }}" alt=""
+                                    <img src="{{ last_image.shoeImage.url }}" alt="{{ image.imageDesc }}"
                                          style="width:100%">
                                 </div>
                             {% endif %}

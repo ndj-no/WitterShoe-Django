@@ -1,5 +1,4 @@
 {% extends 'mainapp/layout/main_frame.html' %}
-{% load static %}
 {% block body_section %}
     <div class="span9">
         <div class="well well-small">
@@ -18,8 +17,7 @@
                                                 class="icon-search"></span> Xem</a>
                                         <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
                                                 style="height: 200px"
-                                                src="
-                                                        {% static 'mainapp/img/products/' %}{{ shoes_image|get_item:shoe.id }}"
+                                                src="{{ shoe.shoeThumbnail.url }}"
                                                 alt=""></a>
                                         <div class="caption cntr">
                                             <p style="height: 50px">{{ shoe.shoeName }}</p>

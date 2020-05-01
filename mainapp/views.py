@@ -131,6 +131,7 @@ class ProductsByCategory(MainFrameView):
             shoes = Shoe.objects.all()
         self.context.update({'category_name': category_name, })
         # chia shoe thanh [[ 3 shoe ], ... n shoe]
+        # shape = (n, 3)
         if len(shoes) != 0:
             shoes_groups = []
             shoes_price_new = {}

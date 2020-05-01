@@ -1,6 +1,5 @@
 {% extends 'mainapp/layout/main_frame_no_sidebar.html' %}
 {% load static %}
-
 {% block sidebar %}
     <div class="row">
     <div id="sidebar" class="span3">
@@ -43,7 +42,7 @@
                         <div class="thumbnail">
                             <a class="zoomTool" href="product_details.html" title="add to cart"><span
                                     class="icon-search"></span> QUICK VIEW</a>
-                            <img src="{% static 'mainapp/img/products/' %}{{ shoe.shoeThumbnail }}"
+                            <img src="{{ shoe.shoeThumbnail.url }}"
                                  alt="{{ shoe.name }}">
                             <div class="caption">
                                 <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span

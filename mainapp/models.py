@@ -38,7 +38,7 @@ class Shoe(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     shoeName = models.CharField(max_length=255)
-    shoeThumbnail = models.CharField(max_length=255)
+    shoeThumbnail = models.ImageField(upload_to='shoe_thumbnails', blank=True)
     active = models.IntegerField(choices=((0, 'Inactive'), (1, 'Active')), default=0)
     quantitySold = models.IntegerField(default=0)
     viewCount = models.IntegerField(default=0)
@@ -54,12 +54,13 @@ class Shoe(models.Model):
 
 class Image(models.Model):
     shoe = models.ForeignKey(Shoe, on_delete=models.CASCADE)
-    imageName = models.CharField(max_length=255)
+    # imageName = models.CharField(max_length=255)
+    shoeImage = models.ImageField(upload_to='shoe_images', blank=True)
     imageDesc = models.CharField(max_length=64, default='', blank=True)
 
     def __str__(self):
         return 'Image( id:{:<3}_ shoeName:{:<30}_ imageName:{:<15} )' \
-            .format(self.id, self.shoe.shoeName, self.imageName)
+            .format(self.id, self.shoe.shoeName, self.shoeImage.name)
 
 
 class DetailShoe(models.Model):
