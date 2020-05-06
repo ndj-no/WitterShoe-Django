@@ -1,13 +1,11 @@
 from django.contrib.auth import decorators
 from django.shortcuts import render, redirect
-from django.views import View
 from django.template.defaulttags import register
-from django.utils import timezone
-from coupon.models import Coupon
-from my_utils.string_format import price_format
+from django.views import View
 
+from coupon.coupon_logic import get_coupon_available
 from mainapp.models import Shoe, Color, DetailShoe
-from mainapp.views import TopBarView
+from my_utils.string_format import price_format
 from .models import Cart
 
 login_url = '/account/login/'
@@ -18,17 +16,17 @@ def cart_view(request):
     user_id = request.user.id
     cart_items = Cart.objects.filter(user_id=user_id)
     couponCode = request.GET.get('coupon', None)
+    coupon_message = None
+    discountAmount = 0
+    discountRate = 0
+
     if couponCode:
-        coupon = Coupon.objects.filter(couponCode=couponCode).filter(expirationDate__gte=timezone.now()).first()
+        coupon = get_coupon_available(couponCode)
         if coupon:
             discountAmount = coupon.discountAmount
             discountRate = coupon.discountRate
         else:
-            discountAmount = 0
-            discountRate = 0
-    else:
-        discountAmount = 0
-        discountRate = 0
+            coupon_message = 'Coupon này không tồn tại hoặc đã hết hạn.'
 
     detail_shoes = DetailShoe.objects.filter(cart__user_id=user_id)
     shoe_names = {}
@@ -45,7 +43,6 @@ def cart_view(request):
         shoe_names[detail_shoe.id] = shoe.shoeName
         shoe_ids[detail_shoe.id] = shoe.id
         shoe_thumbnails[detail_shoe.id] = shoe.shoeThumbnail.url
-        print(shoe.shoeThumbnail.url)
         shoe_colors[detail_shoe.id] = Color.objects.filter(detailshoe=detail_shoe).first().colorName
         shoe_quantity[detail_shoe.id] = Cart.objects.filter(detailShoe=detail_shoe).first().quantityOnCart
         if detail_shoe.quantityAvailable > 0:
@@ -71,6 +68,7 @@ def cart_view(request):
     context = {
         'number_item': len(cart_items),
         'coupon_code': '' if couponCode is None else couponCode,
+        'coupon_message': coupon_message,
         'detail_shoes': detail_shoes,
         'shoe_names': shoe_names,
         'shoe_ids': shoe_ids,
@@ -94,8 +92,6 @@ def add_to_cart(request):
     to = request.GET.get('next', None)
 
     if request.method == 'POST':
-        print(request.POST)
-
         user_id = request.user.id
         shoe_id = request.POST.get('shoe_id', None)
         quantity = request.POST.get('quantity', None)
@@ -110,11 +106,9 @@ def add_to_cart(request):
                 cart.detailShoe = detail_shoe
                 cart.quantityOnCart = int(quantity)
                 cart.save()
-                print('saved')
             else:
                 cart.quantityOnCart += int(quantity)
                 cart.save()
-                print('created')
     if to:
         return redirect(to)
     else:

@@ -92,6 +92,9 @@ class ProductDetailView(MainFrameView):
         self.update_top_bar(request)
 
         shoe = Shoe.objects.get(id=product_id)
+        shoe.viewCount = shoe.viewCount + 1
+        shoe.save()
+
         images = Image.objects.filter(shoe=shoe)
         last_image = images[3]
         detailShoes = DetailShoe.objects.filter(shoe=shoe).filter(quantityAvailable__gt=0)
@@ -142,7 +145,7 @@ class ProductsByCategory(MainFrameView):
                 group.append(shoe)
                 shoes_price_new[shoe.id] = '{:,}'.format(
                     DetailShoe.objects.filter(shoe_id=shoe.id).first().newPrice).replace(',', '.')
-                shoes_image[shoe.id] = Image.objects.filter(shoe_id=shoe.id).first().imageName
+                shoes_image[shoe.id] = Image.objects.filter(shoe_id=shoe.id).first().shoeImage
                 count += 1
                 if count % 3 == 0:
                     shoes_groups.append(group)

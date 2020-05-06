@@ -28,7 +28,8 @@ class LoginView(MainFrameView):
             else:
                 return redirect('/')
         else:
-            self.context.update({'message': 'Tài khoản hoặc mật khẩu không chính xác!'})
+            self.context['message'] = 'Đăng nhập thất bại!'
+            self.context['username'] = username
             return render(request, 'account/login.html', self.context)
 
 
@@ -52,6 +53,7 @@ class RegisterView(MainFrameView):
             'displayName': displayName,
             'phone': phone,
             'email': email,
+            'address': address,
         })
         if username == '' or ' ' in username:
             message = message + 'Tên tài khoản không được để trống, không được chứa khoảng trắng. '
@@ -106,6 +108,79 @@ class RegisterView(MainFrameView):
             return render(request, 'account/register.html', context=self.context)
 
 
-def logoutView(request):
+class MyAccountView(MainFrameView):
+    def get(self, request):
+        self.update_top_bar(request)
+
+        displayName = request.user.displayName
+        phone = request.user.phone
+        email = request.user.email
+        address = request.user.defaultAddress
+        self.context.update({
+            'displayName': displayName,
+            'phone': phone,
+            'email': email,
+            'address': address,
+        })
+        return render(request, 'account/my_account.html', context=self.context)
+
+    def post(self, request):
+        self.update_top_bar(request)
+
+        password = request.POST.get('password')
+        repassword = request.POST.get('repassword')
+        displayName = request.POST.get('displayName')
+        gender = request.POST.get('gender')
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        err = False
+        message = ''
+        self.context.update({
+            'displayName': displayName,
+            'phone': phone,
+            'email': email,
+            'address': address,
+        })
+        if password == '' or len(password) <= 3 or ' ' in password:
+            message = message + 'Mật khẩu không được chứa khoảng trắng, phải > 3 ký tự. '
+            err = True
+
+        if password != repassword:
+            message = message + 'Mật khẩu nhập không trùng nhau. '
+            err = True
+        if displayName.strip() == '':
+            message = message + 'Tên hiển thị không được để trống. '
+            err = True
+
+        if int(gender) not in (0, 1, 2):
+            message = message + 'Nà ní? '
+            err = True
+
+        if phone.strip() == '':
+            message = message + 'Số điện thoại không được để trống. '
+            err = True
+
+        if address.strip() == '':
+            message = message + 'Địa chỉ không được để trống. '
+            err = True
+
+        if not err:
+            user = request.user
+            user.set_password(raw_password=password)
+            user.phone = phone
+            user.displayName = displayName
+            user.gender = gender
+            user.email = email
+            user.defaultAddress = address
+            user.save()
+            self.context['message'] = 'Đổi thông tin thành công'
+            return render(request, 'account/my_account.html', context=self.context)
+        else:
+            self.context['message'] = message
+            return render(request, 'account/my_account.html', context=self.context)
+
+
+def logout_view(request):
     logout(request)
     return redirect('/')

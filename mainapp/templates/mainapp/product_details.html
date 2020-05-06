@@ -27,14 +27,16 @@
                                 </div>
                             {% endif %}
                         </div>
-                        {#                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>#}
-                        {#                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>#}
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
                     </div>
                 </div>
                 <div class="span7">
                     <h3>{{ shoe.shoeName }}</h3>
                     <hr class="soft"/>
-
+                    <div class="pull-right"><p style="font-style: italic; color: grey">{{ shoe.viewCount }} lượt xem</p></div>
+                    <br/>
+                    <br/>
                     <form class="form-horizontal qtyFrm"
                           action="{% url 'cart:add_to_cart_url' %}?next={{ request.path }}" method="post">
                         <input type="hidden" value="{{ shoe.id }}" name="shoe_id">

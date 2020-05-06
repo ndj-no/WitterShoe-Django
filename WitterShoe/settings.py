@@ -24,7 +24,7 @@ SECRET_KEY = 'rsy=5ab!3r@(71*927t%o@r6yigsed58h*31%)z%c+(jovzq$v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['b3738547.ngrok.io', '127.0.0.1']
 
 # Application definition
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'news',
     'coupon',
     'cart',
+    'order',
+    'favourite',
 ]
 
 MIDDLEWARE = [

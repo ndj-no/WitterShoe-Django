@@ -3,13 +3,13 @@
 
     <div class="span9">
         <ul class="breadcrumb">
-            <li><a href="index.html">Trang chủ</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
             <li class="active">Đăng ký</li>
         </ul>
         <h3> Đăng ký tài khoản</h3>
         <hr class="soft"/>
         <div class="well">
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal" action="" method="post" id="register_form">
                 {% csrf_token %}
                 <h3>Thông tin tài khoản</h3>
                 <div class="control-group">
@@ -69,7 +69,7 @@
                 <div class="control-group">
                     <label class="control-label" for="address">Địa chỉ <sup>*</sup></label>
                     <div class="controls">
-                        <input type="text" id="address" placeholder="Địa chỉ" name="address" value="{{ address }}">
+                        <textarea id="address" placeholder="Địa chỉ" name="address" form="register_form" >{{ address }}</textarea>
                     </div>
                 </div>
                 <div class="control-group">

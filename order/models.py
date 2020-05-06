@@ -4,14 +4,8 @@ from coupon.models import Coupon
 from mainapp.models import User, DetailShoe
 
 
-# Create your models here.
-
-class OrderPackageStatus(models.Model):
-    statusName = models.CharField(max_length=128, null=False)
-    statusDesc = models.CharField(max_length=255, default='', blank=True)
-
-
 class OrderPackage(models.Model):
+    status_choice = ((0, 'Đã hủy (user)'), (1, 'Chờ xác nhận'), (2, 'Đang giao'), (3, 'Đã giao'), (4, 'Từ chối (admin)'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
     dateOrder = models.DateField(default=timezone.now)
@@ -19,16 +13,15 @@ class OrderPackage(models.Model):
     receiver = models.CharField(max_length=128)
     receiverNumber = models.CharField(max_length=32)
     receiverAddress = models.CharField(max_length=255)
-    note = models.CharField(max_length=255, default='')
-    status = models.IntegerField(default=0)
+    note = models.TextField(max_length=255, default='', blank=True)
+    status = models.IntegerField(choices=status_choice)
     totalPayment = models.IntegerField()
-    orderPackageNote = models.CharField(max_length=255, default='', blank=True)
 
     def __str__(self):
-        if int(self.status) == 0:
-            status = 'Waiting'
-        else:
-            status = 'Delivered'
+        status = None
+        for s in self.status_choice:
+            if s[0] == self.status:
+                status = s[1]
 
         return '[{}] OrderPackage( id:{} _ username:{} _ receiver:{} _ receiverAddress:{} _ totalPayment:{} )' \
             .format(status, self.id, self.user.username, self.receiver, self.receiverAddress, self.totalPayment)
@@ -41,5 +34,6 @@ class OrderItem(models.Model):
     itemPrice = models.IntegerField()
 
     def __str__(self):
-        return 'OrderItem( id:{} _ receiver:{} _ shoe:{} _ quantity:{} _ unitPrice:{} )' \
-            .format(self.id, self.orderPackage.receiver, self.detailShoe.shoe.shoeName, self.quantity, self.itemPrice)
+        return 'OrderItem( id:{} _ package {} _ receiver:{} _ shoe:{} _ quantity:{} _ unitPrice:{} )' \
+            .format(self.id, self.orderPackage.id, self.orderPackage.receiver, self.detailShoe.shoe.shoeName,
+                    self.quantity, self.itemPrice)

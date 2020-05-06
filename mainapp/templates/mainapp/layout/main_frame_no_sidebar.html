@@ -54,7 +54,9 @@
                 <a class="{% if request.path == '/' %}active{% endif %}" href="{% url 'mainapp:index' %}"> <span
                         class="icon-home"></span> Trang chủ</a>
                 {% if user.is_authenticated %}
-                    <a href="/"><span class="icon-user"></span>
+                    <a class="{% if request.path == '/account/my_account/' %}active{% endif %}"
+                       href="{% url 'account:my_account_url' %}">
+                        <span class="icon-user"></span>
                         {{ user.username }}
                     </a>
                 {% endif %}

@@ -1,0 +1,86 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
+            <li class="active">Tài khoản của tôi</li>
+        </ul>
+        <hr class="soft"/>
+        <div class="btn-group">
+            <a href="{% url 'order:order_history_url' %}" class="shopBtn btn-large" style="margin: 5px">Lịch sử mua hàng</a>
+            <a href="{% url 'cart:cart_url' %}" class="shopBtn btn-large" style="margin: 5px">Giỏ hàng</a>
+        </div>
+        <hr class="soft"/>
+        <div class="well">
+            <form class="form-horizontal" action="" method="post">
+                {% csrf_token %}
+                <h3>Thay đổi thông tin</h3>
+                <div class="control-group">
+                    <div class="controls">
+                        {% if message %}
+                            <p style="color: red;">{{ message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="username">Tài khoản</label>
+                    <div class="controls">
+                        <p><b>{{ request.user.username }}</b></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">Mật khẩu <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="password" id="password" placeholder="Mật khẩu" name="password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="password" id="repassword" placeholder="Nhập lại Mật khẩu" name="repassword">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="displayName">Tên của bạn <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="displayName" placeholder="Tên" name="displayName"
+                               value="{{ displayName }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Giới tính <sup>*</sup></label>
+                    <div class="controls">
+                        <select class="span1" name="gender" style="width: 75px">
+                            <option value="1">Nam</option>
+                            <option value="0">Nữ</option>
+                            <option value="2">Pede</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="phone">Điện thoại <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="phone" placeholder="Điện thoại" name="phone" value="{{ phone }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="controls">
+                        <input type="text" id="email" placeholder="Email" name="email" value="{{ email }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="address">Địa chỉ <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="address" placeholder="Địa chỉ" name="address" value="{{ address }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" name="submitAccount" value="Lưu thông tin" class="exclusive shopBtn">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

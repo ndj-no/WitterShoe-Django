@@ -38,6 +38,7 @@ class Shoe(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     shoeName = models.CharField(max_length=255)
+    shoeModel = models.CharField(max_length=255, blank=True)
     shoeThumbnail = models.ImageField(upload_to='shoe_thumbnails', blank=True)
     active = models.IntegerField(choices=((0, 'Inactive'), (1, 'Active')), default=0)
     quantitySold = models.IntegerField(default=0)

@@ -16,9 +16,9 @@
                     phẩm </a>
                 </li>
                 <li style="border:0"> &nbsp;</li>
-                <li><a class="totalInCart" href="cart.html"><strong>Giỏ hàng <span
+                <li><a class="totalInCart" href="{% url 'cart:cart_url' %}"><strong>Giỏ hàng <span
                         class="badge badge-warning pull-right"
-                        style="line-height:18px;">0 <sup>đ</sup></span></strong></a>
+                        style="line-height:18px;">{{ total_products_price }} <sup>đ</sup></span></strong></a>
                 </li>
             </ul>
         </div>
@@ -40,12 +40,12 @@
                 {% for shoe in nav_list_quantity_sold_shoes %}
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="product_details.html" title="add to cart"><span
-                                    class="icon-search"></span> QUICK VIEW</a>
+                            <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}" title="Xem"><span
+                                    class="icon-search"></span> Xem</a>
                             <img src="{{ shoe.shoeThumbnail.url }}"
                                  alt="{{ shoe.name }}">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="product_details.html">VIEW</a> <span
+                                <h4><a class="defaultBtn" href="{% url 'mainapp:product_detail' product_id=shoe.id %}">Xem</a> <span
                                         class="pull-right">{{ nav_list_quantity_sold_shoes_price|get_item:shoe.id }} <sup>₫</sup></span>
                                 </h4>
                             </div>

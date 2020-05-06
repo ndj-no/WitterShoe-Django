@@ -1,0 +1,15 @@
+{% extends 'mainapp/layout/main_frame_no_sidebar.html' %}
+
+{% block body_section %}
+{% endblock %}
+
+{% block insert_script %}
+    {% if message %}
+        <script>
+            window.onload = function () {
+                alert('{{ message }}');
+                window.location.replace("{{ next }}");
+            };
+        </script>
+    {% endif %}
+{% endblock %}

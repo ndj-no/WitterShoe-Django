@@ -31,10 +31,15 @@
                 <div class="well">
                     <form action="" method="post">
                         {% csrf_token %}
+                        {% if message %}
+                            <div class="control-group">
+                                <p style="color: red">{{ message }}</p>
+                            </div>
+                        {% endif %}
                         <div class="control-group">
                             <label class="control-label" for="username">Username</label>
                             <div class="controls">
-                                <input class="span3" type="text" id="username" placeholder="Username" name="username">
+                                <input class="span3" type="text" id="username" placeholder="Username" name="username" value="{{ username }}">
                             </div>
                         </div>
                         <div class="control-group">

@@ -1,0 +1,68 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'account:my_account_url' %}">Tài khoản của tôi</a> <span class="divider">/</span></li>
+            <li class="active">Lịch sử mua hàng</li>
+        </ul>
+        <hr class="soft"/>
+        <div class="well well-small">
+            {% if message %}
+                <p style="font-style: italic; display: block; margin-left: auto; margin-right: auto; color: grey; text-align: center">{{ message }}</p>
+            {% endif %}
+            {% if order_packages %}
+                {% for order_package in order_packages %}
+                    <div class="row-fluid">
+                        <div class="span2">
+                        </div>
+                        <div class="span6">
+                            <h5>Mã gói hàng: {{ order_package.id }}</h5>
+                            <p>Ngày đặt: {{ order_package.dateOrder|date:'d-m-Y' }}</p>
+                            {% if order_package.status != 0 %}
+                                <p>Ngày giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                            {% endif %}
+                            {% if order_package.status == 4 %}
+                                <b style="">Admin nhắn: {{ order_package.note }}</b>
+                            {% endif %}
+                        </div>
+                        <div class="span4 alignR">
+                            <form class="form-horizontal qtyFrm">
+                                <h3>Tổng số tiền: <span
+                                        style="font-size: large; color: red">{{ order_package.totalPayment|template_price_format }} đ</span>
+                                </h3>
+                                <label class="checkbox" style="margin-bottom: 20px;">
+                                    Trạng thái:
+                                    {% if order_package.status == 0 %}
+                                        <b style="color: red"><i>Đã hủy</i></b>
+                                    {% endif %}
+                                    {% if order_package.status == 1 %}
+                                        <b style="color: #2f96b4"><i>Chờ xác nhận</i></b>
+                                    {% endif %}
+                                    {% if order_package.status == 2 %}
+                                        <b style="color: #df8505"><i>Đang giao</i></b>
+                                    {% endif %}
+                                    {% if order_package.status == 3 %}
+                                        <b style="color: green"><i>Đã giao</i></b>
+                                    {% endif %}
+                                    {% if order_package.status == 4 %}
+                                        <b style="color: red"><i>Admin từ chối</i></b>
+                                    {% endif %}
+                                </label>
+                                <div class="btn-group">
+                                    {% if order_package.status == 1 %}
+                                        <a href="{% url 'order:cancel_order_url' order_package_id=order_package.id %}" class="defaultBtn"><span
+                                            class=" icon-remove "></span> Hủy đơn</a>
+                                    {% endif %}
+                                    <a href="{% url 'order:order_detail_url' order_package_id=order_package.id %}"
+                                       class="shopBtn">Xem chi tiết</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr class="soften" style="height: 5px;">
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
