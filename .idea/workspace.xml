@@ -2,54 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/account/migrations/0003_auto_20200504_0007.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/templates/account/my_account.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coupon/coupon_logic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favourite/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainapp/migrations/0007_shoe_shoemodel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0002_auto_20200505_2307.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/order_logic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/templates/order/order_history.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/templates/order/show_alert_message.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirement.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/authen.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api_for_bot/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/colors/red.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WitterShoe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WitterShoe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/templates/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/account/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/templates/account/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/account/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart/templates/cart/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coupon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coupon/templates/coupon/coupon.html" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/templates/coupon/coupon.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coupon/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame_no_sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/layout/main_frame_no_sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/templates/mainapp/product_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/templates/mainapp/product_details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/B536_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/B536_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/B771_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/B771_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/B798_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/B798_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/B967_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/B967_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV09_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV09_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV12_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV12_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV22_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV22_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV25_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/GLLV25_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/GLV08_1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/shoe_thumbnails/GLV08_1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/Giày_lười_Louis_Vuitton_họa_tiết_bàn_cờ_màu_đen_GLLV12_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/Giày_lười_Louis_Vuitton_họa_tiết_da_nhăn_GLLV25_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/Giày_lười_Louis_Vuitton_họa_tiết_ô_rạn_GLLV09_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/Giày_lười_Louis_Vuitton_like_au_họa_tiết_rạn_GLLV22_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/shoe_thumbnails/Giày_lười_Versace_đen_họa_tiết_vân_lá_GLV08_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/order_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/order_logic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,31 +54,35 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1auBXaD9zHFfvGvrlwSUpdtG3rq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/db_backup" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/media/colors" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/coupon/templates/coupon" />
-      <recent name="$PROJECT_DIR$/news/templates/news" />
-      <recent name="$PROJECT_DIR$/contact/templates/contact" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/media/colors" />
       <recent name="$PROJECT_DIR$/db_backup" />
       <recent name="$PROJECT_DIR$/cart/templates/cart" />
       <recent name="$PROJECT_DIR$/mainapp/templates/mainapp" />
       <recent name="$PROJECT_DIR$/contact_us/templates/contact_us" />
-      <recent name="$PROJECT_DIR$/contact_us" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/coupon/templates/coupon" />
+      <recent name="$PROJECT_DIR$/news/templates/news" />
+      <recent name="$PROJECT_DIR$/contact/templates/contact" />
     </key>
   </component>
   <component name="RunManager">
@@ -165,18 +138,30 @@
       <workItem from="1588582886920" duration="10647000" />
       <workItem from="1588613848470" duration="3040000" />
       <workItem from="1588692860372" duration="5436000" />
-      <workItem from="1588746106432" duration="11790000" />
+      <workItem from="1588746106432" duration="14027000" />
+      <workItem from="1588844866946" duration="3932000" />
+      <workItem from="1588860174692" duration="625000" />
+      <workItem from="1588924549827" duration="3316000" />
+      <workItem from="1588931605765" duration="20212000" />
+      <workItem from="1589010180080" duration="3380000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="438" y="181" width="480" height="399" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588439340856">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="438" y="181" width="480" height="399" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1588439340856" />
+    <state x="486" y="100" width="374" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1588932351789">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="486" y="100" width="374" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1588932351789" />
     <state x="416" y="133" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588069964942">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -185,29 +170,29 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="280" y="0" width="795" height="763" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1588352193552" />
-    <state width="1324" height="193" key="GridCell.Tab.0.bottom" timestamp="1588777635364">
+    <state width="1314" height="248" key="GridCell.Tab.0.bottom" timestamp="1589013034084">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.bottom/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="1324" height="193" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1588777635364" />
-    <state width="1324" height="193" key="GridCell.Tab.0.center" timestamp="1588777635363">
+    <state width="1314" height="248" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1589013034084" />
+    <state width="1314" height="248" key="GridCell.Tab.0.center" timestamp="1589013034083">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.center/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="1324" height="193" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1588777635363" />
-    <state width="1324" height="193" key="GridCell.Tab.0.left" timestamp="1588777635363">
+    <state width="1314" height="248" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1589013034083" />
+    <state width="1314" height="248" key="GridCell.Tab.0.left" timestamp="1589013034083">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.left/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="1324" height="193" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1588777635363" />
-    <state width="1324" height="193" key="GridCell.Tab.0.right" timestamp="1588777635363">
+    <state width="1314" height="248" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1589013034083" />
+    <state width="1314" height="248" key="GridCell.Tab.0.right" timestamp="1589013034083">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.right/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="1324" height="193" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1588777635363" />
-    <state x="346" y="89" key="search.everywhere.popup" timestamp="1588155660402">
+    <state width="1314" height="248" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1589013034083" />
+    <state x="346" y="89" key="search.everywhere.popup" timestamp="1588949471043">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="346" y="89" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1588155660402" />
+    <state x="346" y="89" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1588949471043" />
   </component>
 </project>

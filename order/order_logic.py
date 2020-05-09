@@ -112,13 +112,13 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
         detail_shoe.quantityAvailable = detail_shoe.quantityAvailable - order_item.quantity
         detail_shoe.save()
         # tang so luong giay da ban duoc
-        shoe = Shoe.objects.get(pk=detail_shoe.id)
+        shoe = Shoe.objects.get(pk=detail_shoe.shoe_id)
         shoe.quantitySold = shoe.quantitySold + order_item.quantity
         shoe.save()
         # xoa khoi cart
         cart_item = Cart.objects.filter(user_id=user.id, detailShoe_id=detail_shoe.id).first()
-        cart_item.delete()
-        cart_item.save()
+        if cart_item is not None:
+            cart_item.delete()
     context['message'] = 'Đặt hàng thành công. Bạn vui lòng đợi cửa hàng xác nhận và giao hàng.'
     context['next'] = '/order/order_history/'
     return context
