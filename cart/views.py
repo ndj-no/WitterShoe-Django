@@ -1,9 +1,8 @@
 from django.contrib.auth import decorators
-from django.http import HttpResponse
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.template.defaulttags import register
 from django.views import View
-from django.contrib.auth import login
 
 from account.models import User
 from coupon.coupon_logic import get_coupon_available
@@ -90,6 +89,15 @@ def cart_view(request):
     return render(request, 'cart/cart.html', context)
 
 
+def cart_messenger_view(request, messenger_id):
+    user = User.objects.filter(messenger_id=messenger_id).first()
+    if user:
+        login(request, user)
+        return redirect('/cart/')
+    else:
+        return redirect('/')
+
+
 @decorators.login_required(login_url=login_url)
 def add_to_cart(request):
     to = request.GET.get('next', None)
@@ -162,7 +170,7 @@ class CartBuyNow(View):
             login(request, user)
         else:
             return render(request, template_name='order/show_alert_message.html',
-                          context={'message': 'Truy cập bị từ chối. Người dùng này k tồn tại.',
+                          context={'message': 'Truy cập bị từ chối. Hãy truy cập link do bot cung cấp',
                                    'next': '/'})
 
         if not detail_shoe:

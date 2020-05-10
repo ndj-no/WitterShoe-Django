@@ -1,39 +1,25 @@
 from django.http import HttpResponse
-
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 
 from account.models import User
-from api_for_bot.serializers import UserSerializer
+from api.authen import API_KEY
 from cart.models import Cart
 from mainapp.models import DetailShoe
-from .authen import API_KEY
-
-
-@csrf_exempt
-def register_messenger_user(request):
-    """
-    tạo user dựa trên messenger id. messenger id được gán duy nhất tại đây nếu nó chưa tồn tại
-    :param request:
-    :return:
-    """
-    if request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = UserSerializer(data=data)
-        if data['key'] != API_KEY:
-            return HttpResponse(status=status.HTTP_403_FORBIDDEN)
-        if serializer.is_valid() and not serializer.is_exists():
-            serializer.save()
-            return HttpResponse(status=status.HTTP_201_CREATED)
-        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
-    else:
-        return HttpResponse(status=status.HTTP_400_BAD_REQUEST)
 
 
 @csrf_exempt
 def add_to_cart(request):
     """
+    example
+    {
+        "user_id": 33,
+        "shoe_id": "9",
+        "color_id": "2",
+        "size": "43",
+        "key": "123@abc"
+    }
     Them hang vao cart, neu ton tai thi update so luong
     :param request:
     :return:
