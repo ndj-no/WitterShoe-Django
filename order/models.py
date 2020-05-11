@@ -23,7 +23,7 @@ class OrderPackage(models.Model):
             if s[0] == self.status:
                 status = s[1]
 
-        return '[{}] OrderPackage( id:{} _ username:{} _ receiver:{} _ receiverAddress:{} _ totalPayment:{} )' \
+        return '[{}] id:{} _ username:{} _ receiver:{} _ receiverAddress:{} _ totalPayment:{}' \
             .format(status, self.id, self.user.username, self.receiver, self.receiverAddress, self.totalPayment)
 
 
@@ -34,6 +34,6 @@ class OrderItem(models.Model):
     itemPrice = models.IntegerField()
 
     def __str__(self):
-        return 'OrderItem( id:{} _ package {} _ receiver:{} _ shoe:{} _ quantity:{} _ unitPrice:{} )' \
+        return 'id:{} _ package_id {} _ receiver:{} _ shoe:{} _ quantity:{} _ unitPrice:{}' \
             .format(self.id, self.orderPackage.id, self.orderPackage.receiver, self.detailShoe.shoe.shoeName,
                     self.quantity, self.itemPrice)

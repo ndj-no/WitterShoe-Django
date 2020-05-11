@@ -24,7 +24,7 @@ SECRET_KEY = 'rsy=5ab!3r@(71*927t%o@r6yigsed58h*31%)z%c+(jovzq$v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['b641a2e7.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['9088ec6b.ngrok.io', '127.0.0.1']
 
 # Application definition
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'api_coupon',
     'api_cart',
     'api_order',
+    'django_user_agents'
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,16 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/account/login'
+
+# https://github.com/selwin/django-user_agents
+# Cache backend is optional, but recommended to speed up user agent parsing
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+# Name of cache backend to cache user agents. If it not specified default
+# cache alias will be used. Set to `None` to disable caching.
+USER_AGENTS_CACHE = 'default'

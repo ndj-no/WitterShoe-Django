@@ -44,7 +44,8 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
     :param post_values:
     :return: Dict
     """
-    context = {}
+    context = {'is_success': False}
+
     print(post_values)
     is_enough_shoe = True
     order_items = []
@@ -52,11 +53,9 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
     for detail_shoe_id in post_values.get('detail_shoes_id'):
         if post_values.get('is_buy_' + detail_shoe_id) is not None:
             detail_shoe = DetailShoe.objects.get(pk=detail_shoe_id)
-
             qt = int(post_values.get('qt_' + detail_shoe_id)[0])
-            price = detail_shoe.newPrice
-            total_payment += price
-            order_items.append(OrderItem(detailShoe=detail_shoe, quantity=qt, itemPrice=price))
+            total_payment += detail_shoe.newPrice * qt
+            order_items.append(OrderItem(detailShoe=detail_shoe, quantity=qt, itemPrice=detail_shoe.newPrice))
 
             if qt > detail_shoe.quantityAvailable:
                 is_enough_shoe = False
@@ -119,6 +118,7 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
         cart_item = Cart.objects.filter(user_id=user.id, detailShoe_id=detail_shoe.id).first()
         if cart_item is not None:
             cart_item.delete()
+    context['is_success'] = True
     context['message'] = 'Đặt hàng thành công. Bạn vui lòng đợi cửa hàng xác nhận và giao hàng.'
     context['next'] = '/order/order_history/'
     return context

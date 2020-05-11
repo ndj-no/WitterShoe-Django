@@ -1,6 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import login, authenticate, logout
+from django_user_agents.utils import get_user_agent
+
 from .models import User
 from mainapp.views import MainFrameView
 
@@ -186,3 +189,50 @@ class MyAccountView(MainFrameView):
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+
+class ContactInfo(MainFrameView):
+    def get(self, request, messenger_id):
+        user_agent = get_user_agent(request)
+        messenger_user = User.objects.filter(messengerId=messenger_id).first()
+        context = {'messenger_user': messenger_user}
+
+        if not messenger_user:
+            return HttpResponse('Lỗi. Người dùng không tồn tại')
+
+        if user_agent.is_mobile:
+            return render(request, 'account/contact_info_mobile.html', context=context)
+        else:
+            self.update_top_bar(request)
+            self.context.update(context)
+            return render(request, 'account/contact_info_pc.html', context=self.context)
+
+    def post(self, request, messenger_id):
+
+        receiver = request.POST.get('receiver', None)
+        phone = request.POST.get('phone', None)
+        address = request.POST.get('defaultAddress', None)
+        # messenger_id = request.POST.get('messenger_id', None)
+
+        messenger_user = User.objects.filter(messengerId=messenger_id).first()
+
+        if messenger_user and receiver and phone and address:
+            messenger_user.displayName = receiver
+
+            messenger_user.phone = phone
+            messenger_user.defaultAddress = address
+            messenger_user.save()
+            context = {'messenger_user': messenger_user, 'message': 'Lưu thông tin thành công'}
+
+        elif not messenger_user:
+            return HttpResponse('<h1 style="color: red">Người dùng này không tồn tại</h1>')
+        else:
+            context = {'messenger_user': messenger_user, 'message': 'Vui lòng điền đầy đủ thông tin'}
+
+        if get_user_agent(request).is_mobile:
+            return render(request, 'account/contact_info_mobile.html', context=context)
+        else:
+            self.update_top_bar(request)
+            self.context.update(context)
+
+            return render(request, 'account/contact_info_pc.html', context=self.context)

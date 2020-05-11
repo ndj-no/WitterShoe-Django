@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ giao hàng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap styles -->
+    <link href="{% static 'mainapp/assets/css/bootstrap.css' %}" rel="stylesheet"/>
+    <!-- Customize styles -->
+    <link href="{% static 'mainapp/assets/css/style.css' %}" rel="stylesheet"/>
+    <style>
+        body {
+            background-image: url('{% static 'mainapp/img/background/white_leather.png' %}');
+        }
+    </style>
+</head>
+<body>
+<div class="text-center">
+    <form action="/account/contact_info/{{ messenger_user.messengerId }}/" method="post" id="form_info">
+        {% if message %}
+            <span style="color: red">{{ message }}</span>
+        {% endif %}
+        {% csrf_token %}
+        <input type="hidden" name="messenger_id" value="{{ messenger_user.messengerId }}">
+        <br/>
+        <label for="receiver">Người nhận: </label>
+        <input type="text" id="receiver" name="receiver" value="{{ messenger_user.displayName }}">
+        <br/>
+        <label for="phone">Điện thoại: </label>
+        <input type="text" id="phone" name="phone" value="{{ messenger_user.phone }}">
+        <br/>
+        <label for="address">Địa chỉ: </label>
+        <textarea form="form_info" id="address" name="defaultAddress">{{ messenger_user.defaultAddress }}</textarea>
+        <br/>
+        <input type="submit" value="Lưu" class="shopBtn">
+    </form>
+</div>
+{% if message %}
+    <script>
+        alert("{{ message }}");
+    </script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <div class="well">
+            <form class="form-horizontal" action="" method="post" id="register_form">
+                {% csrf_token %}
+                <h3>Địa chỉ giao hàng</h3>
+                <div class="control-group">
+                    <div class="controls">
+                        {% if message %}
+                            <p style="color: red;">{{ message }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="displayName">Tên người nhận <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="displayName" placeholder="Tên" name="displayName"
+                               value="{{ messenger_user.displayName }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="phone">Điện thoại <sup>*</sup></label>
+                    <div class="controls">
+                        <input type="text" id="phone" placeholder="Điện thoại" name="phone"
+                               value="{{ messenger_user.phone }}">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="address">Địa chỉ <sup>*</sup></label>
+                    <div class="controls">
+                        <textarea id="address" placeholder="Địa chỉ" name="address"
+                                  form="register_form">{{ messenger_user.defaultAddress }}</textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" name="submitAccount" value="Lưu" class="exclusive shopBtn">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

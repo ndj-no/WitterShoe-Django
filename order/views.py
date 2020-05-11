@@ -38,6 +38,7 @@ class OrderDetailView(MainFrameView):
 class PlaceOrder(LoginRequiredMixin, MainFrameView):
     def post(self, request):
         post_values = dict(request.POST)
+        print(post_values)
         context = order_logic.place_an_order(post_values, request.user)
         self.context.update(context)
         return render(request, 'order/show_alert_message.html', self.context)
