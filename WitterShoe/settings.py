@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'api_account',
     'api_coupon',
     'api_cart',
+    'api_order',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+LOGIN_URL = '/account/login'

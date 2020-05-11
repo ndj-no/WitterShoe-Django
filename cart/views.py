@@ -1,5 +1,7 @@
 from django.contrib.auth import decorators
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.defaulttags import register
 from django.views import View
@@ -142,13 +144,27 @@ def remove_from_cart(request):
         return redirect('mainapp:index')
 
 
-class CartBuyNow(View):
+class CartBuyNowMessengerUser(View):
     """
-    for messenger user only. provided by bot only
-    this will automatic login the user
+    for messenger user only. link provided by bot only
+    this will automatic login the user and redirect to buy now link
     """
 
     def get(self, request, messenger_id, detail_shoe_id):
+
+        user = User.objects.filter(messengerId=messenger_id).first()
+
+        if user is not None:
+            login(request, user)
+            return redirect(f'/cart/buy_now/{detail_shoe_id}/')
+        else:
+            return render(request, template_name='order/show_alert_message.html',
+                          context={'message': 'Truy cập bị từ chối. Hãy truy cập link do bot cung cấp',
+                                   'next': '/'})
+
+
+class CartBuyNow(LoginRequiredMixin, View):
+    def get(self, request, detail_shoe_id):
 
         couponCode = request.GET.get('coupon', None)
         coupon_message = None
@@ -164,7 +180,7 @@ class CartBuyNow(View):
                 coupon_message = 'Coupon này không tồn tại hoặc đã hết hạn.'
 
         detail_shoe = DetailShoe.objects.filter(id=detail_shoe_id).first()
-        user = User.objects.filter(messengerId=messenger_id).first()
+        user = request.user
 
         if user is not None:
             login(request, user)

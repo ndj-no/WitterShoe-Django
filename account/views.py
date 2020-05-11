@@ -9,6 +9,7 @@ from mainapp.views import MainFrameView
 
 class LoginView(MainFrameView):
     def get(self, request):
+        self.update_top_bar(request)
         return render(request, 'account/login.html', self.context)
 
     def post(self, request):
@@ -35,6 +36,7 @@ class LoginView(MainFrameView):
 
 class RegisterView(MainFrameView):
     def get(self, request):
+        self.update_top_bar(request)
         return render(request, 'account/register.html', self.context)
 
     def post(self, request):
