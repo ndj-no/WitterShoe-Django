@@ -13,7 +13,9 @@ from order import order_logic
 
 class PlaceAnOrder(APIView):
     """
+    place order all the items available in the cart
     data = {
+        "messengerId": messengerId
         "key": API_KEY,
         "coupon_id": coupon_id
     }
@@ -55,6 +57,6 @@ class PlaceAnOrder(APIView):
         context = order_logic.place_an_order(data, user)
 
         if context.get('is_success'):
-            return Response(status=status.HTTP_200_OK)
+            return Response(data={'orderPackage_id': context['orderPackage_id']}, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)

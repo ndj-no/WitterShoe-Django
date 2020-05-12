@@ -6,6 +6,7 @@ from django.utils import timezone
 from account.models import User
 from cart.models import Cart
 from coupon import coupon_logic
+from coupon.models import Coupon
 from mainapp.models import DetailShoe, Shoe
 
 from .models import OrderPackage, OrderItem
@@ -96,7 +97,7 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
     package.receiver = post_values.get('receiver')[0]
     package.receiverAddress = post_values.get('address')[0]
     package.receiverNumber = post_values.get('phone')[0]
-    package.totalPayment = coupon_logic.reduce_price(total_payment, coupon.id)
+    package.totalPayment = coupon_logic.calc_price(total_payment, coupon_id=coupon.id)
     package.status = get_status_waiting_confirming()
 
     package.save()
@@ -119,6 +120,7 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
         if cart_item is not None:
             cart_item.delete()
     context['is_success'] = True
+    context['orderPackage_id'] = package.id
     context['message'] = 'Đặt hàng thành công. Bạn vui lòng đợi cửa hàng xác nhận và giao hàng.'
     context['next'] = '/order/order_history/'
     return context
@@ -126,7 +128,7 @@ def place_an_order(post_values: Dict, user: User) -> Dict:
 
 def cancel_the_order(user: User, package_id):
     context = {}
-    print(package_id)
+    # print(package_id)
     package = OrderPackage.objects.get(pk=package_id)
 
     if package.user.id != user.id:
@@ -143,6 +145,10 @@ def cancel_the_order(user: User, package_id):
         shoe = Shoe.objects.get(pk=detail_shoe.shoe_id)
         shoe.quantitySold = shoe.quantitySold - item.quantity
         shoe.save()
+        coupon = Coupon.objects.filter(id=package.coupon_id).first()
+        if coupon:
+            coupon.couponAmount += 1
+            coupon.save()
     package.status = PackageStatus.CANCELLED_BY_USER
     package.save()
 

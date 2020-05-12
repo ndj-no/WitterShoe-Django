@@ -58,7 +58,9 @@
                                 <td>
                                     {% if status_code|get_item:detailShoe.id %}
                                         <p style="color: green">{{ status|get_item:detailShoe.id }}</p>
-                                        <p>({{ detailShoe.quantityAvailable }} sản phẩm)</p>
+                                        <p>(<span
+                                                id="qtavailable_{{ detailShoe.id }}">{{ detailShoe.quantityAvailable }}</span>
+                                            sản phẩm)</p>
                                     {% endif %}
                                     {% if status_code|get_item:detailShoe.id == False %}
                                         <p style="color: red">{{ status|get_item:detailShoe.id }}</p>
@@ -92,6 +94,15 @@
                                             {% if status_code|get_item:detailShoe.id %}
                                            name="qt_{{ detailShoe.id }}"
                                             {% endif %} >
+                                    {% if status_code|get_item:detailShoe.id %}
+                                        <div class="input-append">
+                                            <button class="btn btn-mini btn-primary" type="button"
+                                                    id="refresh_{{ detailShoe.id }}"
+                                                    onclick="update_qt(this.id)"><span
+                                                    class="icon-refresh"></span>
+                                            </button>
+                                        </div>
+                                    {% endif %}
                                     <div class="input-append">
                                         <button class="btn btn-mini btn-danger" type="button"
                                                 onclick="location.href='{% url 'cart:remove_from_cart_url' %}?next={{ request.path }}&detail_shoe_id={{ detailShoe.id }}';"><span
@@ -168,21 +179,24 @@
                             <td>
                                 <div class="form-horizontal">
                                     <div class="control-group">
-                                        <label class="span2 control-label" for="receiver">Người nhận:</label>
+                                        <label class="span2 control-label" for="receiver" style="margin-right: 15px">Người
+                                            nhận <sup><b>*</b></sup> </label>
                                         <div class="controls">
                                             <input type="text" id="receiver" placeholder="Người nhận" name="receiver"
                                                    value="{{ user.displayName }}">
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="span2 control-label" for="phone">Điện thoại <sup>*</sup> :</label>
+                                        <label class="span2 control-label" for="phone" style="margin-right: 15px">Điện
+                                            thoại <sup>*</sup> </label>
                                         <div class="controls">
                                             <input type="text" id="phone" placeholder="Điện thoại" name="phone"
                                                    value="{{ user.phone }}">
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="span2 control-label" for="address">Địa chỉ <sup>*</sup> :</label>
+                                        <label class="span2 control-label" for="address" style="margin-right: 15px">Địa
+                                            chỉ <sup>*</sup> </label>
                                         <div class="controls">
                                             <textarea id="address" placeholder="Địa chỉ"
                                                       name="address">{{ user.defaultAddress }}</textarea>
@@ -194,7 +208,7 @@
                         </tbody>
                     </table>
                     <a href="{% url 'mainapp:index' %}" class="shopBtn btn-large"><span class="icon-arrow-left"></span>
-                        Tiếp tục mua sắm
+                        Tiếp tục mua hàng
                     </a>
                     {% if  number_item != 0 %}
                         {#                        <a href="login.html" class="shopBtn btn-large pull-right">#}
@@ -222,5 +236,11 @@
             const coupon_code = document.getElementById('coupon').value;
             window.location.replace("{{ request.path }}?coupon=" + coupon_code);
         });
+
+        function update_qt(clicked_id) {
+            const shoe_id = clicked_id.split("_")[1];
+            const qt = document.getElementById("qt_" + shoe_id).value;
+            location.href = '{% url 'cart:update_qt_url' %}?next={{ request.path }}&detail_shoe_id=' + shoe_id + '&new_quantity=' + qt;
+        }
     </script>
 {% endblock %}

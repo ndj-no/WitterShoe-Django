@@ -22,6 +22,17 @@ def get_default_coupon():
         return coupon
 
 
+def reduce_amount_could_be_used(coupon_id=None, coupon_code=None, coupon=None):
+    if coupon_id:
+        coupon = Coupon.objects.filter(coupon_id=coupon_id).first()
+    elif coupon_code:
+        coupon = Coupon.objects.filter(couponCode=coupon_code).first()
+
+    if coupon:
+        coupon.couponAmount = coupon.couponAmount - 1
+        coupon.save()
+
+
 def get_all_coupons_available():
     coupon = Coupon.objects.filter(expirationDate__gte=timezone.now())
     return coupon
@@ -37,11 +48,18 @@ def get_coupon_available_by_id(coupon_id):
     return coupon
 
 
-def reduce_price(price, coupon_id):
-    coupon = Coupon.objects.get(pk=coupon_id)
-    discountAmount = coupon.discountAmount
-    discountRate = coupon.discountRate
+def calc_price(price, coupon_id=None, coupon_code=None, coupon=None):
+    if coupon_id:
+        coupon = Coupon.objects.filter(id=coupon_id).first()
+    elif coupon_code:
+        coupon = Coupon.objects.filter(couponCode=coupon_code).first()
 
-    total_discount = int((discountAmount + (price - discountAmount) * discountRate / 100))
-    final_price = price - total_discount
-    return final_price
+    if coupon:
+        discountAmount = coupon.discountAmount
+        discountRate = coupon.discountRate
+
+        total_discount = int((discountAmount + (price - discountAmount) * discountRate / 100))
+        final_price = price - total_discount
+        return final_price
+    else:
+        return price

@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng ({{ number_item }} SP)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap styles -->
+    <link href="{% static 'mainapp/assets/css/bootstrap.css' %}" rel="stylesheet"/>
+    <!-- Customize styles -->
+    <link href="{% static 'mainapp/assets/css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'mainapp/assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+    <style>
+        .hidelongtext {
+            max-width: 150px;
+            overflow-wrap: break-word;
+            display: inline-block;
+        }
+
+        body {
+            background-image: url('{% static 'mainapp/img/background/white_leather.png' %}');
+        }
+    </style>
+</head>
+<body>
+<div style="margin: 10px; background: white">
+    <form action="" method="post">
+        <table class="table table-bordered table-condensed">
+            <thead>
+            <tr>
+                <th>Hình ảnh</th>
+                <th style="width: 150px;">Sản phẩm</th>
+                <th>Số lượng</th>
+                <th style="text-align: right;">Tổng</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for detailShoe in detail_shoes %}
+                <tr id="row_{{ detailShoe.id }}">
+                    <td>
+                        <input type="hidden" name="detail_shoes_id" value="{{ detailShoe.id }}">
+                        <img width="120" src="{{ shoe_thumbnails|get_item:detailShoe.id }}" alt="">
+                    </td>
+                    <td>
+                        <p class="hidelongtext" style="font-weight: bold">{{ shoe_names|get_item:detailShoe.id }}</p>
+                        <br/>
+                        <span>Màu: <span>{{ shoe_colors|get_item:detailShoe.id }}</span></span><br/>
+                        <span>Size: <span>{{ detailShoe.size }}</span></span><br/>
+                        <span>Đơn giá: {{ detailShoe.newPrice|template_price_format }} đ</span><br/>
+                        <span>Còn: {{ detailShoe.quantityAvailable }} SP</span><br/>
+                    </td>
+                    <td>
+                        <input class="span1" style="max-width:34px" id="qt_{{ detailShoe.id }}"
+                               size="16" type="number" value="{{ shoe_quantity|get_item:detailShoe.id }}" name="qt_{{ detailShoe.id }}">
+                        <div class="input-append">
+                            <button class="btn btn-mini btn-danger" type="button" id="btnrm_{{ detailShoe.id }}"
+                                    onclick="location.href='{% url 'cart:messenger_user_delete_cart_item_url' %}?next={{ request.path }}&detail_shoe_id={{ detailShoe.id }}&messenger_id={{ messenger_user.messengerId }}';">
+                                <span class="icon-remove"></span>
+                            </button>
+                        </div>
+                    </td>
+                    <td style="text-align: right;">
+                        <span id="totalprice_{{ detailShoe.id }}">{{ totalprice|get_item:detailShoe.id }}</span> đ
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr style="font-weight: bold">
+                <td colspan="3" class="alignR" style="padding-right: 10px">Tổng:</td>
+                <td style="text-align: right"><span id="total_products_price">{{ total_products_price }}</span> đ
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <input class="shopBtn btn-large" type="submit" value="Lưu">
+        </div>
+        <br/>
+        {% csrf_token %}
+    </form>
+</div>
+
+<script>
+    {% if message %}
+        alert("{{ message }}");
+    {% endif %}
+
+    function remove_item(item_id) {
+        const shoe_id = item_id.toString().split("_")[1];
+        const row = document.getElementById("row_" + shoe_id);
+        var shoe_price = to_number(document.getElementById("totalprice_" + shoe_id).innerText);
+        var total_price_element = document.getElementById("total_products_price");
+        var total_price = to_number(total_price_element.innerText);
+        total_price_element.innerText = to_price_format(total_price - shoe_price);
+        row.remove();
+    }
+
+    function to_number(x) {
+        var out = String(x).replace(".", "").replace(",", "");
+        var i;
+        for (i = 0; i < 10; i++)
+            out = out.replace(".", "").replace(",", "");
+        return Number(out);
+    }
+
+    function to_price_format(x) {
+        out = x.toLocaleString();
+        var i;
+        for (i = 0; i < 10; i++)
+            out = out.replace(",", ".");
+        return out;
+    }
+</script>
+
+</body>
+</html>

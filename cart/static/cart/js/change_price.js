@@ -2,10 +2,13 @@ function quantity_change(clicked_id) {
     const shoe_id = clicked_id.split("_")[1];
     const unitprice = to_number(document.getElementById("unitprice_" + shoe_id).innerText);
     const qt = document.getElementById("qt_" + shoe_id).value;
+    const qt_avaiable = document.getElementById('qtavailable_' + shoe_id).innerText;
     var checkBox = document.getElementById("checkbox_" + shoe_id);
     if (qt < 1)
         document.getElementById("qt_" + shoe_id).value = 1;
-    else {
+    else if (qt > qt_avaiable) {
+        document.getElementById("qt_" + shoe_id).value = qt_avaiable;
+    } else {
         // set gia cho san pham dc thay doi gia tri
         const totalprice = unitprice * qt;
         old_price = to_number(document.getElementById("totalprice_" + shoe_id).innerText);
