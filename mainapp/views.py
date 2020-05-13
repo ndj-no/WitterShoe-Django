@@ -1,5 +1,7 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
+
+from . import product_detail_logic
 from .models import *
 from django.views import View
 from django.template.defaulttags import register
@@ -92,29 +94,10 @@ class ProductDetailView(MainFrameView):
     def get(self, request, product_id):
         self.update_top_bar(request)
 
-        shoe = Shoe.objects.get(id=product_id)
-        shoe.viewCount = shoe.viewCount + 1
-        shoe.save()
+        context = product_detail_logic.get_product_detail(product_id)
+        self.context.update(context)
 
-        images = Image.objects.filter(shoe=shoe)
-        last_image = images[3]
-        detailShoes = DetailShoe.objects.filter(shoe=shoe).filter(quantityAvailable__gt=0)
-        colors = Color.objects.filter(detailshoe__shoe_id=shoe.id).distinct()
-        category = Category.objects.filter(id=shoe.category.id).first()
-        shoe_old_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=product_id).first().oldPrice).replace(',', '.')
-        shoe_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=product_id).first().newPrice).replace(',', '.')
-        total_products_available = sum([d_shoe.quantityAvailable for d_shoe in detailShoes])
-        context = {
-            'shoe': shoe,
-            'category': category,
-            'images': images,
-            'shoe_old_price': shoe_old_price,
-            'shoe_price': shoe_price,
-            'detailShoes': detailShoes,
-            'last_image': last_image,
-            'colors': colors,
-            'total_products_available': total_products_available,
-        }
+        context = product_detail_logic.get_related_shoe(product_id)
         self.context.update(context)
         return render(request, 'mainapp/product_details.html', context=self.context)
 
