@@ -57,6 +57,7 @@ class IndexView(MainFrameView):
         rotate_shoes = Shoe.objects.order_by(Coalesce('quantitySold', 'favouriteCount').desc())[:3]
         rotate_shoes_first = Shoe.objects.order_by(Coalesce('quantitySold', 'favouriteCount').desc())[4]
 
+        # new shoe
         # date created
         new_shoes1 = Shoe.objects.order_by(Coalesce('dateCreated', 'quantitySold').desc())[:4]
         new_shoes2 = Shoe.objects.order_by(Coalesce('dateCreated', 'quantitySold').desc())[4:8]
@@ -122,16 +123,42 @@ class ProductsByCategory(MainFrameView):
     def get(self, request):
         self.update_top_bar(request)
 
-        category_id = request.GET.get('category_id', None)
-        page = request.GET.get('page', 1)
+        category_id = request.GET.get('category_id', '')
+
+        top_sale = request.GET.get('top_sale', '')
+        most_view = request.GET.get('most_view', '')
+        most_favorite = request.GET.get('most_favorite', '')
+        page = int(request.GET.get('page', 1))
+        item_per_page = 12
+        if page <= 0:
+            page = 1
+        prev_page = '?' + '&'.join([f'category_id={category_id}',
+                                    f'top_sale={top_sale}',
+                                    f'most_view={most_view}',
+                                    f'most_favorite={most_favorite}'])
+        next_page = prev_page + '&page=' + str(page + 1)
+        prev_page = prev_page + '&page=' + str(page - 1)
+
         category_name = 'Tất cả sản phẩm'
-        if category_id is not None:
+        shoes = Shoe.objects.all()
+        if category_id:
             category = Category.objects.filter(id=category_id).first()
             if category is not None:
                 category_name = category.categoryName
-            shoes = Shoe.objects.filter(category_id=category_id)
-        else:
-            shoes = Shoe.objects.all()
+                shoes = shoes.filter(category_id=category_id)
+
+        if top_sale:
+            shoes = shoes.order_by(Coalesce('quantitySold', 'favouriteCount').desc())
+            category_name = 'Sản phẩm bán chạy'
+        if most_view:
+            shoes = shoes.order_by(Coalesce('viewCount', 'quantitySold').desc())
+            category_name = 'Sản phẩm xem nhiều'
+
+        if most_favorite:
+            shoes = shoes.order_by(Coalesce('favouriteCount', 'viewCount').desc())
+            category_name = 'Sản phẩm được yêu thích'
+        shoes = shoes[(page - 1) * item_per_page: page * item_per_page]
+
         self.context.update({'category_name': category_name, })
         # chia shoe thanh [[ 3 shoe ], ... n shoe]
         # shape = (n, 3)
@@ -150,11 +177,17 @@ class ProductsByCategory(MainFrameView):
                 if count % 3 == 0:
                     shoes_groups.append(group)
                     group = []
+
             self.context.update({
                 'shoes_groups': shoes_groups,
                 'shoes_price_new': shoes_price_new,
                 'shoes_image': shoes_image,
             })
+        self.context.update({
+            'prev_page': prev_page,
+            'page': page,
+            'next_page': next_page,
+        })
         return render(request, 'mainapp/products.html', context=self.context)
 
 

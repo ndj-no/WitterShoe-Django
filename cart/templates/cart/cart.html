@@ -146,26 +146,33 @@
                         <tbody>
                         <tr>
                             <td>
-                                <label style="min-width:159px" for="coupon"> Mã giảm giá: </label>
-                                <input id="coupon" type="text" class="input-medium" placeholder="CODE"
-                                       value="{{ coupon_code }}" name="coupon_code">
-                                <label class="shopBtn" id="btn_coupon"> ADD</label>
-                                {% if discount_rate %}
-                                    <p style="font-size: medium;">
-                                        Giảm
-                                        <span style="font-weight: bold;" id="discount_rate">{{ discount_rate }}</span>%
-                                        giá trị đơn hàng
-                                    </p>
-                                {% endif %}
-                                {% if discount_amount %}
-                                    <p style="font-size: medium;">Giảm <span
-                                            style="font-weight: bold; font-size: medium"
-                                            id="discount_amount">{{ discount_amount }}</span>
-                                        đ</p>
-                                {% endif %}
-                                {% if coupon_message %}
-                                    <p style="color: red">{{ coupon_message }}</p>
-                                {% endif %}
+                                <div class="form-inline">
+                                    <label style="min-width:159px" for="coupon"> Mã giảm giá: </label>
+                                    <input id="coupon" type="text" class="input-medium" placeholder="CODE"
+                                           value="{{ coupon_code }}" name="coupon_code">
+                                    <label class="shopBtn" id="btn_coupon"> ADD</label>
+                                </div>
+                                <div class="form-inline">
+                                    <br/>
+                                    <label style="min-width:159px">  </label>
+                                    {% if discount_rate %}
+                                        <span style="font-size: medium;">
+                                            Giảm
+                                            <span style="font-weight: bold;"
+                                                  id="discount_rate">{{ discount_rate }}</span>%
+                                            giá trị đơn hàng
+                                        </span>
+                                    {% endif %}
+                                    {% if discount_amount %}
+                                        <span style="font-size: medium;">Giảm <span
+                                                style="font-weight: bold; font-size: medium"
+                                                id="discount_amount">{{ discount_amount }}</span>
+                                            đ</span>
+                                    {% endif %}
+                                    {% if coupon_message %}
+                                        <span style="color: red">{{ coupon_message }}</span>
+                                    {% endif %}                                </div>
+
                             </td>
                         </tr>
                         </tbody>

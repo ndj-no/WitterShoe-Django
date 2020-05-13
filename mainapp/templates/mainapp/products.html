@@ -14,7 +14,7 @@
                                            class="overlay"></a>
                                         <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
                                            title="{{ shoe.shoeName }}"><span
-                                                class="icon-search"></span> Xem</a>
+                                                class="icon-search"></span></a>
                                         <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
                                                 style="height: 200px"
                                                 src="{{ shoe.shoeThumbnail.url }}"
@@ -22,10 +22,12 @@
                                         <div class="caption cntr">
                                             <p style="height: 50px">{{ shoe.shoeName }}</p>
                                             <p><strong> {{ shoes_price_new|get_item:shoe.id }} đ</strong></p>
-                                            <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+                                            <h4><a class="shopBtn" href="#" title="add to cart"> Xem khi tiết </a></h4>
                                             <div class="actionList">
-                                                <a class="pull-left" href="#">Favourite </a>
-                                                <a class="pull-left" href="#"> Add to Compare </a>
+                                                <span class="pull-left"><span
+                                                        class="icon-shopping-cart"></span> {{ shoe.quantitySold }}</span>
+                                                <span class="pull-right"><span
+                                                        class="icon-heart"></span> {{ shoe.favouriteCount }}</span>
                                             </div>
                                             <br class="clr">
                                         </div>
@@ -35,8 +37,14 @@
                         </ul>
                     </div>
                 {% endfor %}
-
             {% endif %}
+        </div>
+        <div class="text-center">
+            <form action="" method="get" class="form-inline">
+                <a class="shopBtn" href="{{ prev_page }}"> <span class="icon-arrow-left"></span></a>
+                <input type="text" class="text-center" placeholder="{{ page }}" style="max-width: 40px">
+                <a class="shopBtn" href="{{ next_page }}"> <span class="icon-arrow-right"></span></a>
+            </form>
         </div>
     </div>
 {% endblock %}

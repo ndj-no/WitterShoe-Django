@@ -17,8 +17,14 @@ class GetAllCouponsAvailable(APIView):
 class GetCouponInfo(APIView):
     def post(self, request):
         data = JSONParser().parse(request)
+        print(data)
         coupon_id = data.get('coupon_id')
-        coupon = coupon_logic.get_coupon_available_by_id(coupon_id)
+        coupon_code = data.get('coupon_code')
+        if coupon_id:
+            coupon = coupon_logic.get_coupon_available_by_id(coupon_id)
+        else:
+            coupon = coupon_logic.get_coupon_available(coupon_code)
+
         if coupon:
             coupon_serializer = CouponSerializer(coupon)
             return Response(data=coupon_serializer.data, status=status.HTTP_200_OK)
