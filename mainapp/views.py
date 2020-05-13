@@ -125,10 +125,12 @@ class ProductsByCategory(MainFrameView):
         category_name = 'Tất cả sản phẩm'
         shoes = Shoe.objects.all()
         if category_id:
+            print(category_id)
             category = Category.objects.filter(id=category_id).first()
             if category is not None:
                 category_name = category.categoryName
                 shoes = shoes.filter(category_id=category_id)
+                print(shoes)
 
         if top_sale:
             shoes = shoes.order_by(Coalesce('quantitySold', 'favouriteCount').desc())
@@ -143,24 +145,24 @@ class ProductsByCategory(MainFrameView):
         shoes = shoes[(page - 1) * item_per_page: page * item_per_page]
 
         self.context.update({'category_name': category_name, })
-        # chia shoe thanh [[ 3 shoe ], ... n shoe]
+
+        # chia shoe thanh [[ 3 shoes ], ... n]
         # shape = (n, 3)
         if len(shoes) != 0:
-            shoes_groups = []
+            shoes_groups = [[]]
             shoes_price_new = {}
             shoes_image = {}
-            group = []
             count = 0
             for shoe in shoes:
-                group.append(shoe)
                 shoes_price_new[shoe.id] = '{:,}'.format(
                     DetailShoe.objects.filter(shoe_id=shoe.id).first().newPrice).replace(',', '.')
                 shoes_image[shoe.id] = Image.objects.filter(shoe_id=shoe.id).first().shoeImage
-                count += 1
-                if count % 3 == 0:
-                    shoes_groups.append(group)
-                    group = []
 
+                shoes_groups[-1].append(shoe)
+                count += 1
+                if count == 3:
+                    shoes_groups.append([])
+                    count = 0
             self.context.update({
                 'shoes_groups': shoes_groups,
                 'shoes_price_new': shoes_price_new,
