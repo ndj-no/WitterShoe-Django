@@ -7,8 +7,14 @@
         </ul>
         <hr class="soft"/>
         <div class="btn-group">
-            <a href="{% url 'order:order_history_url' %}" class="shopBtn btn-large" style="margin: 5px">Lịch sử mua hàng</a>
+            {% if user.is_staff %}
+                <a href="/admin/" class="btn-danger btn-large" style="margin: 5px"> Trang quản lý</a>
+            {% endif %}
+            <a href="{% url 'order:order_history_url' %}" class="shopBtn btn-large" style="margin: 5px">Lịch sử mua
+                hàng</a>
             <a href="{% url 'cart:cart_url' %}" class="shopBtn btn-large" style="margin: 5px">Giỏ hàng</a>
+            <a href="{% url 'favourite:my_favourite_url' %}" class="shopBtn btn-large" style="margin: 5px">Sản phẩm đã
+                thích</a>
         </div>
         <hr class="soft"/>
         <div class="well">
@@ -29,22 +35,33 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="password">Mật khẩu <sup>*</sup></label>
+                    <label class="control-label" for="old_password">Mật khẩu cũ <sup>*</sup></label>
+                    <div class="controls ">
+                        <input type="password" id="old_password" placeholder="Mật khẩu" name="old_password">
+                        <span class=" alert-error">{{ old_password_message }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="password">Mật khẩu mới <sup>*</sup></label>
                     <div class="controls">
                         <input type="password" id="password" placeholder="Mật khẩu" name="password">
+                        <span class=" alert-error">{{ password_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="repassword">Nhập lại mật khẩu <sup>*</sup></label>
                     <div class="controls">
                         <input type="password" id="repassword" placeholder="Nhập lại Mật khẩu" name="repassword">
+                        <span class=" alert-error">{{ repassword_message }}</span>
                     </div>
                 </div>
+                <br/>
                 <div class="control-group">
                     <label class="control-label" for="displayName">Tên của bạn <sup>*</sup></label>
                     <div class="controls">
                         <input type="text" id="displayName" placeholder="Tên" name="displayName"
                                value="{{ displayName }}">
+                        <span class=" alert-error">{{ displayName_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -55,24 +72,28 @@
                             <option value="0">Nữ</option>
                             <option value="2">Pede</option>
                         </select>
+                        <span class=" alert-error">{{ gender_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="phone">Điện thoại <sup>*</sup></label>
                     <div class="controls">
                         <input type="text" id="phone" placeholder="Điện thoại" name="phone" value="{{ phone }}">
+                        <span class=" alert-error">{{ phone_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">
                         <input type="text" id="email" placeholder="Email" name="email" value="{{ email }}">
+                        <span class=" alert-error">{{ email_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="address">Địa chỉ <sup>*</sup></label>
                     <div class="controls">
                         <input type="text" id="address" placeholder="Địa chỉ" name="address" value="{{ address }}">
+                        <span class=" alert-error">{{ address_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">

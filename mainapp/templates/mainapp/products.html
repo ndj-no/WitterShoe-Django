@@ -22,8 +22,10 @@
                                         <div class="caption cntr">
                                             <p style="height: 50px">{{ shoe.shoeName }}</p>
                                             <p><strong> {{ shoes_price_new|get_item:shoe.id }} đ</strong></p>
-                                            <h4><a class="shopBtn" href="#" title="add to cart"> Xem khi tiết </a></h4>
-                                            <div class="actionList">
+                                            <h4><a class="shopBtn"
+                                                   href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                                   title="add to cart"> Xem chi tiết </a></h4>
+                                            <div class="actionList" style="margin-top: 5px">
                                                 <span class="pull-left"><span
                                                         class="icon-shopping-cart"></span> {{ shoe.quantitySold }}</span>
                                                 <span class="pull-right"><span

@@ -1,6 +1,7 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
 
+from favourite.models import Favourite
 from . import product_detail_logic
 from .models import *
 from django.views import View
@@ -97,33 +98,54 @@ class ProductDetailView(MainFrameView):
         context = product_detail_logic.get_product_detail(product_id)
         self.context.update(context)
 
-        context = product_detail_logic.get_related_shoe(product_id)
+        context = product_detail_logic.get_related_shoes(product_id)
         self.context.update(context)
+
+        # check if user like this product or not
+        user = request.user
+        favorite = Favourite.objects.filter(user_id=user.id, shoe_id=product_id).first()
+        if favorite:
+            context['is_favourite'] = True
+        else:
+            context['is_favourite'] = False
+        self.context.update(context)
+        print(context['is_favourite'])
         return render(request, 'mainapp/product_details.html', context=self.context)
 
 
 class ProductsByCategory(MainFrameView):
+
     def get(self, request):
         self.update_top_bar(request)
+        ITEMS_PER_PAGE = 12
 
+        search_key_word = request.GET.get('search', '')
         category_id = request.GET.get('category_id', '')
-
         top_sale = request.GET.get('top_sale', '')
         most_view = request.GET.get('most_view', '')
         most_favorite = request.GET.get('most_favorite', '')
         page = int(request.GET.get('page', 1))
-        item_per_page = 12
+
         if page <= 0:
             page = 1
-        prev_page = '?' + '&'.join([f'category_id={category_id}',
-                                    f'top_sale={top_sale}',
-                                    f'most_view={most_view}',
-                                    f'most_favorite={most_favorite}'])
+
+        # viet lai get parameter cho nut next, previous page
+        prev_page = '?' + '&'.join([
+            f'search={search_key_word}',
+            f'category_id={category_id}',
+            f'top_sale={top_sale}',
+            f'most_view={most_view}',
+            f'most_favorite={most_favorite}',
+        ])
         next_page = prev_page + '&page=' + str(page + 1)
         prev_page = prev_page + '&page=' + str(page - 1)
 
-        category_name = 'Tất cả sản phẩm'
-        shoes = Shoe.objects.all()
+        if search_key_word:
+            shoes = product_detail_logic.search_shoes(search_key_word)
+            category_name = f'Tìm kiếm "{search_key_word}"'
+        else:
+            category_name = 'Tất cả sản phẩm'
+            shoes = Shoe.objects.all()
         if category_id:
             print(category_id)
             category = Category.objects.filter(id=category_id).first()
@@ -135,6 +157,7 @@ class ProductsByCategory(MainFrameView):
         if top_sale:
             shoes = shoes.order_by(Coalesce('quantitySold', 'favouriteCount').desc())
             category_name = 'Sản phẩm bán chạy'
+
         if most_view:
             shoes = shoes.order_by(Coalesce('viewCount', 'quantitySold').desc())
             category_name = 'Sản phẩm xem nhiều'
@@ -142,7 +165,7 @@ class ProductsByCategory(MainFrameView):
         if most_favorite:
             shoes = shoes.order_by(Coalesce('favouriteCount', 'viewCount').desc())
             category_name = 'Sản phẩm được yêu thích'
-        shoes = shoes[(page - 1) * item_per_page: page * item_per_page]
+        shoes = shoes[(page - 1) * ITEMS_PER_PAGE: page * ITEMS_PER_PAGE]
 
         self.context.update({'category_name': category_name, })
 
@@ -154,8 +177,7 @@ class ProductsByCategory(MainFrameView):
             shoes_image = {}
             count = 0
             for shoe in shoes:
-                shoes_price_new[shoe.id] = '{:,}'.format(
-                    DetailShoe.objects.filter(shoe_id=shoe.id).first().newPrice).replace(',', '.')
+                shoes_price_new[shoe.id] = price_format(DetailShoe.objects.filter(shoe_id=shoe.id).first().newPrice)
                 shoes_image[shoe.id] = Image.objects.filter(shoe_id=shoe.id).first().shoeImage
 
                 shoes_groups[-1].append(shoe)

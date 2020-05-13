@@ -112,8 +112,8 @@ Body Section
                                             src="{{ shoe.shoeThumbnail.url }}"
                                             alt="{{ shoe.shoeName }}"></a>
                                     <div class="caption cntr">
-                                        <p style="height: 50px">{{ shoe.shoeName }}</p>
-                                        <p><strong> {{ span4_views_shoes_price|get_item:shoe.id }} ₫</strong></p>
+                                        <div style="height: 40px">{{ shoe.shoeName }}</div>
+                                        <h4><strong> {{ span4_views_shoes_price|get_item:shoe.id }} ₫</strong></h4>
                                         <h4><a class="shopBtn"
                                                href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
                                                title="{{ shoe.shoeName }}"> Xem ngay </a>
@@ -122,6 +122,13 @@ Body Section
                                         {#                                            <a class="pull-left" href="#">Add to Wish List </a>#}
                                         {#                                            <a class="pull-left" href="#"> Add to Compare </a>#}
                                         {#                                        </div>#}
+                                        <div class="actionList" style="margin-top: 5px">
+                                                <span class="pull-left"><span
+                                                        class="icon-shopping-cart"></span> {{ shoe.quantitySold }}</span>
+                                            <span class="pull-right"><span
+                                                    class="icon-eye-open"></span> {{ shoe.viewCount }}</span>
+                                        </div>
+
                                         <br class="clr">
                                     </div>
                                 </div>
@@ -145,21 +152,30 @@ Body Section
                         {% for shoe in most_liked_shoes %}
                             <li class="span4">
                                 <div class="thumbnail">
-                                    <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
-                                       title="{{ shoe.shoeName }}"><span
-                                            class="icon-search"></span> Xem chi tiết</a>
+                                    {#                                    <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}"#}
+                                    {#                                       title="{{ shoe.shoeName }}"><span#}
+                                    {#                                            class="icon-search"></span></a>#}
                                     <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"><img
                                             src="{{ shoe.shoeThumbnail.url }}"
                                             alt=""></a>
                                     <div class="caption">
                                         <h5 style="height: 50px">{{ shoe.shoeName }}</h5>
+                                        <div class="actionList" style="margin-top: 5px">
+                                                <span class="pull-left"><span
+                                                        class="icon-shopping-cart"></span> {{ shoe.quantitySold }}</span>
+                                            <span class="pull-right"><span
+                                                    class="icon-eye-open"></span> {{ shoe.viewCount }}</span>
+                                        </div>
+                                        <br/>
                                         <h4>
                                             <a class="defaultBtn"
-                                               href="p{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                               href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
                                                title="Click to view"><span
                                                     class="icon-zoom-in"></span></a>
-{#                                            <a class="shopBtn" href="#" title="add to cart"><span#}
-{#                                                    class="icon-plus"></span></a>#}
+                                            <a class="shopBtn"
+                                               href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                               title="add to cart"><span
+                                                    class="">VIEW</span></a>
                                             <span class="pull-right">{{ most_liked_shoes_price|get_item:shoe.id }} ₫</span>
                                         </h4>
                                     </div>

@@ -8,12 +8,22 @@
                 {% if categories %}
                     {% for category in categories %}
                         <li><a href="{% url 'mainapp:products_url' %}?category_id={{ category.id }}"><span
-                                class="icon-chevron-right"></span>{{ category.categoryName }}</a>
+                                class="icon-chevron-right"></span> {{ category.categoryName }}</a>
                         </li>
                     {% endfor %}
                 {% endif %}
-                <li><a href="{% url 'mainapp:products_url' %}"><span class="icon-chevron-right"></span>Xem tất cả sản
-                    phẩm </a>
+                <br/>
+                <li><a href="{% url 'mainapp:products_url' %}?top_sale=True"><span class="icon-chevron-right"></span>
+                    Bán chạy </a>
+                </li>
+                <li><a href="{% url 'mainapp:products_url' %}?most_favorite=True"><span class="icon-chevron-right"></span>
+                    Được ưa thích </a>
+                </li>
+                <li><a href="{% url 'mainapp:products_url' %}?most_view=True"><span class="icon-chevron-right"></span>
+                    Nhiều lượt xem </a>
+                </li>
+                <li><a href="{% url 'mainapp:products_url' %}"><span class="icon-chevron-right"></span>
+                    Xem tất cả sản phẩm </a>
                 </li>
                 <li style="border:0"> &nbsp;</li>
                 <li><a class="totalInCart" href="{% url 'cart:cart_url' %}"><strong>Giỏ hàng <span
@@ -32,7 +42,8 @@
         <div class="well well-small"><a href="#"><img src="{% static 'mainapp/assets/img/paypal.jpg' %}"
                                                       alt="payment method paypal"></a></div>
 
-        <a class="shopBtn btn-block" href="{% url 'news:news_url' %}">Sản phẩm sắp ra mắt <br><small>Xem ngay</small></a>
+        <a class="shopBtn btn-block" href="{% url 'news:news_url' %}">Sản phẩm sắp ra mắt <br><small>Xem
+            ngay</small></a>
         <br>
         <br>
         <ul class="nav nav-list promowrapper">
@@ -40,13 +51,15 @@
                 {% for shoe in nav_list_quantity_sold_shoes %}
                     <li>
                         <div class="thumbnail">
-                            <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}" title="Xem"><span
+                            <a class="zoomTool" href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                               title="Xem"><span
                                     class="icon-search"></span> Xem</a>
                             <img src="{{ shoe.shoeThumbnail.url }}"
                                  alt="{{ shoe.name }}">
                             <div class="caption">
-                                <h4><a class="defaultBtn" href="{% url 'mainapp:product_detail' product_id=shoe.id %}">Xem</a> <span
-                                        class="pull-right">{{ nav_list_quantity_sold_shoes_price|get_item:shoe.id }} <sup>₫</sup></span>
+                                <h4><a class="defaultBtn" href="{% url 'mainapp:product_detail' product_id=shoe.id %}">Xem</a>
+                                    <span
+                                            class="pull-right">{{ nav_list_quantity_sold_shoes_price|get_item:shoe.id }} <sup>₫</sup></span>
                                 </h4>
                             </div>
                         </div>

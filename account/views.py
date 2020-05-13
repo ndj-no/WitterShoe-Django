@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
@@ -113,7 +114,7 @@ class RegisterView(MainFrameView):
             return render(request, 'account/register.html', context=self.context)
 
 
-class MyAccountView(MainFrameView):
+class MyAccountView(LoginRequiredMixin, MainFrameView):
     def get(self, request):
         self.update_top_bar(request)
 
@@ -131,7 +132,7 @@ class MyAccountView(MainFrameView):
 
     def post(self, request):
         self.update_top_bar(request)
-
+        old_password = request.POST.get('old_password')
         password = request.POST.get('password')
         repassword = request.POST.get('repassword')
         displayName = request.POST.get('displayName')
@@ -140,34 +141,41 @@ class MyAccountView(MainFrameView):
         email = request.POST.get('email')
         address = request.POST.get('address')
         err = False
-        message = ''
         self.context.update({
             'displayName': displayName,
             'phone': phone,
             'email': email,
             'address': address,
         })
+
+        context_err_message = {}
+
+        if not authenticate(username=request.user.username, password=old_password):
+            context_err_message['old_password'] = 'Mật khẩu cũ không chính xác. '
+            err = True
+
         if password == '' or len(password) <= 3 or ' ' in password:
-            message = message + 'Mật khẩu không được chứa khoảng trắng, phải > 3 ký tự. '
+            context_err_message['password_message'] = 'Mật khẩu không được chứa khoảng trắng và phải > 3 ký tự. '
             err = True
 
         if password != repassword:
-            message = message + 'Mật khẩu nhập không trùng nhau. '
+            context_err_message['repassword_message'] = 'Mật khẩu nhập không trùng nhau. '
             err = True
+
         if displayName.strip() == '':
-            message = message + 'Tên hiển thị không được để trống. '
+            context_err_message['displayName_message'] = 'Tên sẽ được sử dụng để liên lạc, không được để trống. '
             err = True
 
         if int(gender) not in (0, 1, 2):
-            message = message + 'Nà ní? '
+            context_err_message['gender_message'] = 'Nà ní? '
             err = True
 
         if phone.strip() == '':
-            message = message + 'Số điện thoại không được để trống. '
+            context_err_message['phone_message'] = 'Số điện thoại không được để trống. '
             err = True
 
         if address.strip() == '':
-            message = message + 'Địa chỉ không được để trống. '
+            context_err_message['address_message'] = 'Địa chỉ không được để trống. '
             err = True
 
         if not err:
@@ -182,7 +190,7 @@ class MyAccountView(MainFrameView):
             self.context['message'] = 'Đổi thông tin thành công'
             return render(request, 'account/my_account.html', context=self.context)
         else:
-            self.context['message'] = message
+            self.context.update(context_err_message)
             return render(request, 'account/my_account.html', context=self.context)
 
 

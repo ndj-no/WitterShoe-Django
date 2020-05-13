@@ -29,5 +29,6 @@ urlpatterns = [
     path('coupon/', include('coupon.urls')),
     path('cart/', include('cart.urls')),
     path('order/', include('order.urls')),
+    path('favourite/', include('favourite.urls')),
     path('api/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -45,6 +45,7 @@ class Shoe(models.Model):
     viewCount = models.IntegerField(default=0)
     favouriteCount = models.IntegerField(default=0)
     dateCreated = models.DateTimeField(default=timezone.now)
+    dateModified = models.DateTimeField(auto_now=True)
     shoeDesc = models.CharField(max_length=2048, default='', blank=True)
 
     def __str__(self):

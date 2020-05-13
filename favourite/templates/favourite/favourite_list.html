@@ -1,0 +1,50 @@
+{% extends 'mainapp/layout/main_frame.html' %}
+{% block body_section %}
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
+            <li><a href="{% url 'account:my_account_url' %}">Tài khoản của tôi</a> <span class="divider">/</span></li>
+            <li class="active">Sản phẩm đã thích</li>
+        </ul>
+        <hr class="soft"/>
+        <div class="well well-small">
+            {% if shoes %}
+                {% for shoe in shoes %}
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <img src="{{ shoe.shoeThumbnail.url }}" alt="{{ shoe.shoeName }}">
+                        </div>
+                        <div class="span6">
+                            <h5><a href="{% url 'mainapp:product_detail' product_id=shoe.id %}">{{ shoe.shoeName }}</a>
+                            </h5>
+                            <p>
+                                {{ shoe.shoeDesc }}<br/>
+                                Nowadays the lingerie industry is one of the most successful business spheres.
+                                We always stay in touch with the latest fashion tendencies -
+                                that is why our goods are so popular..<br/>
+
+                            </p>
+                        </div>
+                        <div class="span4 alignR">
+                            <form class="form-horizontal qtyFrm">
+                                <h3><span>{{ detail_shoes_price|get_item:shoe.id }} </span><sup>đ</sup></h3>
+                                <div style="">
+                                    <a href="{% url 'favourite:like_unlike_url' shoe_id=shoe.id %}?next={{ request.path }}"
+                                       style="color: red">
+                                        <span class="icon-heart" style="font-size: larger"></span>
+                                    </a> <span> {{ shoe.favouriteCount }} </span><span> người thích</span>
+                                </div>
+                                <br/>
+                                <div class="btn-group">
+                                    <a href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
+                                       class="shopBtn">XEM</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <hr class="soften">
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

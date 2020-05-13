@@ -33,7 +33,7 @@ def get_product_detail(shoe_id):
     return context
 
 
-def get_related_shoe(shoe_id):
+def get_related_shoes(shoe_id):
     context = {}
     current_shoe = Shoe.objects.filter(id=shoe_id).first()
     if current_shoe:
@@ -45,3 +45,8 @@ def get_related_shoe(shoe_id):
         context['related_shoes'] = related_shoes
         context['related_shoes_new_price'] = related_shoes_new_price
     return context
+
+
+def search_shoes(key_word):
+    shoes = Shoe.objects.filter(shoeName__icontains=key_word)
+    return shoes
