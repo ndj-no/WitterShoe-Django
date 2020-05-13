@@ -17,13 +17,15 @@
                         <div class="span2">
                         </div>
                         <div class="span6">
-                            <h5>Mã gói hàng: {{ order_package.id }}</h5>
+                            <h5><a href="{% url 'order:order_detail_url' order_package_id=order_package.id %}">Mã gói hàng: {{ order_package.id }}</a></h5>
                             <p>Ngày đặt: {{ order_package.dateOrder|date:'d-m-Y' }}</p>
                             {% if order_package.status != 0 %}
-                                <p>Ngày giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                                {% if order_package.status != 4 %}
+                                    <p>Ngày giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                                {% endif %}
                             {% endif %}
                             {% if order_package.status == 4 %}
-                                <b style="">Admin nhắn: {{ order_package.note }}</b>
+                                <br/><b style="" >Admin nhắn: {{ order_package.note }}</b>
                             {% endif %}
                         </div>
                         <div class="span4 alignR">
@@ -31,7 +33,7 @@
                                 <h3>Tổng số tiền: <span
                                         style="font-size: large; color: red">{{ order_package.totalPayment|template_price_format }} đ</span>
                                 </h3>
-                                <label class="checkbox" style="margin-bottom: 20px;">
+                                <label class="checkbox" style="margin-bottom: 20px; font-size: medium">
                                     Trạng thái:
                                     {% if order_package.status == 0 %}
                                         <b style="color: red"><i>Đã hủy</i></b>
@@ -40,7 +42,7 @@
                                         <b style="color: #2f96b4"><i>Chờ xác nhận</i></b>
                                     {% endif %}
                                     {% if order_package.status == 2 %}
-                                        <b style="color: #df8505"><i>Đang giao</i></b>
+                                        <b style="color: #F86706"><i>Đang giao</i></b>
                                     {% endif %}
                                     {% if order_package.status == 3 %}
                                         <b style="color: green"><i>Đã giao</i></b>
@@ -51,8 +53,9 @@
                                 </label>
                                 <div class="btn-group">
                                     {% if order_package.status == 1 %}
-                                        <a href="{% url 'order:cancel_order_url' order_package_id=order_package.id %}" class="defaultBtn"><span
-                                            class=" icon-remove "></span> Hủy đơn</a>
+                                        <a href="{% url 'order:cancel_order_url' order_package_id=order_package.id %}"
+                                           class="defaultBtn"><span
+                                                class=" icon-remove "></span> Hủy đơn</a>
                                     {% endif %}
                                     <a href="{% url 'order:order_detail_url' order_package_id=order_package.id %}"
                                        class="shopBtn">Xem chi tiết</a>

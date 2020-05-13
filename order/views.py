@@ -31,8 +31,20 @@ class OrderHistoryView(LoginRequiredMixin, MainFrameView):
         self.get(request)
 
 
-class OrderDetailView(MainFrameView):
-    pass
+class OrderDetailView(LoginRequiredMixin, MainFrameView):
+    def get(self, request, order_package_id):
+        order_package = OrderPackage.objects.filter(user_id=request.user.id).filter(id=order_package_id).first()
+        if order_package is None:
+            # k đặt hàng mà cũng đòi xem??? 1 click GG
+            context = {
+                'message': 'Nà ní? Chương trình chống hack khởi động lâu rồi\nHaxagi',
+                'next': '/order/order_history/'
+            }
+            return render(request, 'mainapp/layout/show_alert_message.html', self.context)
+
+        context = order_logic.get_detail_ordered_package(package_id=order_package_id)
+        self.context.update(context)
+        return render(request, 'order/order_detail.html', self.context)
 
 
 class PlaceOrder(LoginRequiredMixin, MainFrameView):

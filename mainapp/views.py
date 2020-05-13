@@ -2,6 +2,7 @@ from django.db.models.functions import Coalesce
 from django.shortcuts import render
 
 from favourite.models import Favourite
+from my_utils import string_format
 from . import product_detail_logic
 from .models import *
 from django.views import View
@@ -201,3 +202,8 @@ class ProductsByCategory(MainFrameView):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+
+@register.filter
+def format_price(price):
+    return string_format.price_format(price)

@@ -61,5 +61,5 @@ def calc_price(price, coupon_id=None, coupon_code=None, coupon=None):
         total_discount = int((discountAmount + (price - discountAmount) * discountRate / 100))
         final_price = price - total_discount
         return final_price
-    else:
-        return price
+
+    return price

@@ -7,7 +7,8 @@ from account.models import User
 from cart.models import Cart
 from coupon import coupon_logic
 from coupon.models import Coupon
-from mainapp.models import DetailShoe, Shoe
+from mainapp.models import DetailShoe, Shoe, Color
+from my_utils.string_format import price_format
 
 from .models import OrderPackage, OrderItem
 
@@ -20,6 +21,52 @@ class PackageStatus:
     ON_DELIVERY = 2
     DELIVERED = 3
     CANCELLED_BY_ADMIN = 4
+
+
+def get_detail_ordered_package(package_id) -> dict:
+    order_package = OrderPackage.objects.filter(id=package_id).first()
+    order_items = OrderItem.objects.filter(orderPackage_id=package_id)
+
+    shoes_id = {}
+    shoes_thumbnail = {}
+    shoes_name = {}
+    shoes_size = {}
+    shoes_color = {}
+    items_unit_price = {}
+    shoes_price = {}
+
+    sub_price = 0
+    for item in order_items:
+        detail_shoe = DetailShoe.objects.filter(orderitem=item).first()
+        shoe = Shoe.objects.filter(id=detail_shoe.shoe_id).first()
+
+        shoes_id[item.id] = shoe.id
+        shoes_thumbnail[item.id] = shoe.shoeThumbnail.url
+        shoes_name[item.id] = shoe.shoeName
+        shoes_size[item.id] = detail_shoe.size
+        shoes_color[item.id] = Color.objects.filter(detailshoe=detail_shoe).first().colorName
+        items_unit_price[item.id] = price_format(item.itemPrice)
+        shoes_price[item.id] = price_format(item.itemPrice * item.quantity)
+        sub_price += item.itemPrice * item.quantity
+
+    discount_amount = sub_price - order_package.totalPayment
+    coupon = Coupon.objects.filter(orderpackage=package_id).first()
+    context = {
+        'number_item': len(order_items),
+        'order_package': order_package,
+        'order_items': order_items,
+        'shoes_id': shoes_id,
+        'shoes_thumbnail': shoes_thumbnail,
+        'shoes_name': shoes_name,
+        'shoes_size': shoes_size,
+        'shoes_color': shoes_color,
+        'items_unit_price': items_unit_price,
+        'shoes_price': shoes_price,
+        'sub_price': sub_price,
+        'discount_amount': discount_amount,
+        'coupon': coupon,
+    }
+    return context
 
 
 def is_enough_quantity_available(qt_want, detail_shoe_id):
