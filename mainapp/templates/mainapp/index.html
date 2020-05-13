@@ -113,7 +113,7 @@ Body Section
                                             alt="{{ shoe.shoeName }}"></a>
                                     <div class="caption cntr">
                                         <div style="height: 40px">{{ shoe.shoeName }}</div>
-                                        <h4><strong> {{ span4_views_shoes_price|get_item:shoe.id }} ₫</strong></h4>
+                                        <h4><strong style="color: red"> {{ span4_views_shoes_price|get_item:shoe.id }} ₫</strong></h4>
                                         <h4><a class="shopBtn"
                                                href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
                                                title="{{ shoe.shoeName }}"> Xem ngay </a>
@@ -176,7 +176,7 @@ Body Section
                                                href="{% url 'mainapp:product_detail' product_id=shoe.id %}"
                                                title="add to cart"><span
                                                     class="">VIEW</span></a>
-                                            <span class="pull-right">{{ most_liked_shoes_price|get_item:shoe.id }} ₫</span>
+                                            <span class="pull-right" style="color: red">{{ most_liked_shoes_price|get_item:shoe.id }} ₫</span>
                                         </h4>
                                     </div>
                                 </div>
