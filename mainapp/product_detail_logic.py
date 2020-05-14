@@ -18,11 +18,16 @@ def get_product_detail(shoe_id):
     shoe_old_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=shoe_id).first().oldPrice).replace(',', '.')
     shoe_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=shoe_id).first().newPrice).replace(',', '.')
     total_products_available = sum([d_shoe.quantityAvailable for d_shoe in detailShoes])
-
+    sizes = []
+    for detailShoe in detailShoes:
+        if detailShoe.size not in sizes:
+            sizes.append(detailShoe.size)
+    sizes.sort()
     context = {
         'shoe': shoe,
         'category': category,
         'images': images,
+        'sizes': sizes,
         'shoe_old_price': shoe_old_price,
         'shoe_price': shoe_price,
         'detailShoes': detailShoes,

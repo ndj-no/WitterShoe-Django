@@ -67,8 +67,8 @@
                             {% if detailShoes %}
                                 <div class="controls">
                                     <select class="span11" name="size">
-                                        {% for detailShoe in detailShoes %}
-                                            <option>{{ detailShoe.size }}</option>
+                                        {% for size in sizes %}
+                                            <option>{{ size }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

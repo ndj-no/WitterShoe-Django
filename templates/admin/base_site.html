@@ -1,0 +1,42 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %}{{ title }} | Witter Shoe{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        body {
+            background-image: url('{% static 'mainapp/img/background/white_leather.png' %}');
+        }
+
+        #branding h1 a:link, #branding h1 a:visited {
+            color: #f57d00;
+        }
+
+        #header {
+            color: #fe3000;
+        {#size: 50px;#}
+        }
+
+        #header a:link, #header a:visited {
+            color: #0e90d2;
+        }
+
+        #user-tools {
+            font-size: medium;
+        }
+
+        .module caption, .inline-group h2 {
+            font-size: medium;
+        }
+
+        .module h2, .module caption, .inline-group h2 {
+            background: #bf8832;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Trang quản lý - Witter Shoe</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

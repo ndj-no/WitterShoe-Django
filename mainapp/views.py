@@ -42,7 +42,7 @@ class MainFrameView(TopBarView):
         for shoe in nav_list_quantity_sold_shoes:
             nav_list_quantity_sold_shoes_price[shoe.id] = '{:,}'.format(
                 DetailShoe.objects.filter(shoe_id=shoe.id).first().newPrice).replace(',', '.')
-        title = 'WitterShoe'
+        title = 'Witter - Shop giày cho giới trẻ'
         categories = Category.objects.all()[:7]
 
         context = {
