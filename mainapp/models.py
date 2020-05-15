@@ -40,6 +40,7 @@ class Shoe(models.Model):
     shoeName = models.CharField(max_length=255)
     shoeModel = models.CharField(max_length=255, blank=True)
     shoeThumbnail = models.ImageField(upload_to='shoe_thumbnails', blank=True)
+    image_static = models.CharField(max_length=255, default='', blank=True)
     active = models.IntegerField(choices=((0, 'Inactive'), (1, 'Active')), default=0)
     quantitySold = models.IntegerField(default=0)
     viewCount = models.IntegerField(default=0)
@@ -50,7 +51,7 @@ class Shoe(models.Model):
 
     def __str__(self):
         return 'Shoe( id:{:<3}_ name:{:<30}_ category:{:<30} _ quantitySold:{:<5}_ view:{:<4}_ ' \
-               'favourite:{:<4} )'.format(self.id, self.shoeName, self.category.categoryName, self.quantitySold,
+               'favourite:{:<4} )'.format(self.id, self.shoeModel, self.category.categoryName, self.quantitySold,
                                           self.viewCount, self.favouriteCount)
 
 
