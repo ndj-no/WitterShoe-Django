@@ -207,3 +207,8 @@ def get_item(dictionary, key):
 @register.filter
 def format_price(price):
     return string_format.price_format(price)
+
+
+@register.filter
+def format_float(value):
+    return '{:.2f}'.format(value)

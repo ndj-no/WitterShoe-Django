@@ -17,15 +17,21 @@
                         <div class="span2">
                         </div>
                         <div class="span6">
-                            <h5><a href="{% url 'order:order_detail_url' order_package_id=order_package.id %}">Mã gói hàng: {{ order_package.id }}</a></h5>
+                            <h5><a href="{% url 'order:order_detail_url' order_package_id=order_package.id %}">Mã gói
+                                hàng: {{ order_package.id }}</a></h5>
                             <p>Ngày đặt: {{ order_package.dateOrder|date:'d-m-Y' }}</p>
-                            {% if order_package.status != 0 %}
+                            {% if order_package.status != 5 %}
                                 {% if order_package.status != 4 %}
-                                    <p>Ngày giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                                    {% if order_package.status == 3 %}
+                                        <p>Ngày giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                                    {% endif %}
+                                    {% if not order_package.status == 3 %}
+                                        <p>Dự kiến giao: {{ order_package.dateDelivery|date:'d-m-Y' }}</p>
+                                    {% endif %}
                                 {% endif %}
                             {% endif %}
                             {% if order_package.status == 4 %}
-                                <br/><b style="" >Admin nhắn: {{ order_package.note }}</b>
+                                <br/><b style="">Cửa hàng nhắn: {{ order_package.note }}</b>
                             {% endif %}
                         </div>
                         <div class="span4 alignR">
@@ -35,9 +41,6 @@
                                 </h3>
                                 <label class="checkbox" style="margin-bottom: 20px; font-size: medium">
                                     Trạng thái:
-                                    {% if order_package.status == 0 %}
-                                        <b style="color: red"><i>Đã hủy</i></b>
-                                    {% endif %}
                                     {% if order_package.status == 1 %}
                                         <b style="color: #2f96b4"><i>Chờ xác nhận</i></b>
                                     {% endif %}
@@ -48,7 +51,10 @@
                                         <b style="color: green"><i>Đã giao</i></b>
                                     {% endif %}
                                     {% if order_package.status == 4 %}
-                                        <b style="color: red"><i>Admin từ chối</i></b>
+                                        <b style="color: red"><i>Cửa hàng từ chối</i></b>
+                                    {% endif %}
+                                    {% if order_package.status == 5 %}
+                                        <b style="color: red"><i>Đã hủy</i></b>
                                     {% endif %}
                                 </label>
                                 <div class="btn-group">

@@ -28,6 +28,22 @@
         body {
             background-image: url('{% static 'mainapp/img/background/white_leather.png' %}');
         }
+
+        .button_messenger {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            background-image: url('{% static 'mainapp/assets/img/messenger.jpg' %}');
+            background-repeat: no-repeat;
+            background-size: 80% auto;
+            background-position: center;
+            box-shadow: 1px 1px 5px 0 #333;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 100%;
+            z-index: 10000;
+        }
     </style>
     {% block custom_css %}
     {% endblock %}
@@ -222,36 +238,30 @@ Lower Header Section
     <footer class="footer">
         <div class="row-fluid">
             <div class="span2">
-                <h5>Your Account</h5>
-                <a href="#">YOUR ACCOUNT</a><br>
-                <a href="#">PERSONAL INFORMATION</a><br>
-                <a href="#">ADDRESSES</a><br>
-                <a href="#">DISCOUNT</a><br>
-                <a href="#">ORDER HISTORY</a><br>
+                <h5>Tài khoản</h5>
+                <a href="#">Tài khoản của tôi</a><br>
+                <a href="#">Mã giảm giá</a><br>
+                <a href="#">Lịch sử đặt hàng</a><br>
             </div>
             <div class="span2">
-                <h5>Iinformation</h5>
-                <a href="contact.html">CONTACT</a><br>
-                <a href="#">SITEMAP</a><br>
-                <a href="#">LEGAL NOTICE</a><br>
-                <a href="#">TERMS AND CONDITIONS</a><br>
-                <a href="{% url 'about_us:about_us_url' %}">ABOUT US</a><br>
+                <h5>Thông tin</h5>
+                <a href="contact.html">Liên hệ</a><br>
+                <a href="#">Bản đồ</a><br>
+                <a href="{% url 'about_us:about_us_url' %}">Về chúng tôi</a><br>
             </div>
             <div class="span2">
-                <h5>Our Offer</h5>
-                <a href="#">NEW PRODUCTS</a> <br>
-                <a href="#">TOP SELLERS</a><br>
-                <a href="#">SPECIALS</a><br>
-                <a href="#">MANUFACTURERS</a><br>
-                <a href="#">SUPPLIERS</a> <br/>
+                <h5>Sản phẩm</h5>
+                <a href="#">Sản phẩm mới</a> <br>
+                <a href="#">Top bán chạy</a><br>
+                <a href="#">Hàng giới hạn</a><br>
             </div>
-            <div class="span6">
-                <h5>The standard chunk of Lorem</h5>
-                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for
-                those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et
-                Malorum" by Cicero are also reproduced in their exact original form,
-                accompanied by English versions from the 1914 translation by H. Rackham.
-            </div>
+{#            <div class="span6">#}
+{#                <h5>The standard chunk of Lorem</h5>#}
+{#                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for#}
+{#                those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et#}
+{#                Malorum" by Cicero are also reproduced in their exact original form,#}
+{#                accompanied by English versions from the 1914 translation by H. Rackham.#}
+{#            </div>#}
         </div>
     </footer>
 </div><!-- /container -->
@@ -265,9 +275,38 @@ Lower Header Section
             <a href="#"><img src="{% static 'mainapp/assets/img/visa.png' %}" alt="payment"></a>
             <a href="#"><img src="{% static 'mainapp/assets/img/disc.png' %}" alt="payment"></a>
         </p>
-        <span>Copyright &copy; 2020<br> Nguyễn Đình Giang</span>
+{#        <span>Copyright &copy; 2020<br> Nguyễn Đình Giang</span>#}
+        <span>Copyright &copy; 2020<br></span>
     </div>
 </div>
+
+<a class="button_messenger" href="m.me/105001081190075" target="_blank"></a>
+
+{#<div class="fb-customerchat"#}
+{#     page_id="105001081190075"#}
+{#     minimized="true">#}
+{#</div>#}
+{#<script>#}
+{#    window.fbAsyncInit = function () {#}
+{#        FB.init({#}
+{#            appId: '906375156474952',#}
+{#            autoLogAppEvents: true,#}
+{#            xfbml: true,#}
+{#            version: 'v2.11'#}
+{#        });#}
+{#    };#}
+{#    (function (d, s, id) {#}
+{#        var js, fjs = d.getElementsByTagName(s)[0];#}
+{#        if (d.getElementById(id)) {#}
+{#            return;#}
+{#        }#}
+{#        js = d.createElement(s);#}
+{#        js.id = id;#}
+{#        js.src = "https://connect.facebook.net/en_US/sdk.js";#}
+{#        fjs.parentNode.insertBefore(js, fjs);#}
+{#    }(document, 'script', 'facebook-jssdk'));#}
+{#</script>#}
+
 <a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{% static 'mainapp/assets/js/jquery.js' %}"></script>

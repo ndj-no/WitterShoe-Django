@@ -24,7 +24,7 @@ SECRET_KEY = 'rsy=5ab!3r@(71*927t%o@r6yigsed58h*31%)z%c+(jovzq$v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['b534c540.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['0ab2ee79.ngrok.io', '127.0.0.1']
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'cart',
     'order',
     'favourite',
+    'statistic',
     'api',
     'api_account',
     'api_coupon',

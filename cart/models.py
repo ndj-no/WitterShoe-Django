@@ -12,5 +12,5 @@ class Cart(models.Model):
     quantityOnCart = models.IntegerField(default=1)
 
     def __str__(self):
-        return 'Cart( id:{} _ username:{} _ shoe:{} _ quantity:{} )' \
+        return '[{}] {} - {} - {}' \
             .format(self.id, self.user.username, self.detailShoe.shoe.shoeName, self.quantityOnCart)

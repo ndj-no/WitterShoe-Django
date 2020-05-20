@@ -150,17 +150,18 @@ class MyAccountView(LoginRequiredMixin, MainFrameView):
 
         context_err_message = {}
 
-        if not authenticate(username=request.user.username, password=old_password):
-            context_err_message['old_password'] = 'Mật khẩu cũ không chính xác. '
-            err = True
+        if old_password != '':
+            if not authenticate(username=request.user.username, password=old_password):
+                context_err_message['old_password'] = 'Mật khẩu cũ không chính xác. '
+                err = True
+            print(authenticate(username=request.user.username, password=old_password))
+            if password == '' or len(password) <= 3 or ' ' in password:
+                context_err_message['password_message'] = 'Mật khẩu không được chứa khoảng trắng và phải > 3 ký tự. '
+                err = True
 
-        if password == '' or len(password) <= 3 or ' ' in password:
-            context_err_message['password_message'] = 'Mật khẩu không được chứa khoảng trắng và phải > 3 ký tự. '
-            err = True
-
-        if password != repassword:
-            context_err_message['repassword_message'] = 'Mật khẩu nhập không trùng nhau. '
-            err = True
+            if password != repassword:
+                context_err_message['repassword_message'] = 'Mật khẩu nhập không trùng nhau. '
+                err = True
 
         if displayName.strip() == '':
             context_err_message['displayName_message'] = 'Tên sẽ được sử dụng để liên lạc, không được để trống. '

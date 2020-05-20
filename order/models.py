@@ -5,7 +5,9 @@ from mainapp.models import User, DetailShoe
 
 
 class OrderPackage(models.Model):
-    status_choice = ((0, 'Đã hủy (user)'), (1, 'Chờ xác nhận'), (2, 'Đang giao'), (3, 'Đã giao'), (4, 'Từ chối (admin)'))
+    status_choice = (
+        (1, 'Chờ xác nhận'), (2, 'Đang giao'), (3, 'Đã giao'), (4, 'Cửa hàng từ chối'), (5, 'Người dùng hủy')
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
     dateOrder = models.DateTimeField(default=timezone.now)
@@ -17,14 +19,17 @@ class OrderPackage(models.Model):
     status = models.IntegerField(choices=status_choice)
     totalPayment = models.IntegerField()
 
+    class Meta:
+        ordering = ('status', 'user')
+
     def __str__(self):
         status = None
         for s in self.status_choice:
             if s[0] == self.status:
                 status = s[1]
 
-        return '[{}] id:{} _ username:{} _ receiver:{} _ receiverAddress:{} _ totalPayment:{}' \
-            .format(status, self.id, self.user.username, self.receiver, self.receiverAddress, self.totalPayment)
+        return '[{}] id:{} _ receiver:{} _ receiverAddress:{} _ totalPayment:{}' \
+            .format(status, self.id, self.receiver, self.receiverAddress, self.totalPayment)
 
 
 class OrderItem(models.Model):
@@ -34,6 +39,12 @@ class OrderItem(models.Model):
     itemPrice = models.IntegerField()
 
     def __str__(self):
-        return 'id:{} _ package_id {} _ receiver:{} _ shoe:{} _ quantity:{} _ unitPrice:{}' \
-            .format(self.id, self.orderPackage.id, self.orderPackage.receiver, self.detailShoe.shoe.shoeName,
-                    self.quantity, self.itemPrice)
+        return '[{}] - Package [{}] - {} - {} - Size:{} - Màu:{} - SL: {} - Price: {}' \
+            .format(self.id,
+                    self.orderPackage.id,
+                    self.orderPackage.receiver,
+                    self.detailShoe.shoe.shoeName,
+                    self.detailShoe.size,
+                    self.detailShoe.color.colorName,
+                    self.quantity,
+                    self.itemPrice)

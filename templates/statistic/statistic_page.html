@@ -1,0 +1,152 @@
+{% extends 'mainapp/layout/main_frame_no_sidebar.html' %}
+{% block custom_css %}
+    <style>
+        .content {
+            font-size: medium;
+        }
+    </style>
+
+{% endblock %}
+{% block body_section %}
+    <div class="well-small">
+        <ul class="breadcrumb">
+            <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
+            <li class="active">Thống kê hoạt động</li>
+        </ul>
+        <hr class="soft"/>
+        <div class="btn-group">
+            <a href="/admin/" class="btn-danger btn-large" style="margin: 5px"> Trang quản lý</a>
+            <a href="{% url 'statistic:statistic_url' %}" class="btn-info btn-large" style="margin: 5px">
+                Trang thống kê
+            </a>
+        </div>
+        <hr class="soft"/>
+        <div class="breadcrumb">
+            <h3>Thống kê theo thời gian</h3>
+            <form class="form-horizontal" action="" method="post">
+                {% csrf_token %}
+
+                <div class="control-group">
+                    <label class="control-label">Từ</label>
+                    <div class="controls">
+                        <select class="span1" name="month1" style="width: 100px">
+                            <option value="1" {% if date1.month == 1 %}selected="selected"{% endif %}>Tháng 1
+                            </option>
+                            <option value="2" {% if date1.month == 2 %}selected="selected"{% endif %}>Tháng 2
+                            </option>
+                            <option value="3" {% if date1.month == 3 %}selected="selected"{% endif %}>Tháng 3
+                            </option>
+                            <option value="4" {% if date1.month == 4 %}selected="selected"{% endif %}>Tháng 4
+                            </option>
+                            <option value="5" {% if date1.month == 5 %}selected="selected"{% endif %}>Tháng 5
+                            </option>
+                            <option value="6" {% if date1.month == 6 %}selected="selected"{% endif %}>Tháng 6
+                            </option>
+                            <option value="7" {% if date1.month == 7 %}selected="selected"{% endif %}>Tháng 7
+                            </option>
+                            <option value="8" {% if date1.month == 8 %}selected="selected"{% endif %}>Tháng 8
+                            </option>
+                            <option value="9" {% if date1.month == 9 %}selected="selected"{% endif %}>Tháng 9
+                            </option>
+                            <option value="10" {% if date1.month == 10 %}selected="selected"{% endif %}>Tháng 10
+                            </option>
+                            <option value="11" {% if date1.month == 11 %}selected="selected"{% endif %}>Tháng 11
+                            </option>
+                            <option value="12" {% if date1.month == 12 %}selected="selected"{% endif %}>Tháng 12
+                            </option>
+                        </select>
+                        <select class="span1" name="year1" style="width: 90px">
+                            {% for year in years %}
+                                <option value="{{ year }}"
+                                        {% if date1.year == year %}selected="selected"{% endif %}>{{ year }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Đến</label>
+                    <div class="controls">
+                        <select class="span1" name="month2" style="width: 100px">
+                            <option value="1" {% if date2.month == 1 %}selected="selected"{% endif %}>Tháng 1
+                            </option>
+                            <option value="2" {% if date2.month == 2 %}selected="selected"{% endif %}>Tháng 2
+                            </option>
+                            <option value="3" {% if date2.month == 3 %}selected="selected"{% endif %}>Tháng 3
+                            </option>
+                            <option value="4" {% if date2.month == 4 %}selected="selected"{% endif %}>Tháng 4
+                            </option>
+                            <option value="5" {% if date2.month == 5 %}selected="selected"{% endif %}>Tháng 5
+                            </option>
+                            <option value="6" {% if date2.month == 6 %}selected="selected"{% endif %}>Tháng 6
+                            </option>
+                            <option value="7" {% if date2.month == 7 %}selected="selected"{% endif %}>Tháng 7
+                            </option>
+                            <option value="8" {% if date2.month == 8 %}selected="selected"{% endif %}>Tháng 8
+                            </option>
+                            <option value="9" {% if date2.month == 9 %}selected="selected"{% endif %}>Tháng 9
+                            </option>
+                            <option value="10" {% if date2.month == 10 %}selected="selected"{% endif %}>Tháng 10
+                            </option>
+                            <option value="11" {% if date2.month == 11 %}selected="selected"{% endif %}>Tháng 11
+                            </option>
+                            <option value="12" {% if date2.month == 12 %}selected="selected"{% endif %}>Tháng 12
+                            </option>
+                        </select>
+                        <select class="span1" name="year2" style="width: 90px">
+                            {% for year in years %}
+                                <option value="{{ year }}"
+                                        {% if date2.year == year %}selected="selected"{% endif %}>{{ year }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="submit" name="submitAccount" value="Thống kê" class="exclusive shopBtn">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="well">
+            <div>
+                <h2>Hôm nay</h2>
+                <br/>
+                <p class="content"><span class="icon-user"></span> Người dùng đăng ký mới: {{ new_users }}</p>
+                <p class="content"><span class="icon-shopping-cart"></span> Đơn hàng mới: {{ new_packages }}</p>
+                <p class="content"><span class="icon-refresh"></span> Đơn hàng đang đợi: {{ packages_on_waiting }}</p>
+                <hr class="soft"/>
+                <br/>
+
+                <h2>Tổng doanh thu theo tháng</h2>
+                <br/>
+                <p class="content"><span class="icon-dollar">
+                    </span> Doanh thu trung bình: {{ mean_revenue|format_float }} triệu
+                </p>
+                <br/>
+                <img style="margin-left: 50px;" src="/media/statistics/revenue_statistic.png">
+                <hr class="soft"/>
+                <br/>
+
+                <h2>Số đơn hàng bị hủy</h2>
+                <br/>
+                <p class="content">Tổng số đơn hàng: {{ total_order_packages }}</p>
+                <p class="content">Số đơn bị hủy: {{ total_order_packages_failed }}</p>
+                <p class="content">Tỉ lệ hủy đơn: {{ order_fail_rate|format_float }} %</p>
+                <br/>
+                <img style="margin-left: 50px;" src="/media/statistics/order_fail.png">
+
+                <hr class="soft"/>
+
+                <h2>Top giày bán chạy</h2>
+                <br/>
+                <p class="content"><span class="icon-money"></span> Tổng giày đã bán: {{ total_sold_shoes }}</p>
+                <br/>
+                <img style="margin-left: 50px;" src="/media/statistics/top_shoes.png">
+                <hr class="soft"/>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

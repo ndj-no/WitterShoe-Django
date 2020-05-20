@@ -15,8 +15,6 @@ class Coupon(models.Model):
     couponDescription = models.TextField(max_length=255, default='', blank=True)
 
     def __str__(self):
-        return 'id({}) _ title({}) _ code({}) _ date({}) _ rate({} %) _ amount({} đ)'.format(self.id, self.couponTitle,
-                                                                                             self.couponCode,
-                                                                                             self.expirationDate,
-                                                                                             self.discountRate,
-                                                                                             self.discountAmount)
+        return '[{}] Title: {} - Date: {} - Rate: {}'.format(self.id, self.couponTitle,
+                                                             self.expirationDate,
+                                                             self.discountRate, )

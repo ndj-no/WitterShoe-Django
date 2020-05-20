@@ -1,18 +1,17 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
+
 from account.models import User
 from coupon.models import Coupon
 
-
-# Create your models here.
 
 class Color(models.Model):
     colorName = models.CharField(max_length=64)
     colorDesc = models.CharField(max_length=128, default='', blank=True)
 
     def __str__(self):
-        return 'Color( id:{:<3}_ colorName:{:<10}_ colorDesc:{:<10} )'.format(self.id, self.colorName, self.colorDesc)
+        return '[{}] Màu: {}'.format(self.id, self.colorName)
 
 
 class Category(models.Model):
@@ -21,9 +20,7 @@ class Category(models.Model):
     categoryDesc = models.CharField(max_length=255, default='', blank=True)
 
     def __str__(self):
-        return 'Category( id:{}_ name:{}_ thumbnail:{}_ description:{} )'.format(self.id, self.categoryName,
-                                                                                 self.categoryThumbnail,
-                                                                                 self.categoryDesc)
+        return '[{}] {}'.format(self.id, self.categoryName)
 
 
 class Brand(models.Model):
@@ -31,7 +28,7 @@ class Brand(models.Model):
     brandDesc = models.CharField(max_length=1024, default='', blank=True)
 
     def __str__(self):
-        return 'Brand( id:{} _ name:{} _ desc:{} )'.format(self.id, self.brandName, self.brandDesc)
+        return '[{}] Hiệu: {}'.format(self.id, self.brandName)
 
 
 class Shoe(models.Model):
@@ -50,19 +47,16 @@ class Shoe(models.Model):
     shoeDesc = models.CharField(max_length=2048, default='', blank=True)
 
     def __str__(self):
-        return 'Shoe( id:{:<3}_ name:{:<30}_ category:{:<30} _ quantitySold:{:<5}_ view:{:<4}_ ' \
-               'favourite:{:<4} )'.format(self.id, self.shoeModel, self.category.categoryName, self.quantitySold,
-                                          self.viewCount, self.favouriteCount)
+        return '[{}] {} - {}'.format(self.id, self.shoeModel, self.shoeName)
 
 
 class Image(models.Model):
     shoe = models.ForeignKey(Shoe, on_delete=models.CASCADE)
-    # imageName = models.CharField(max_length=255)
     shoeImage = models.ImageField(upload_to='shoe_images', blank=True)
     imageDesc = models.CharField(max_length=64, default='', blank=True)
 
     def __str__(self):
-        return 'Image( id:{:<3}_ shoeName:{:<30}_ imageName:{:<15} )' \
+        return '[{}] Shoe: {} - Image: {}' \
             .format(self.id, self.shoe.shoeName, self.shoeImage.name)
 
 
@@ -76,7 +70,5 @@ class DetailShoe(models.Model):
     detailShoeDesc = models.CharField(max_length=255, default='', blank=True)
 
     def __str__(self):
-        return 'DetailShoe( id:{} _ shoeName:{} _ color:{} _ size:{} _ quantityAvailable:{} _ ' \
-               'oldPrice:{} _ newPrice:{} )' \
-            .format(self.id, self.shoe.shoeName, self.color.colorName, self.size, self.quantityAvailable,
-                    self.oldPrice, self.newPrice)
+        return '[{}] Model: {} - Size: {} - Màu: {} - Giá cũ: {} - Giá mới: {}' \
+            .format(self.id, self.shoe.shoeModel, self.size, self.color.colorName, self.oldPrice, self.newPrice)

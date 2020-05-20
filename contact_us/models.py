@@ -9,6 +9,7 @@ class Feedback(models.Model):
     subject = models.CharField(max_length=64, blank=True)
     content = models.TextField(max_length=1024, blank=False)
     dateSend = models.DateField(default=timezone.now)
+    read = models.BooleanField(default=False)
 
     def __str__(self):
-        return 'id:{} - name:{} - subject:{}'.format(self.id, self.name, self.subject)
+        return '[{}] from {} - title: {}'.format(self.id, self.name, self.subject)
