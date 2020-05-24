@@ -49,6 +49,7 @@ class Statistic:
     def today_info(self):
         today = timezone.now().date()
         tomorrow = (timezone.now() + timedelta(days=1)).date()
+        # tomorrow = (timezone.now()).date()
 
         packages = OrderPackage.objects.filter(dateOrder__gte=today) \
             .filter(dateOrder__lt=tomorrow)
@@ -108,19 +109,22 @@ class Statistic:
         x_labels = []
         while date1 <= date2:
             if date1.month == 12:
-                OrderPackage.objects.filter(dateOrder__gte=date1) \
+                packages = OrderPackage.objects.filter(dateOrder__gte=date1) \
                     .filter(dateOrder__lt=date1.replace(month=1, year=(date1.year + 1)))
             else:
                 packages = OrderPackage.objects.filter(dateOrder__gte=date1) \
                     .filter(dateOrder__lt=date1.replace(month=(date1.month + 1)))
 
-                s = 0
-                for package in packages:
-                    s = s + package.totalPayment
-                s = s / 10 ** 6
-                revenue_by_month.append(s)
-                total_revenue = total_revenue + s
-                x_labels.append(f'{date1.month}/{date1.year}')
+            # Chỉ tính đơn đã giao
+            packages = packages.filter(status=3)
+
+            s = 0
+            for package in packages:
+                s = s + package.totalPayment
+            s = s / 10 ** 6
+            revenue_by_month.append(s)
+            total_revenue = total_revenue + s
+            x_labels.append(f'{date1.month}/{date1.year}')
 
             if date1.month == 12:
                 date1 = date1.replace(month=1, year=(date1.year + 1))
@@ -175,10 +179,10 @@ class Statistic:
                                    title='',
                                    x_labels=labels,
                                    y_label='Đơn hàng',
-                                   col_1_name='Đơn bị hủy',
-                                   col_2_name='Đơn không bị hủy',
-                                   col_1_data=orders_fail,
-                                   col_2_data=orders_success)
+                                   col_1_name='Đơn không bị hủy',
+                                   col_2_name='Đơn bị hủy',
+                                   col_1_data=orders_success,
+                                   col_2_data=orders_fail)
         return {'total_order_packages': total_order_packages,
                 'total_order_packages_failed': total_order_packages_failed,
                 'order_fail_rate': (total_order_packages_failed / total_order_packages * 100)}
@@ -224,7 +228,7 @@ class Statistic:
 
 def plot_save_figure(image_name, title, x_labels, y_label, x_data, y_data):
     fig, ax = plt.subplots()
-    plt.plot(x_data, y_data, linestyle='-.', marker='^', markersize=10)
+    plt.plot(x_data, y_data, marker='^', markersize=10)
     # plt.title(title)
     plt.ylabel(y_label)
     plt.xlabel('Thời gian')
@@ -249,6 +253,7 @@ def plot_save_figure(image_name, title, x_labels, y_label, x_data, y_data):
 
     fig.tight_layout()
     plt.savefig(image_folder + image_name)
+    plt.close()
 
 
 def grouped_2chart_save_figure(image_name, title, x_labels, y_label, col_1_name, col_2_name, col_1_data, col_2_data):
@@ -274,18 +279,22 @@ def grouped_2chart_save_figure(image_name, title, x_labels, y_label, col_1_name,
 
     fig.tight_layout()
     plt.savefig(image_folder + image_name)
+    plt.close()
 
 
 def chart_save_figure(image_name, x_labels, y_label, values):
-    plt.subplots()
+    fig, ax = plt.subplots()
     height = values
     bars = x_labels
     y_pos = np.arange(len(bars))
     plt.bar(y_pos, height, color=(0.2, 0.4, 0.6, 0.6))
     plt.ylabel(y_label)
     plt.xticks(y_pos, bars)
+    # for index, value in enumerate(values):
+    #     plt.text(value, index, str(value))
     plt.tight_layout()
     plt.savefig(image_folder + image_name)
+    plt.close()
 
 
 def autolabel(ax, rects):

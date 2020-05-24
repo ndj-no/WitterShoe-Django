@@ -13,3 +13,6 @@ class Feedback(models.Model):
 
     def __str__(self):
         return '[{}] from {} - title: {}'.format(self.id, self.name, self.subject)
+
+    class Meta:
+        verbose_name_plural = "Tin nhắn"

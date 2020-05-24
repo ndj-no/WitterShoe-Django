@@ -17,7 +17,7 @@ def get_product_detail(shoe_id):
     category = Category.objects.filter(id=shoe.category.id).first()
     shoe_old_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=shoe_id).first().oldPrice).replace(',', '.')
     shoe_price = '{:,}'.format(DetailShoe.objects.filter(shoe_id=shoe_id).first().newPrice).replace(',', '.')
-    total_products_available = sum([d_shoe.quantityAvailable for d_shoe in detailShoes])
+    mean_products_available = int(sum([d_shoe.quantityAvailable for d_shoe in detailShoes]) / len(detailShoes))
     sizes = []
     for detailShoe in detailShoes:
         if detailShoe.size not in sizes:
@@ -33,7 +33,7 @@ def get_product_detail(shoe_id):
         'detailShoes': detailShoes,
         'last_image': last_image,
         'colors': colors,
-        'total_products_available': total_products_available,
+        'mean_products_available': mean_products_available,
     }
     return context
 

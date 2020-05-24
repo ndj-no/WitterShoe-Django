@@ -16,7 +16,7 @@ from .models import OrderPackage, OrderItem
 class PackageStatus:
     #     status_choice = ((0, 'Đã hủy'), (1, 'Chờ xác nhận'), (2, 'Đang giao'), (3, 'Đã giao'), (4, 'cancel by admin'))
 
-    CANCELLED_BY_USER = 0
+    CANCELLED_BY_USER = 5
     WAITING = 1
     ON_DELIVERY = 2
     DELIVERED = 3

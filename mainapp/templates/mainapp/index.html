@@ -25,7 +25,7 @@ Body Section
                         {% for rotate_shoe in rotate_shoes %}
                             <div class="item">
                                 <a href="{% url 'mainapp:product_detail' product_id=rotate_shoe.id %}">
-                                    <img style="width:100%"
+                                    <img style="width:100%; fit-object: cover;"
                                          src="{{ rotate_shoe.shoeThumbnail.url }}"
                                          alt="{{ rotate_shoe.shoeName }}">
                                 </a>
@@ -35,7 +35,7 @@ Body Section
                     {% if rotate_shoes_first %}
                         <div class="item active"><a
                                 href="{% url 'mainapp:product_detail' product_id=rotate_shoes_first.id %}">
-                            <img style="width:100%"
+                            <img style="width:100%; fit-object: cover;"
                                  src="{{ rotate_shoes_first.shoeThumbnail.url }}"
                                  alt="{{ rotate_shoes_first.shoeName }}"></a>
                         </div>

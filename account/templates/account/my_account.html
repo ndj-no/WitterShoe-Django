@@ -7,24 +7,15 @@
         </ul>
         <hr class="soft"/>
         <div class="btn-group">
-            {% if user.is_staff %}
-                <a href="/admin/" class="btn-danger btn-large" style="margin: 5px"> Trang quản lý</a>
-                <a href="{% url 'statistic:statistic_url' %}" class="btn-info btn-large" style="margin: 5px">
-                    Trang thống kê
-                </a>
-            {% endif %}
-            {% if not user.is_staff %}
-                <a href="{% url 'order:order_history_url' %}" class="shopBtn btn-large" style="margin: 5px">Lịch sử mua
-                    hàng</a>
-                <a href="{% url 'cart:cart_url' %}" class="shopBtn btn-large" style="margin: 5px">Giỏ hàng</a>
-                <a href="{% url 'favourite:my_favourite_url' %}" class="shopBtn btn-large" style="margin: 5px">Sản phẩm
-                    đã
-                    thích</a>
-            {% endif %}
+            <a href="{% url 'order:order_history_url' %}" class="shopBtn btn-large" style="margin: 5px">Lịch sử mua hàng</a>
+            <a href="{% url 'cart:cart_url' %}" class="shopBtn btn-large" style="margin: 5px">Giỏ hàng</a>
+            <a href="{% url 'favourite:my_favourite_url' %}" class="shopBtn btn-large" style="margin: 5px">Sản phẩm
+                đã
+                thích</a>
         </div>
         <hr class="soft"/>
         <div class="well">
-            <form class="form-horizontal" action="" method="post">
+            <form id="my_account_form" class="form-horizontal" action="" method="post">
                 {% csrf_token %}
                 <h3>Thay đổi thông tin</h3>
                 <div class="control-group">
@@ -98,8 +89,9 @@
                 <div class="control-group">
                     <label class="control-label" for="address">Địa chỉ <sup>*</sup></label>
                     <div class="controls">
-                        <input type="text" id="address" placeholder="Địa chỉ" name="address" value="{{ address }}">
-                        <span class=" alert-error">{{ address_message }}</span>
+                        <textarea id="address" placeholder="Địa chỉ" name="address"
+                                  form="my_account_form">{{ address }}</textarea>
+                        <span class=" alert-error">{{ password_message }}</span>
                     </div>
                 </div>
                 <div class="control-group">

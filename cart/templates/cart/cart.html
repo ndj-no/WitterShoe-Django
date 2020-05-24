@@ -22,6 +22,7 @@
             </ul>
             <div class="well well-small">
                 <h1>Giỏ hàng <small class="pull-right"> {{ number_item }} sản phẩm trong giỏ hàng </small></h1>
+                <p style="color: red; font-style: italic">{{ message }}</p>
                 <hr class="soften"/>
                 <form action="{% url 'order:place_order_url' %}" method="post">
                     <table class="table table-bordered table-condensed">
@@ -154,7 +155,7 @@
                                 </div>
                                 <div class="form-inline">
                                     <br/>
-                                    <label style="min-width:159px">  </label>
+                                    <label style="min-width:159px"> </label>
                                     {% if discount_rate %}
                                         <span style="font-size: medium;">
                                             Giảm

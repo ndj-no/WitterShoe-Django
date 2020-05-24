@@ -23,4 +23,4 @@ class OrderPackageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(OrderPackage, OrderPackageAdmin)
-admin.site.register(OrderItem, OrderItemAdmin)
+# admin.site.register(OrderItem, OrderItemAdmin)

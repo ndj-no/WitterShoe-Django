@@ -1,7 +1,6 @@
 from django.contrib.auth import decorators
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.defaulttags import register
 from django.views import View
@@ -50,7 +49,14 @@ def cart_view(request):
         shoe_ids[detail_shoe.id] = shoe.id
         shoe_thumbnails[detail_shoe.id] = shoe.shoeThumbnail.url
         shoe_colors[detail_shoe.id] = Color.objects.filter(detailshoe=detail_shoe).first().colorName
-        shoe_quantity[detail_shoe.id] = Cart.objects.filter(detailShoe=detail_shoe).first().quantityOnCart
+        cart = Cart.objects.filter(detailShoe=detail_shoe).first()
+        if cart.quantityOnCart <= detail_shoe.quantityAvailable:
+            shoe_quantity[detail_shoe.id] = cart.quantityOnCart
+        else:
+            shoe_quantity[detail_shoe.id] = detail_shoe.quantityAvailable
+            cart.quantityOnCart = detail_shoe.quantityAvailable
+            cart.save()
+
         if not shoe.active:
             status[detail_shoe.id] = 'Liên hệ'
             status_code[detail_shoe.id] = False
@@ -107,7 +113,7 @@ def cart_messenger_view(request, messenger_id):
 
 @decorators.login_required(login_url=login_url)
 def add_to_cart(request):
-    to = request.GET.get('next', None)
+    to = request.GET.get('next', 'mainapp:index')
 
     if request.method == 'POST':
         user_id = request.user.id
@@ -119,18 +125,36 @@ def add_to_cart(request):
             detail_shoe = DetailShoe.objects.get(shoe_id=shoe_id, color__colorName__exact=color, size=size)
             cart = Cart.objects.filter(user_id=user_id, detailShoe=detail_shoe).first()
             if cart is None:
+                if detail_shoe.quantityAvailable < int(quantity):
+                    context = {
+                        'message': 'Thêm vào giỏ hàng thất bại. Trong kho chỉ còn {} đôi size: {}, màu: {}'.format(
+                            detail_shoe.quantityAvailable, size, color),
+                        'next': to
+                    }
+                    return render(request, 'mainapp/layout/show_alert_message.html', context)
+
                 cart = Cart()
                 cart.user_id = user_id
                 cart.detailShoe = detail_shoe
                 cart.quantityOnCart = int(quantity)
                 cart.save()
             else:
+                if cart.quantityOnCart + int(quantity) > detail_shoe.quantityAvailable:
+                    context = {
+                        'message': 'Thêm vào giỏ hàng thất bại. Trong kho chỉ còn {} đôi size: {}, màu: {}'.format(
+                            detail_shoe.quantityAvailable, size, color),
+                        'next': to
+                    }
+                    return render(request, 'mainapp/layout/show_alert_message.html', context)
+
                 cart.quantityOnCart += int(quantity)
                 cart.save()
-    if to:
-        return redirect(to)
-    else:
-        return redirect('mainapp:index')
+    context = {
+        'message': 'Thêm vào giỏ hàng thành công'.format(
+            detail_shoe.quantityAvailable, size, color),
+        'next': to
+    }
+    return render(request, 'mainapp/layout/show_alert_message.html', context)
 
 
 @decorators.login_required(login_url=login_url)
@@ -161,11 +185,9 @@ def remove_from_cart(request):
         if cart is not None:
             cart.delete()
 
-    to = request.GET.get('next', None)
-    if to:
-        return redirect(to)
-    else:
-        return redirect('mainapp:index')
+    to = request.GET.get('next', 'mainapp:index')
+
+    return redirect(to)
 
 
 class CartBuyNowMessengerUser(View):

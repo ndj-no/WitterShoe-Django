@@ -43,15 +43,19 @@ class ShoeAdmin(admin.ModelAdmin):
         ImageInline,
         DetailShoeInline,
     ]
-    list_display = ('id', 'shoeModel', 'shoeName', 'category', 'brand', 'active')
+    readonly_fields = ('shoeThumbnail_tag',)
+    list_display = ('shoeThumbnail_tag', 'id', 'shoeModel', 'shoeName', 'category', 'brand', 'active')
     list_display_links = ('shoeModel', 'shoeName')
-    search_fields = ('shoeName', 'shoeModel', 'category__categoryName', 'brand__brandName')
+    search_fields = ('shoeName', 'shoeModel', 'active', 'category__categoryName', 'brand__brandName')
     list_per_page = 30
+
+    # def shoeThumbnail(self, obj):
+    #     return '<img src="%s" title="%s" />' % (resize_image(obj.photo, '100x100'), obj.title)
 
 
 admin.site.register(Color)
 admin.site.register(Category)
 admin.site.register(Brand)
 admin.site.register(Shoe, ShoeAdmin)
-admin.site.register(Image)
-admin.site.register(DetailShoe)
+# admin.site.register(Image)
+# admin.site.register(DetailShoe)

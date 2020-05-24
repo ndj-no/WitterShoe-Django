@@ -20,7 +20,8 @@ class OrderPackage(models.Model):
     totalPayment = models.IntegerField()
 
     class Meta:
-        ordering = ('status', 'user')
+        ordering = ('status', '-id')
+        verbose_name_plural = "Đơn hàng"
 
     def __str__(self):
         status = None

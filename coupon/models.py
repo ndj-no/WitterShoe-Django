@@ -18,3 +18,6 @@ class Coupon(models.Model):
         return '[{}] Title: {} - Date: {} - Rate: {}'.format(self.id, self.couponTitle,
                                                              self.expirationDate,
                                                              self.discountRate, )
+
+    class Meta:
+        verbose_name_plural = "Mã giảm giá"

@@ -11,12 +11,13 @@
     <div class="well-small">
         <ul class="breadcrumb">
             <li><a href="{% url 'mainapp:index' %}">Trang chủ</a> <span class="divider">/</span></li>
-            <li class="active">Thống kê hoạt động</li>
+            <li><a href="{% url 'mainapp:index' %}">Bảng điều khiển</a> <span class="divider">/</span></li>
+            <li class="active">Trang thống kê</li>
         </ul>
         <hr class="soft"/>
         <div class="btn-group">
             <a href="/admin/" class="btn-danger btn-large" style="margin: 5px"> Trang quản lý</a>
-            <a href="{% url 'statistic:statistic_url' %}" class="btn-info btn-large" style="margin: 5px">
+            <a href="{% url 'statistic:statistic_url' %}" class="btn-primary btn-large" style="margin: 5px">
                 Trang thống kê
             </a>
         </div>
@@ -25,7 +26,6 @@
             <h3>Thống kê theo thời gian</h3>
             <form class="form-horizontal" action="" method="post">
                 {% csrf_token %}
-
                 <div class="control-group">
                     <label class="control-label">Từ</label>
                     <div class="controls">
@@ -121,16 +121,24 @@
 
                 <h2>Tổng doanh thu theo tháng</h2>
                 <br/>
+                <p class="content"><span class="icon-time"></span> Từ : {{ date1|date:'m-Y' }}</p>
+                <p class="content"><span class="icon-time"></span> Đến: {{ date2|date:'m-Y' }}</p>
+                <p class="content"><span class="icon-dollar">
+                    </span> Doanh thu đạt được: {{ total_revenue|format_float }} triệu
+                </p>
                 <p class="content"><span class="icon-dollar">
                     </span> Doanh thu trung bình: {{ mean_revenue|format_float }} triệu
                 </p>
                 <br/>
+                <p style="font-style: italic"><sup><b>*</b></sup> Chỉ tính các đơn đã giao thành công</p>
                 <img style="margin-left: 50px;" src="/media/statistics/revenue_statistic.png">
                 <hr class="soft"/>
                 <br/>
 
                 <h2>Số đơn hàng bị hủy</h2>
                 <br/>
+                <p class="content"><span class="icon-time"></span> Từ : {{ date1|date:'m-Y' }}</p>
+                <p class="content"><span class="icon-time"></span> Đến: {{ date2|date:'m-Y' }}</p>
                 <p class="content">Tổng số đơn hàng: {{ total_order_packages }}</p>
                 <p class="content">Số đơn bị hủy: {{ total_order_packages_failed }}</p>
                 <p class="content">Tỉ lệ hủy đơn: {{ order_fail_rate|format_float }} %</p>
@@ -141,6 +149,8 @@
 
                 <h2>Top giày bán chạy</h2>
                 <br/>
+                <p class="content"><span class="icon-time"></span> Từ : {{ date1|date:'m-Y' }}</p>
+                <p class="content"><span class="icon-time"></span> Đến: {{ date2|date:'m-Y' }}</p>
                 <p class="content"><span class="icon-money"></span> Tổng giày đã bán: {{ total_sold_shoes }}</p>
                 <br/>
                 <img style="margin-left: 50px;" src="/media/statistics/top_shoes.png">

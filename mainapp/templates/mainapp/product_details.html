@@ -86,7 +86,7 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <h4>Còn {{ total_products_available }} sản phẩm trong kho</h4>
+                        <h4>Còn trung bình {{ mean_products_available }} sản phẩm mỗi loại</h4>
                         <br/>
                         <div style="font-size: medium">
                             <a href="{% url 'favourite:like_unlike_url' shoe_id=shoe.id %}?next={{ request.path }}"

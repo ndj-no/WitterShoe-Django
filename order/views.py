@@ -18,7 +18,7 @@ class OrderHistoryView(LoginRequiredMixin, MainFrameView):
         user_id = request.user.id
         order_packages = OrderPackage.objects.filter(user_id=user_id).order_by('dateOrder', 'id').reverse()
         if len(order_packages) == 0:
-            self.context.update({'message': 'Bạn chưa đặt gói hàng nào'})
+            self.context.update({'message': 'Bạn chưa đặt đơn hàng nào'})
             return render(request, 'order/order_history.html', self.context)
 
         context = {
