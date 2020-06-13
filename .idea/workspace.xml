@@ -20,21 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/account/migrations/0004_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart/migrations/0003_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contact_us/migrations/0005_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coupon/migrations/0005_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db_backup/backup_db_1.4.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favourite/migrations/0003_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainapp/migrations/0011_auto_20200613_1554.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0005_auto_20200613_1554.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WitterShoe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WitterShoe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/migrations/0005_auto_20200613_2034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/migrations/0004_auto_20200613_2034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coupon/migrations/0006_auto_20200613_2034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favourite/migrations/0004_auto_20200613_2034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mainapp/migrations/0012_auto_20200613_2034.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0006_auto_20200613_2034.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WitterShoe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contact_us/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/contact_us/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coupon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/favourite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/favourite/models.py" afterDir="false" />
@@ -91,7 +86,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/db_backup" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -191,6 +186,7 @@
       <workItem from="1590233647189" duration="531000" />
       <workItem from="1590308640277" duration="271000" />
       <workItem from="1592037433729" duration="1977000" />
+      <workItem from="1592054544596" duration="978000" />
     </task>
     <servers />
   </component>
@@ -207,6 +203,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -256,11 +253,11 @@
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.right/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
     <state width="813" height="295" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1590234177225" />
-    <state x="182" y="15" key="SettingsEditor" timestamp="1592038166143">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="182" y="16" key="SettingsEditor" timestamp="1592054802301">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="182" y="15" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1592038166143" />
-    <state x="182" y="16" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1589803040066" />
+    <state x="182" y="16" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1592054802301" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1590116391430">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

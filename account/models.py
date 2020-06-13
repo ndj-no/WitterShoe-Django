@@ -21,8 +21,8 @@ class User(AbstractUser):
                                                                                  self.displayName,
                                                                                  self.phone)
 
-    class Meta:
-        db_table = 'user'
+    # class Meta:
+    #     db_table = 'user'
 
 
 # Create ModelForm based on the Group model.

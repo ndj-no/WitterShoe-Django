@@ -1,3 +1,10 @@
+
+drop database if exists wittershoedb;
+
+CREATE DATABASE wittershoedb CHARACTER SET utf8;
+
+use wittershoedb;
+
 -- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
 --
 -- Host: localhost    Database: wittershoedb
@@ -15,11 +22,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-drop database if exists wittershoedb;
-
-CREATE DATABASE wittershoedb CHARACTER SET utf8;
-
-use wittershoedb;
 
 --
 -- Temporary table structure for view `HOT_SHOES`

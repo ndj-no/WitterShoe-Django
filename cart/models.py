@@ -15,5 +15,5 @@ class Cart(models.Model):
         return '[{}] {} - {} - {}' \
             .format(self.id, self.user.username, self.detailShoe.shoe.shoeName, self.quantityOnCart)
 
-    class Meta:
-        db_table = 'cart'
+    # class Meta:
+    #     db_table = 'cart'

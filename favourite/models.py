@@ -11,5 +11,5 @@ class Favourite(models.Model):
     def __str__(self):
         return 'Favourite( id:{} _ user:{} _ like:{})'.format(self.id, self.user.displayName, self.shoe.shoeName)
 
-    class Meta:
-        db_table = 'favourite'
+    # class Meta:
+    #     db_table = 'favourite'

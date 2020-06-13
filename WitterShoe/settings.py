@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'api_coupon',
     'api_cart',
     'api_order',
-    'django_user_agents'
+    'django_user_agents',
 ]
 
 MIDDLEWARE = [
