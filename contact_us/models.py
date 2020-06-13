@@ -16,3 +16,4 @@ class Feedback(models.Model):
 
     class Meta:
         verbose_name_plural = "Tin nhắn"
+        db_table = 'feedback'

@@ -22,6 +22,7 @@ class OrderPackage(models.Model):
     class Meta:
         ordering = ('status', '-id')
         verbose_name_plural = "Đơn hàng"
+        db_table = 'order_package'
 
     def __str__(self):
         status = None
@@ -49,3 +50,6 @@ class OrderItem(models.Model):
                     self.detailShoe.color.colorName,
                     self.quantity,
                     self.itemPrice)
+
+    class Meta:
+        db_table = 'order_item'

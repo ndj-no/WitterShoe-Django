@@ -21,3 +21,4 @@ class Coupon(models.Model):
 
     class Meta:
         verbose_name_plural = "Mã giảm giá"
+        db_table = 'coupon'

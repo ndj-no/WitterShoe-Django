@@ -1,13 +1,15 @@
--- MySQL dump 10.13  Distrib 5.7.30, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `wittershoedb` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `wittershoedb`;
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wittershoedb
 -- ------------------------------------------------------
--- Server version	5.7.30-0ubuntu0.18.04.1
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -15,196 +17,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-drop database if exists wittershoedb;
-
-CREATE DATABASE wittershoedb CHARACTER SET utf8;
-
-use wittershoedb;
-
---
--- Temporary table structure for view `HOT_SHOES`
---
-
-DROP TABLE IF EXISTS `HOT_SHOES`;
-/*!50001 DROP VIEW IF EXISTS `HOT_SHOES`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `HOT_SHOES` AS SELECT 
- 1 AS `shoe_id`,
- 1 AS `shoeName`,
- 1 AS `shoeModel`,
- 1 AS `viewCount`,
- 1 AS `quantitySold`,
- 1 AS `favouriteCount`,
- 1 AS `shoeThumbnail`,
- 1 AS `categoryName`,
- 1 AS `newPrice`,
- 1 AS `hotCount`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary table structure for view `HOT_SHOES_NEXT`
---
-
-DROP TABLE IF EXISTS `HOT_SHOES_NEXT`;
-/*!50001 DROP VIEW IF EXISTS `HOT_SHOES_NEXT`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `HOT_SHOES_NEXT` AS SELECT 
- 1 AS `shoe_id`,
- 1 AS `shoeName`,
- 1 AS `shoeModel`,
- 1 AS `viewCount`,
- 1 AS `quantitySold`,
- 1 AS `favouriteCount`,
- 1 AS `shoeThumbnail`,
- 1 AS `categoryName`,
- 1 AS `newPrice`,
- 1 AS `hotCount`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary table structure for view `NEW_SHOES`
---
-
-DROP TABLE IF EXISTS `NEW_SHOES`;
-/*!50001 DROP VIEW IF EXISTS `NEW_SHOES`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `NEW_SHOES` AS SELECT 
- 1 AS `shoe_id`,
- 1 AS `shoeName`,
- 1 AS `shoeModel`,
- 1 AS `shoeThumbnail`,
- 1 AS `dateCreated`,
- 1 AS `categoryName`,
- 1 AS `newPrice`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Temporary table structure for view `NEW_SHOES_NEXT`
---
-
-DROP TABLE IF EXISTS `NEW_SHOES_NEXT`;
-/*!50001 DROP VIEW IF EXISTS `NEW_SHOES_NEXT`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE VIEW `NEW_SHOES_NEXT` AS SELECT 
- 1 AS `shoe_id`,
- 1 AS `shoeName`,
- 1 AS `shoeModel`,
- 1 AS `shoeThumbnail`,
- 1 AS `dateCreated`,
- 1 AS `categoryName`,
- 1 AS `newPrice`*/;
-SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `account_user`
---
-
-DROP TABLE IF EXISTS `account_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `password` varchar(128) NOT NULL,
-  `last_login` datetime(6) DEFAULT NULL,
-  `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `is_staff` tinyint(1) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
-  `displayName` varchar(128) NOT NULL,
-  `messengerId` varchar(128) NOT NULL,
-  `phone` varchar(32) NOT NULL,
-  `defaultAddress` varchar(255) NOT NULL,
-  `gender` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `account_user`
---
-
-LOCK TABLES `account_user` WRITE;
-/*!40000 ALTER TABLE `account_user` DISABLE KEYS */;
-INSERT INTO `account_user` VALUES (1,'pbkdf2_sha256$180000$GhDe2jfiXjod$48dL5zXbOIJlyzpMxfApgobyh8ZD9GjhDa37cOCBMP4=','2020-05-22 18:56:24.909712',1,'admin','','','123@abc.com',1,1,'2019-09-11 08:54:47.000000','Admin','','01234','ha noi',1),(3,'pbkdf2_sha256$180000$FKK9x2N2L82d$KlV9Oj1lCx7q3cf2J6R1gV1srJQLDb1Ed0Jx98T3NGA=','2020-04-23 13:44:19.329647',0,'admin234','','','',0,1,'2020-04-23 13:44:19.143727','dfsdfsdfss','','3123123123123','',1),(4,'pbkdf2_sha256$180000$5VBDXcjNTUTj$tjb8pzPd5/qX3KItDJhA/mkdtK5/95W9iKDus4/cHA8=','2020-04-23 13:47:21.483075',0,'gianguser3','','','',0,1,'2020-04-23 13:47:21.287734','dfsdfsdfss','','3123123123123','',1),(5,'pbkdf2_sha256$180000$3ccBiRKUcwYi$DxH2wztIJ/6Oz8DM9Z8uvDA/PBQr3+Imdxt6Cgbkpnw=','2020-04-23 13:51:50.845786',0,'gianguser4','','','',0,1,'2020-04-23 13:51:50.649102','dfsdfsdfss','','3123123123123','',1),(6,'pbkdf2_sha256$180000$LkUbQRLX0hWo$DU4S1PewyAMSHos8uybhUvisUDw13jXoBFglo97fh80=','2020-04-23 13:52:51.633502',0,'gianguser5','','','',0,1,'2020-04-23 13:52:51.447232','dfsdfsdfss','','3123123123123','',1),(7,'pbkdf2_sha256$180000$jxSFPUe0hvkd$45cWjA8NDRJCyWcNQjxG9QVCoH3XwlF1H5t2QdB4jX8=','2020-04-23 13:55:56.356090',0,'gianguser6','','','',0,1,'2020-04-23 13:55:56.186061','dfsdfsdfss','','3123123123123','',1),(9,'pbkdf2_sha256$180000$yGC0oAKGC9ie$Ft7B2tojGTfHG1BVUF0QvZP/h61iFcIEjaN4JqYuhKo=','2020-05-22 16:59:14.000000',0,'giang3','','','sth@gmail.com',0,1,'2020-04-28 09:35:05.000000','Nguyễn Đình Giang','','098 765 4321','DHCN Hà Nội',1),(31,'pbkdf2_sha256$180000$2SglLVg8zcKc$XC9fVhXhbMWlj04pX+GVXfKwp+QWcCDu1fDh3X7ujJQ=',NULL,0,'98877','','','',0,1,'2020-05-08 15:24:29.054432','giang 1231231231','98877','','',1),(33,'pbkdf2_sha256$180000$9N2JtrIYcwkB$wbUSXw4KwCL9YcOvdIObKlg7M6BqPZ4unVDDtBgM93M=','2020-05-12 13:16:11.583848',0,'1234567','','','',0,1,'2020-05-08 17:56:16.000000','giang 123 messenger user','1234567','098 765 4321000','Ha noi 1123',1),(34,'pbkdf2_sha256$180000$yGC0oAKGC9ie$Ft7B2tojGTfHG1BVUF0QvZP/h61iFcIEjaN4JqYuhKo=','2020-05-23 06:50:21.290502',0,'ndgiang','','','',0,1,'2020-05-09 12:29:00.000000','ND Giang','2674052232724560','098 765 4321','DHCN Ha Noi',1),(35,'pbkdf2_sha256$180000$ohBcbXVytyyx$cSvj5YBshOoRTDsMP3c+zk1m0W5dWBGRo1zz5430BB0=','2020-05-14 10:15:57.328191',0,'giang2','','','sth@gmail.com2',0,1,'2020-05-14 10:15:57.085041','ND Giang','','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm',1),(36,'pbkdf2_sha256$180000$k1lyGqauCa2Y$kCTuITON73cZ7I2TqOH+GierffyJ+WTQMunSEn3GHiM=','2020-05-17 19:54:51.973878',0,'giang_admin','','','',1,1,'2020-05-17 17:51:05.000000','Giang Ad','','0098 764 321','123 456',1),(37,'pbkdf2_sha256$180000$8iPFYwxTPTEk$LYbY3ccavvm6Aroo3xN/Vx39ZIsOHlgCX4DWdcHHx60=','2020-05-19 13:26:02.000000',0,'tk_nu','','','',0,1,'2020-05-19 13:26:02.000000','tài khoản nữ','','123444','ha noi',1),(38,'pbkdf2_sha256$180000$Xug01gic19pt$JaDuTTdHg7DLy2kxQlQp9QORIZW11bcksscLza/+tsY=','2020-05-19 19:10:32.000000',0,'giangadmin','','','',1,1,'2020-05-19 19:10:32.000000','ND Giang','','3123123123123','13123123',1),(39,'pbkdf2_sha256$180000$dDhQlcVVzxQS$rohaeWPdcm763pR0otWlAPvmqKn83KEBLfhLsJdvSdM=','2020-05-22 13:00:38.068830',0,'nhanvien1','','','',1,1,'2020-05-20 09:27:48.000000','Nhan vien 1','','098 765 4321','Ha Noi 1',1),(40,'pbkdf2_sha256$180000$uCRWoAbPJPEC$yuRCMh325yjyKUeqVBvDWeA9hipC0WBslFCUVqHLPvA=','2020-05-20 16:18:54.061314',0,'random1','','','',0,1,'2020-05-20 16:18:53.879251','random1','','098 765 4321','Ha Noi',1),(41,'pbkdf2_sha256$180000$BoZI6vV4e4bG$jdn3HzY0mNSntNNw47hPCOipeIcpTjJ5KoJrT+nV2G4=','2020-05-22 17:00:09.434083',0,'quanly1','','','sth@gmail.com',1,1,'2020-05-21 16:01:58.000000','quan ly 1','','098 765 4321','Ha Nam',1);
-/*!40000 ALTER TABLE `account_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `account_user_groups`
---
-
-DROP TABLE IF EXISTS `account_user_groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account_user_groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `account_user_groups_user_id_group_id_4d09af3e_uniq` (`user_id`,`group_id`),
-  KEY `account_user_groups_group_id_6c71f749_fk_auth_group_id` (`group_id`),
-  CONSTRAINT `account_user_groups_group_id_6c71f749_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
-  CONSTRAINT `account_user_groups_user_id_14345e7b_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `account_user_groups`
---
-
-LOCK TABLES `account_user_groups` WRITE;
-/*!40000 ALTER TABLE `account_user_groups` DISABLE KEYS */;
-INSERT INTO `account_user_groups` VALUES (1,36,1),(3,39,2),(4,41,3);
-/*!40000 ALTER TABLE `account_user_groups` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `account_user_user_permissions`
---
-
-DROP TABLE IF EXISTS `account_user_user_permissions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account_user_user_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `account_user_user_permis_user_id_permission_id_48bdd28b_uniq` (`user_id`,`permission_id`),
-  KEY `account_user_user_pe_permission_id_66c44191_fk_auth_perm` (`permission_id`),
-  CONSTRAINT `account_user_user_pe_permission_id_66c44191_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
-  CONSTRAINT `account_user_user_pe_user_id_cc42d270_fk_account_u` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `account_user_user_permissions`
---
-
-LOCK TABLES `account_user_user_permissions` WRITE;
-/*!40000 ALTER TABLE `account_user_user_permissions` DISABLE KEYS */;
-INSERT INTO `account_user_user_permissions` VALUES (1,38,21);
-/*!40000 ALTER TABLE `account_user_user_permissions` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `auth_group`
 --
 
 DROP TABLE IF EXISTS `auth_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -227,11 +48,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_group_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_group_permissions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) NOT NULL,
-  `permission_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
   KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
@@ -256,11 +77,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `content_type_id` int(11) NOT NULL,
+  `content_type_id` int NOT NULL,
   `codename` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
@@ -279,80 +100,127 @@ INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2
 UNLOCK TABLES;
 
 --
--- Table structure for table `cart_cart`
+-- Table structure for table `brand`
 --
 
-DROP TABLE IF EXISTS `cart_cart`;
+DROP TABLE IF EXISTS `brand`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cart_cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quantityOnCart` int(11) NOT NULL,
-  `detailShoe_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `brand` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `brandName` varchar(128) NOT NULL,
+  `brandDesc` varchar(1024) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brand`
+--
+
+LOCK TABLES `brand` WRITE;
+/*!40000 ALTER TABLE `brand` DISABLE KEYS */;
+INSERT INTO `brand` VALUES (1,'Unknown',''),(2,'Nike',''),(3,'Adidas',''),(4,'Gucci',''),(5,'Louis Vuitton',''),(6,'Versace','');
+/*!40000 ALTER TABLE `brand` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cart` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `quantityOnCart` int NOT NULL,
+  `detailShoe_id` int NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cart_cart_detailShoe_id_63fcfc23_fk_mainapp_detailshoe_id` (`detailShoe_id`),
   KEY `cart_cart_user_id_9b4220b9_fk_account_user_id` (`user_id`),
-  CONSTRAINT `cart_cart_detailShoe_id_63fcfc23_fk_mainapp_detailshoe_id` FOREIGN KEY (`detailShoe_id`) REFERENCES `mainapp_detailshoe` (`id`),
-  CONSTRAINT `cart_cart_user_id_9b4220b9_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
+  CONSTRAINT `cart_cart_detailShoe_id_63fcfc23_fk_mainapp_detailshoe_id` FOREIGN KEY (`detailShoe_id`) REFERENCES `detail_shoe` (`id`),
+  CONSTRAINT `cart_cart_user_id_9b4220b9_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cart_cart`
+-- Dumping data for table `cart`
 --
 
-LOCK TABLES `cart_cart` WRITE;
-/*!40000 ALTER TABLE `cart_cart` DISABLE KEYS */;
-INSERT INTO `cart_cart` VALUES (3,1,97,1),(7,2,109,33),(13,1,97,35);
-/*!40000 ALTER TABLE `cart_cart` ENABLE KEYS */;
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (3,1,97,1),(7,2,109,33),(13,1,97,35);
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `contact_us_feedback`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `contact_us_feedback`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contact_us_feedback` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `subject` varchar(64) NOT NULL,
-  `content` longtext NOT NULL,
-  `dateSend` date NOT NULL,
-  `read` tinyint(1) NOT NULL,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `category` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `categoryName` varchar(128) NOT NULL,
+  `categoryThumbnail` varchar(255) NOT NULL,
+  `categoryDesc` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contact_us_feedback`
+-- Dumping data for table `category`
 --
 
-LOCK TABLES `contact_us_feedback` WRITE;
-/*!40000 ALTER TABLE `contact_us_feedback` DISABLE KEYS */;
-INSERT INTO `contact_us_feedback` VALUES (1,'Harry Potter','sth@gmail.com','the subject','content j do','2020-04-23',1);
-/*!40000 ALTER TABLE `contact_us_feedback` ENABLE KEYS */;
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Giày da','1_da.jpg',''),(2,'Giày lười','2_luoi.jpg',''),(3,'Giày thể thao','3_thethao.jpg',''),(4,'Giày cao cổ','4_caoco.jpg',''),(5,'Giày vải','5_vai.jpg',''),(6,'Giày bata','6_bata.jpg','');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `coupon_coupon`
+-- Table structure for table `color`
 --
 
-DROP TABLE IF EXISTS `coupon_coupon`;
+DROP TABLE IF EXISTS `color`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `coupon_coupon` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `color` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `colorName` varchar(64) NOT NULL,
+  `colorDesc` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `color`
+--
+
+LOCK TABLES `color` WRITE;
+/*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'Đen',''),(2,'Trắng',''),(3,'Đỏ',''),(4,'Vàng',''),(5,'Nâu',''),(6,'Xám',''),(7,'Lam',''),(8,'Lục',''),(9,'Hồng',''),(10,'Nhiều màu','');
+/*!40000 ALTER TABLE `color` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `coupon`
+--
+
+DROP TABLE IF EXISTS `coupon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `coupon` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `couponTitle` varchar(64) NOT NULL,
   `couponCode` varchar(32) NOT NULL,
   `expirationDate` date NOT NULL,
-  `discountRate` int(11) NOT NULL,
-  `discountAmount` int(11) NOT NULL,
+  `discountRate` int NOT NULL,
+  `discountAmount` int NOT NULL,
   `couponDescription` longtext NOT NULL,
-  `couponAmount` int(11) NOT NULL,
+  `couponAmount` int NOT NULL,
   `couponImage` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `couponCode` (`couponCode`)
@@ -360,13 +228,47 @@ CREATE TABLE `coupon_coupon` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `coupon_coupon`
+-- Dumping data for table `coupon`
 --
 
-LOCK TABLES `coupon_coupon` WRITE;
-/*!40000 ALTER TABLE `coupon_coupon` DISABLE KEYS */;
-INSERT INTO `coupon_coupon` VALUES (1,'coupon mặc định','no_coupon','2018-07-31',0,0,'coupon mặc định nhằm tránh sai dữ liệu',99983,'coupon_images/coupon_15.png'),(2,'Giảm 15% giá trị đơn hàng khi đặt hàng online','ONLINE_ORDER','2021-03-26',15,0,'Giam',100,'coupon_images/coupon_15_aQpeqU1.png'),(3,'Giảm 20% giá trị đơn hàng','ABCD_CODE2','2020-06-11',20,0,'',42,'coupon_images/coupon_15_6uruprs.png');
-/*!40000 ALTER TABLE `coupon_coupon` ENABLE KEYS */;
+LOCK TABLES `coupon` WRITE;
+/*!40000 ALTER TABLE `coupon` DISABLE KEYS */;
+INSERT INTO `coupon` VALUES (1,'coupon mặc định','no_coupon','2018-07-31',0,0,'coupon mặc định nhằm tránh sai dữ liệu',99983,'coupon_images/coupon_15.png'),(2,'Giảm 15% giá trị đơn hàng khi đặt hàng online','ONLINE_ORDER','2021-03-26',15,0,'Giam',100,'coupon_images/coupon_15_aQpeqU1.png'),(3,'Giảm 20% giá trị đơn hàng','ABCD_CODE2','2020-06-11',20,0,'',42,'coupon_images/coupon_15_6uruprs.png');
+/*!40000 ALTER TABLE `coupon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `detail_shoe`
+--
+
+DROP TABLE IF EXISTS `detail_shoe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detail_shoe` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `size` int NOT NULL,
+  `quantityAvailable` int NOT NULL,
+  `oldPrice` int NOT NULL,
+  `newPrice` int NOT NULL,
+  `detailShoeDesc` varchar(255) NOT NULL,
+  `color_id` int NOT NULL,
+  `shoe_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mainapp_detailshoe_shoe_id_c6bcdaa5_fk_mainapp_shoe_id` (`shoe_id`),
+  KEY `mainapp_detailshoe_color_id_329e30fd_fk_mainapp_color_id` (`color_id`),
+  CONSTRAINT `mainapp_detailshoe_color_id_329e30fd_fk_mainapp_color_id` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`),
+  CONSTRAINT `mainapp_detailshoe_shoe_id_c6bcdaa5_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `shoe` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detail_shoe`
+--
+
+LOCK TABLES `detail_shoe` WRITE;
+/*!40000 ALTER TABLE `detail_shoe` DISABLE KEYS */;
+INSERT INTO `detail_shoe` VALUES (1,41,20,560000,480000,'',1,1),(2,42,10,560000,480000,'',1,1),(3,43,15,560000,480000,'',1,1),(4,44,45,560000,480000,'',1,1),(5,41,18,520000,440000,'',1,2),(6,42,28,520000,440000,'',1,2),(7,43,0,520000,440000,'',1,2),(8,44,5,520000,440000,'',1,2),(9,41,10,600000,520000,'',1,3),(10,42,12,600000,520000,'',1,3),(11,43,18,600000,520000,'',1,3),(12,44,9,600000,520000,'',1,3),(13,41,11,480000,400000,'',1,4),(14,42,22,480000,400000,'',1,4),(15,43,37,480000,400000,'',1,4),(16,44,9,480000,400000,'',1,4),(17,41,19,650000,580000,'',1,5),(18,42,29,650000,580000,'',1,5),(19,43,10,650000,580000,'',1,5),(20,44,8,650000,580000,'',1,5),(81,41,18,660000,580000,'',1,6),(82,42,24,660000,580000,'',1,6),(83,43,10,660000,580000,'',1,6),(84,44,28,660000,580000,'',1,6),(85,41,14,660000,580000,'',2,6),(86,42,28,660000,580000,'',2,6),(87,43,7,660000,580000,'',2,6),(88,44,8,660000,580000,'',2,6),(89,41,15,620000,520000,'',1,7),(90,42,29,620000,520000,'',1,7),(91,43,10,620000,520000,'',1,7),(92,44,8,620000,520000,'',1,7),(93,41,20,620000,520000,'',2,7),(94,42,30,620000,520000,'',2,7),(95,43,7,620000,520000,'',2,7),(96,44,8,620000,520000,'',2,7),(97,41,19,700000,580000,'',1,8),(98,42,30,700000,580000,'',1,8),(99,43,10,700000,580000,'',1,8),(100,44,8,700000,580000,'',1,8),(101,41,20,700000,580000,'',2,8),(102,42,30,700000,580000,'',2,8),(103,43,8,700000,580000,'',2,8),(104,44,8,700000,580000,'',2,8),(105,39,19,330000,260000,'',2,9),(106,40,30,330000,260000,'',2,9),(107,41,7,330000,260000,'',2,9),(108,42,25,330000,260000,'',2,9),(109,43,35,330000,260000,'',2,9),(110,44,6,330000,260000,'',2,9),(111,40,20,300000,200000,'',2,10);
+/*!40000 ALTER TABLE `detail_shoe` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -375,21 +277,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_admin_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_admin_log` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
   `object_id` longtext,
   `object_repr` varchar(200) NOT NULL,
-  `action_flag` smallint(5) unsigned NOT NULL,
+  `action_flag` smallint unsigned NOT NULL,
   `change_message` longtext NOT NULL,
-  `content_type_id` int(11) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
   KEY `django_admin_log_user_id_c564eba6_fk_account_user_id` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
-  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -409,9 +311,9 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_content_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_content_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
@@ -435,14 +337,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_migrations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -451,7 +353,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-04-22 18:19:40.061434'),(2,'contenttypes','0002_remove_content_type_name','2020-04-22 18:19:40.132433'),(3,'auth','0001_initial','2020-04-22 18:19:40.213955'),(4,'auth','0002_alter_permission_name_max_length','2020-04-22 18:19:40.423000'),(5,'auth','0003_alter_user_email_max_length','2020-04-22 18:19:40.438514'),(6,'auth','0004_alter_user_username_opts','2020-04-22 18:19:40.446450'),(7,'auth','0005_alter_user_last_login_null','2020-04-22 18:19:40.455319'),(8,'auth','0006_require_contenttypes_0002','2020-04-22 18:19:40.459087'),(9,'auth','0007_alter_validators_add_error_messages','2020-04-22 18:19:40.467531'),(10,'auth','0008_alter_user_username_max_length','2020-04-22 18:19:40.477880'),(11,'auth','0009_alter_user_last_name_max_length','2020-04-22 18:19:40.487278'),(12,'auth','0010_alter_group_name_max_length','2020-04-22 18:19:40.533971'),(13,'auth','0011_update_proxy_permissions','2020-04-22 18:19:40.542827'),(14,'account','0001_initial','2020-04-22 18:19:40.627258'),(15,'admin','0001_initial','2020-04-22 18:19:40.864793'),(16,'admin','0002_logentry_remove_auto_add','2020-04-22 18:19:40.969173'),(17,'admin','0003_logentry_add_action_flag_choices','2020-04-22 18:19:40.982281'),(18,'mainapp','0001_initial','2020-04-22 18:19:41.410255'),(19,'sessions','0001_initial','2020-04-22 18:19:41.957183'),(20,'account','0002_user_gender','2020-04-23 13:31:34.997270'),(21,'contact_us','0001_initial','2020-04-23 15:48:59.194315'),(22,'contact_us','0002_auto_20200423_2255','2020-04-23 15:55:56.859286'),(23,'contact_us','0003_auto_20200423_2303','2020-04-23 16:03:10.915315'),(24,'coupon','0001_initial','2020-04-24 10:20:04.660685'),(25,'mainapp','0002_auto_20200424_1719','2020-04-24 10:20:04.757245'),(26,'coupon','0002_auto_20200428_1642','2020-04-28 09:42:08.581939'),(27,'mainapp','0003_auto_20200428_1642','2020-04-28 09:42:08.949400'),(28,'mainapp','0004_delete_favourite','2020-04-28 10:43:42.337403'),(29,'cart','0001_initial','2020-04-28 10:43:42.484862'),(30,'cart','0002_auto_20200501_2301','2020-05-01 16:01:59.868278'),(31,'mainapp','0005_auto_20200501_2301','2020-05-01 16:02:00.014632'),(32,'mainapp','0006_auto_20200501_2306','2020-05-01 16:06:19.723548'),(33,'coupon','0003_coupon_couponamount','2020-05-03 09:21:18.556326'),(34,'order','0001_initial','2020-05-03 09:21:18.652903'),(35,'coupon','0004_coupon_couponimage','2020-05-03 09:34:04.509653'),(36,'account','0003_auto_20200504_0007','2020-05-03 17:07:45.835570'),(37,'favourite','0001_initial','2020-05-03 17:07:45.883611'),(38,'mainapp','0007_shoe_shoemodel','2020-05-05 16:07:22.318463'),(39,'order','0002_auto_20200505_2307','2020-05-05 16:07:22.348476'),(40,'order','0003_auto_20200513_0003','2020-05-12 17:03:09.596105'),(41,'favourite','0002_favourite_date_like','2020-05-13 10:34:34.448869'),(42,'mainapp','0008_auto_20200513_2153','2020-05-13 14:54:11.064053'),(43,'mainapp','0009_auto_20200513_2156','2020-05-13 14:56:19.278632'),(44,'mainapp','0010_shoe_image_static','2020-05-14 10:38:29.338879'),(45,'contact_us','0004_feedback_read','2020-05-20 10:19:28.525424'),(46,'order','0004_auto_20200520_1719','2020-05-20 10:19:28.556047');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2020-04-22 18:19:40.061434'),(2,'contenttypes','0002_remove_content_type_name','2020-04-22 18:19:40.132433'),(3,'auth','0001_initial','2020-04-22 18:19:40.213955'),(4,'auth','0002_alter_permission_name_max_length','2020-04-22 18:19:40.423000'),(5,'auth','0003_alter_user_email_max_length','2020-04-22 18:19:40.438514'),(6,'auth','0004_alter_user_username_opts','2020-04-22 18:19:40.446450'),(7,'auth','0005_alter_user_last_login_null','2020-04-22 18:19:40.455319'),(8,'auth','0006_require_contenttypes_0002','2020-04-22 18:19:40.459087'),(9,'auth','0007_alter_validators_add_error_messages','2020-04-22 18:19:40.467531'),(10,'auth','0008_alter_user_username_max_length','2020-04-22 18:19:40.477880'),(11,'auth','0009_alter_user_last_name_max_length','2020-04-22 18:19:40.487278'),(12,'auth','0010_alter_group_name_max_length','2020-04-22 18:19:40.533971'),(13,'auth','0011_update_proxy_permissions','2020-04-22 18:19:40.542827'),(14,'account','0001_initial','2020-04-22 18:19:40.627258'),(15,'admin','0001_initial','2020-04-22 18:19:40.864793'),(16,'admin','0002_logentry_remove_auto_add','2020-04-22 18:19:40.969173'),(17,'admin','0003_logentry_add_action_flag_choices','2020-04-22 18:19:40.982281'),(18,'mainapp','0001_initial','2020-04-22 18:19:41.410255'),(19,'sessions','0001_initial','2020-04-22 18:19:41.957183'),(20,'account','0002_user_gender','2020-04-23 13:31:34.997270'),(21,'contact_us','0001_initial','2020-04-23 15:48:59.194315'),(22,'contact_us','0002_auto_20200423_2255','2020-04-23 15:55:56.859286'),(23,'contact_us','0003_auto_20200423_2303','2020-04-23 16:03:10.915315'),(24,'coupon','0001_initial','2020-04-24 10:20:04.660685'),(25,'mainapp','0002_auto_20200424_1719','2020-04-24 10:20:04.757245'),(26,'coupon','0002_auto_20200428_1642','2020-04-28 09:42:08.581939'),(27,'mainapp','0003_auto_20200428_1642','2020-04-28 09:42:08.949400'),(28,'mainapp','0004_delete_favourite','2020-04-28 10:43:42.337403'),(29,'cart','0001_initial','2020-04-28 10:43:42.484862'),(30,'cart','0002_auto_20200501_2301','2020-05-01 16:01:59.868278'),(31,'mainapp','0005_auto_20200501_2301','2020-05-01 16:02:00.014632'),(32,'mainapp','0006_auto_20200501_2306','2020-05-01 16:06:19.723548'),(33,'coupon','0003_coupon_couponamount','2020-05-03 09:21:18.556326'),(34,'order','0001_initial','2020-05-03 09:21:18.652903'),(35,'coupon','0004_coupon_couponimage','2020-05-03 09:34:04.509653'),(36,'account','0003_auto_20200504_0007','2020-05-03 17:07:45.835570'),(37,'favourite','0001_initial','2020-05-03 17:07:45.883611'),(38,'mainapp','0007_shoe_shoemodel','2020-05-05 16:07:22.318463'),(39,'order','0002_auto_20200505_2307','2020-05-05 16:07:22.348476'),(40,'order','0003_auto_20200513_0003','2020-05-12 17:03:09.596105'),(41,'favourite','0002_favourite_date_like','2020-05-13 10:34:34.448869'),(42,'mainapp','0008_auto_20200513_2153','2020-05-13 14:54:11.064053'),(43,'mainapp','0009_auto_20200513_2156','2020-05-13 14:56:19.278632'),(44,'mainapp','0010_shoe_image_static','2020-05-14 10:38:29.338879'),(45,'contact_us','0004_feedback_read','2020-05-20 10:19:28.525424'),(46,'order','0004_auto_20200520_1719','2020-05-20 10:19:28.556047'),(47,'account','0004_auto_20200613_1554','2020-06-13 09:00:15.314868'),(48,'cart','0003_auto_20200613_1554','2020-06-13 09:00:15.393948'),(49,'contact_us','0005_auto_20200613_1554','2020-06-13 09:00:15.454481'),(50,'coupon','0005_auto_20200613_1554','2020-06-13 09:00:15.522826'),(51,'favourite','0003_auto_20200613_1554','2020-06-13 09:00:15.598002'),(52,'mainapp','0011_auto_20200613_1554','2020-06-13 09:00:16.313711'),(53,'order','0005_auto_20200613_1554','2020-06-13 09:00:16.450410');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,7 +363,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
@@ -482,352 +384,296 @@ INSERT INTO `django_session` VALUES ('278raz9oyctnhgdk9ft738guymmcwohc','YWRlNDQ
 UNLOCK TABLES;
 
 --
--- Table structure for table `favourite_favourite`
+-- Table structure for table `favourite`
 --
 
-DROP TABLE IF EXISTS `favourite_favourite`;
+DROP TABLE IF EXISTS `favourite`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `favourite_favourite` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `shoe_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `favourite` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `shoe_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `date_like` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `favourite_favourite_shoe_id_9ed562ed_fk_mainapp_shoe_id` (`shoe_id`),
   KEY `favourite_favourite_user_id_7e49432e_fk_account_user_id` (`user_id`),
-  CONSTRAINT `favourite_favourite_shoe_id_9ed562ed_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `mainapp_shoe` (`id`),
-  CONSTRAINT `favourite_favourite_user_id_7e49432e_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
+  CONSTRAINT `favourite_favourite_shoe_id_9ed562ed_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `shoe` (`id`),
+  CONSTRAINT `favourite_favourite_user_id_7e49432e_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `favourite_favourite`
+-- Dumping data for table `favourite`
 --
 
-LOCK TABLES `favourite_favourite` WRITE;
-/*!40000 ALTER TABLE `favourite_favourite` DISABLE KEYS */;
-INSERT INTO `favourite_favourite` VALUES (5,1,9,'2020-05-13'),(6,2,9,'2020-05-13'),(8,8,9,'2020-05-22');
-/*!40000 ALTER TABLE `favourite_favourite` ENABLE KEYS */;
+LOCK TABLES `favourite` WRITE;
+/*!40000 ALTER TABLE `favourite` DISABLE KEYS */;
+INSERT INTO `favourite` VALUES (5,1,9,'2020-05-13'),(6,2,9,'2020-05-13'),(8,8,9,'2020-05-22');
+/*!40000 ALTER TABLE `favourite` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `mainapp_brand`
+-- Table structure for table `feedback`
 --
 
-DROP TABLE IF EXISTS `mainapp_brand`;
+DROP TABLE IF EXISTS `feedback`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_brand` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `brandName` varchar(128) NOT NULL,
-  `brandDesc` varchar(1024) NOT NULL,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `feedback` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `subject` varchar(64) NOT NULL,
+  `content` longtext NOT NULL,
+  `dateSend` date NOT NULL,
+  `read` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mainapp_brand`
+-- Dumping data for table `feedback`
 --
 
-LOCK TABLES `mainapp_brand` WRITE;
-/*!40000 ALTER TABLE `mainapp_brand` DISABLE KEYS */;
-INSERT INTO `mainapp_brand` VALUES (1,'Unknown',''),(2,'Nike',''),(3,'Adidas',''),(4,'Gucci',''),(5,'Louis Vuitton',''),(6,'Versace','');
-/*!40000 ALTER TABLE `mainapp_brand` ENABLE KEYS */;
+LOCK TABLES `feedback` WRITE;
+/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+INSERT INTO `feedback` VALUES (1,'Harry Potter','sth@gmail.com','the subject','content j do','2020-04-23',1);
+/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `mainapp_category`
+-- Table structure for table `image`
 --
 
-DROP TABLE IF EXISTS `mainapp_category`;
+DROP TABLE IF EXISTS `image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categoryName` varchar(128) NOT NULL,
-  `categoryThumbnail` varchar(255) NOT NULL,
-  `categoryDesc` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mainapp_category`
---
-
-LOCK TABLES `mainapp_category` WRITE;
-/*!40000 ALTER TABLE `mainapp_category` DISABLE KEYS */;
-INSERT INTO `mainapp_category` VALUES (1,'Giày da','1_da.jpg',''),(2,'Giày lười','2_luoi.jpg',''),(3,'Giày thể thao','3_thethao.jpg',''),(4,'Giày cao cổ','4_caoco.jpg',''),(5,'Giày vải','5_vai.jpg',''),(6,'Giày bata','6_bata.jpg','');
-/*!40000 ALTER TABLE `mainapp_category` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `mainapp_color`
---
-
-DROP TABLE IF EXISTS `mainapp_color`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_color` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `colorName` varchar(64) NOT NULL,
-  `colorDesc` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mainapp_color`
---
-
-LOCK TABLES `mainapp_color` WRITE;
-/*!40000 ALTER TABLE `mainapp_color` DISABLE KEYS */;
-INSERT INTO `mainapp_color` VALUES (1,'Đen',''),(2,'Trắng',''),(3,'Đỏ',''),(4,'Vàng',''),(5,'Nâu',''),(6,'Xám',''),(7,'Lam',''),(8,'Lục',''),(9,'Hồng',''),(10,'Nhiều màu','');
-/*!40000 ALTER TABLE `mainapp_color` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `mainapp_detailshoe`
---
-
-DROP TABLE IF EXISTS `mainapp_detailshoe`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_detailshoe` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `size` int(11) NOT NULL,
-  `quantityAvailable` int(11) NOT NULL,
-  `oldPrice` int(11) NOT NULL,
-  `newPrice` int(11) NOT NULL,
-  `detailShoeDesc` varchar(255) NOT NULL,
-  `color_id` int(11) NOT NULL,
-  `shoe_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mainapp_detailshoe_shoe_id_c6bcdaa5_fk_mainapp_shoe_id` (`shoe_id`),
-  KEY `mainapp_detailshoe_color_id_329e30fd_fk_mainapp_color_id` (`color_id`),
-  CONSTRAINT `mainapp_detailshoe_color_id_329e30fd_fk_mainapp_color_id` FOREIGN KEY (`color_id`) REFERENCES `mainapp_color` (`id`),
-  CONSTRAINT `mainapp_detailshoe_shoe_id_c6bcdaa5_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `mainapp_shoe` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mainapp_detailshoe`
---
-
-LOCK TABLES `mainapp_detailshoe` WRITE;
-/*!40000 ALTER TABLE `mainapp_detailshoe` DISABLE KEYS */;
-INSERT INTO `mainapp_detailshoe` VALUES (1,41,20,560000,480000,'',1,1),(2,42,10,560000,480000,'',1,1),(3,43,15,560000,480000,'',1,1),(4,44,45,560000,480000,'',1,1),(5,41,18,520000,440000,'',1,2),(6,42,28,520000,440000,'',1,2),(7,43,0,520000,440000,'',1,2),(8,44,5,520000,440000,'',1,2),(9,41,10,600000,520000,'',1,3),(10,42,12,600000,520000,'',1,3),(11,43,18,600000,520000,'',1,3),(12,44,9,600000,520000,'',1,3),(13,41,11,480000,400000,'',1,4),(14,42,22,480000,400000,'',1,4),(15,43,37,480000,400000,'',1,4),(16,44,9,480000,400000,'',1,4),(17,41,19,650000,580000,'',1,5),(18,42,29,650000,580000,'',1,5),(19,43,10,650000,580000,'',1,5),(20,44,8,650000,580000,'',1,5),(81,41,18,660000,580000,'',1,6),(82,42,24,660000,580000,'',1,6),(83,43,10,660000,580000,'',1,6),(84,44,28,660000,580000,'',1,6),(85,41,14,660000,580000,'',2,6),(86,42,28,660000,580000,'',2,6),(87,43,7,660000,580000,'',2,6),(88,44,8,660000,580000,'',2,6),(89,41,15,620000,520000,'',1,7),(90,42,29,620000,520000,'',1,7),(91,43,10,620000,520000,'',1,7),(92,44,8,620000,520000,'',1,7),(93,41,20,620000,520000,'',2,7),(94,42,30,620000,520000,'',2,7),(95,43,7,620000,520000,'',2,7),(96,44,8,620000,520000,'',2,7),(97,41,19,700000,580000,'',1,8),(98,42,30,700000,580000,'',1,8),(99,43,10,700000,580000,'',1,8),(100,44,8,700000,580000,'',1,8),(101,41,20,700000,580000,'',2,8),(102,42,30,700000,580000,'',2,8),(103,43,8,700000,580000,'',2,8),(104,44,8,700000,580000,'',2,8),(105,39,19,330000,260000,'',2,9),(106,40,30,330000,260000,'',2,9),(107,41,7,330000,260000,'',2,9),(108,42,25,330000,260000,'',2,9),(109,43,35,330000,260000,'',2,9),(110,44,6,330000,260000,'',2,9),(111,40,20,300000,200000,'',2,10);
-/*!40000 ALTER TABLE `mainapp_detailshoe` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `mainapp_image`
---
-
-DROP TABLE IF EXISTS `mainapp_image`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `image` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `imageDesc` varchar(64) NOT NULL,
-  `shoe_id` int(11) NOT NULL,
+  `shoe_id` int NOT NULL,
   `shoeImage` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mainapp_image_shoe_id_391fe90b_fk_mainapp_shoe_id` (`shoe_id`),
-  CONSTRAINT `mainapp_image_shoe_id_391fe90b_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `mainapp_shoe` (`id`)
+  CONSTRAINT `mainapp_image_shoe_id_391fe90b_fk_mainapp_shoe_id` FOREIGN KEY (`shoe_id`) REFERENCES `shoe` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `mainapp_image`
+-- Dumping data for table `image`
 --
 
-LOCK TABLES `mainapp_image` WRITE;
-/*!40000 ALTER TABLE `mainapp_image` DISABLE KEYS */;
-INSERT INTO `mainapp_image` VALUES (1,'',1,'shoe_images/GLLV12_1.jpg'),(2,'',1,'shoe_images/GLLV12_2.jpg'),(3,'',1,'shoe_images/GLLV12_3.jpg'),(4,'',1,'shoe_images/GLLV12_4.jpg'),(5,'',1,'shoe_images/GLLV12_5.jpg'),(6,'',2,'shoe_images/GLLV25_1.jpg'),(7,'',2,'shoe_images/GLLV25_2.jpg'),(8,'',2,'shoe_images/GLLV25_3.jpg'),(9,'',2,'shoe_images/GLLV25_4.jpg'),(10,'',2,'shoe_images/GLLV25_5.jpg'),(11,'',3,'shoe_images/GLLV09_1.jpg'),(12,'',3,'shoe_images/GLLV09_2.jpg'),(13,'',3,'shoe_images/GLLV09_3.jpg'),(14,'',3,'shoe_images/GLLV09_4.jpg'),(15,'',3,'shoe_images/GLLV09_5.jpg'),(16,'',4,'shoe_images/GLLV22_1.jpg'),(17,'',4,'shoe_images/GLLV22_2.jpg'),(18,'',4,'shoe_images/GLLV22_3.jpg'),(19,'',4,'shoe_images/GLLV22_4.jpg'),(20,'',4,'shoe_images/GLLV22_5.jpg'),(21,'',5,'shoe_images/GLV08_1.jpg'),(22,'',5,'shoe_images/GLV08_2.jpg'),(23,'',5,'shoe_images/GLV08_3.jpg'),(24,'',5,'shoe_images/GLV08_4.jpg'),(25,'',5,'shoe_images/GLV08_5.jpg'),(26,'',6,'shoe_images/B771_1.jpg'),(27,'',6,'shoe_images/B771_2.png'),(28,'',6,'shoe_images/B771_3.jpg'),(29,'',6,'shoe_images/B771_4.jpg'),(30,'',6,'shoe_images/B771_5.jpg'),(31,'',7,'shoe_images/B798_1.jpg'),(32,'',7,'shoe_images/B798_2.jpg'),(33,'',7,'shoe_images/B798_3.jpg'),(34,'',7,'shoe_images/B798_4.jpg'),(36,'',8,'shoe_images/B967_1.jpg'),(37,'',8,'shoe_images/B967_2.jpg'),(38,'',8,'shoe_images/B967_3.jpg'),(39,'',8,'shoe_images/B967_4.jpg'),(40,'',8,'shoe_images/B967_5.jpg'),(41,'',9,'shoe_images/B536_1.jpg'),(42,'',9,'shoe_images/B536_2.jpg'),(43,'',9,'shoe_images/B536_3.jpg'),(46,'',7,'shoe_images/B798_5_jMYU0hT.jpg'),(47,'',9,'shoe_images/B536_4_hzguu1B.jpg'),(48,'',9,'shoe_images/B536_5_TupiB2G.jpg'),(49,'',10,'shoe_images/96809369_138888857717177_6422026695175307264_n_QoNRrqN.jpg'),(50,'',10,'shoe_images/97510678_287568185741771_1943610221997850624_n.jpg'),(51,'',10,'shoe_images/89631277_201169267646092_5058440794206109696_n.jpg'),(52,'',10,'shoe_images/97510678_287568185741771_1943610221997850624_n_m2w9jIK.jpg');
-/*!40000 ALTER TABLE `mainapp_image` ENABLE KEYS */;
+LOCK TABLES `image` WRITE;
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+INSERT INTO `image` VALUES (1,'',1,'shoe_images/GLLV12_1.jpg'),(2,'',1,'shoe_images/GLLV12_2.jpg'),(3,'',1,'shoe_images/GLLV12_3.jpg'),(4,'',1,'shoe_images/GLLV12_4.jpg'),(5,'',1,'shoe_images/GLLV12_5.jpg'),(6,'',2,'shoe_images/GLLV25_1.jpg'),(7,'',2,'shoe_images/GLLV25_2.jpg'),(8,'',2,'shoe_images/GLLV25_3.jpg'),(9,'',2,'shoe_images/GLLV25_4.jpg'),(10,'',2,'shoe_images/GLLV25_5.jpg'),(11,'',3,'shoe_images/GLLV09_1.jpg'),(12,'',3,'shoe_images/GLLV09_2.jpg'),(13,'',3,'shoe_images/GLLV09_3.jpg'),(14,'',3,'shoe_images/GLLV09_4.jpg'),(15,'',3,'shoe_images/GLLV09_5.jpg'),(16,'',4,'shoe_images/GLLV22_1.jpg'),(17,'',4,'shoe_images/GLLV22_2.jpg'),(18,'',4,'shoe_images/GLLV22_3.jpg'),(19,'',4,'shoe_images/GLLV22_4.jpg'),(20,'',4,'shoe_images/GLLV22_5.jpg'),(21,'',5,'shoe_images/GLV08_1.jpg'),(22,'',5,'shoe_images/GLV08_2.jpg'),(23,'',5,'shoe_images/GLV08_3.jpg'),(24,'',5,'shoe_images/GLV08_4.jpg'),(25,'',5,'shoe_images/GLV08_5.jpg'),(26,'',6,'shoe_images/B771_1.jpg'),(27,'',6,'shoe_images/B771_2.png'),(28,'',6,'shoe_images/B771_3.jpg'),(29,'',6,'shoe_images/B771_4.jpg'),(30,'',6,'shoe_images/B771_5.jpg'),(31,'',7,'shoe_images/B798_1.jpg'),(32,'',7,'shoe_images/B798_2.jpg'),(33,'',7,'shoe_images/B798_3.jpg'),(34,'',7,'shoe_images/B798_4.jpg'),(36,'',8,'shoe_images/B967_1.jpg'),(37,'',8,'shoe_images/B967_2.jpg'),(38,'',8,'shoe_images/B967_3.jpg'),(39,'',8,'shoe_images/B967_4.jpg'),(40,'',8,'shoe_images/B967_5.jpg'),(41,'',9,'shoe_images/B536_1.jpg'),(42,'',9,'shoe_images/B536_2.jpg'),(43,'',9,'shoe_images/B536_3.jpg'),(46,'',7,'shoe_images/B798_5_jMYU0hT.jpg'),(47,'',9,'shoe_images/B536_4_hzguu1B.jpg'),(48,'',9,'shoe_images/B536_5_TupiB2G.jpg'),(49,'',10,'shoe_images/96809369_138888857717177_6422026695175307264_n_QoNRrqN.jpg'),(50,'',10,'shoe_images/97510678_287568185741771_1943610221997850624_n.jpg'),(51,'',10,'shoe_images/89631277_201169267646092_5058440794206109696_n.jpg'),(52,'',10,'shoe_images/97510678_287568185741771_1943610221997850624_n_m2w9jIK.jpg');
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `mainapp_shoe`
+-- Table structure for table `order_item`
 --
 
-DROP TABLE IF EXISTS `mainapp_shoe`;
+DROP TABLE IF EXISTS `order_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mainapp_shoe` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `shoeName` varchar(255) NOT NULL,
-  `shoeThumbnail` varchar(100) NOT NULL,
-  `active` int(11) NOT NULL,
-  `quantitySold` int(11) NOT NULL,
-  `viewCount` int(11) NOT NULL,
-  `favouriteCount` int(11) NOT NULL,
-  `dateCreated` datetime(6) NOT NULL,
-  `shoeDesc` varchar(2048) NOT NULL,
-  `brand_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `shoeModel` varchar(255) NOT NULL,
-  `dateModified` datetime(6) NOT NULL,
-  `image_static` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mainapp_shoe_brand_id_623c0182_fk_mainapp_brand_id` (`brand_id`),
-  KEY `mainapp_shoe_category_id_8c8cc3d8_fk_mainapp_category_id` (`category_id`),
-  CONSTRAINT `mainapp_shoe_brand_id_623c0182_fk_mainapp_brand_id` FOREIGN KEY (`brand_id`) REFERENCES `mainapp_brand` (`id`),
-  CONSTRAINT `mainapp_shoe_category_id_8c8cc3d8_fk_mainapp_category_id` FOREIGN KEY (`category_id`) REFERENCES `mainapp_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mainapp_shoe`
---
-
-LOCK TABLES `mainapp_shoe` WRITE;
-/*!40000 ALTER TABLE `mainapp_shoe` DISABLE KEYS */;
-INSERT INTO `mainapp_shoe` VALUES (1,'Giày lười Louis Vuitton họa tiết bàn cờ GLLV12','shoe_thumbnails/GLLV12_1.jpg',1,550,1502,1001,'2019-09-02 00:00:00.000000','Giày êm chạy không đau chân',5,2,'GLLV12','2020-05-20 10:07:39.163945','https://i.imgur.com/EDqqj3U.jpg'),(2,'Giày lười Louis Vuitton họa tiết da nhăn GLLV25','shoe_thumbnails/GLLV25_1.jpg',1,375,1142,2201,'2020-02-22 00:00:00.000000','Giày êm chạy không đau chân',5,2,'GLLV25','2020-05-23 05:31:41.954087','https://i.imgur.com/lxAEOG5.jpg'),(3,'Giày lười Louis Vuitton họa tiết ô rạn GLLV09','shoe_thumbnails/GLLV09_1.jpg',1,480,1933,1600,'2020-02-12 00:00:00.000000','Giày êm chạy không đau chân',1,2,'GLLV09','2020-05-21 15:53:51.874283','https://i.imgur.com/13oSvab.jpg'),(4,'Giày lười Louis Vuitton like au họa tiết rạn GLLV22','shoe_thumbnails/GLLV22_1.jpg',1,291,2006,1900,'2020-01-12 00:00:00.000000','Giày êm chạy không đau chân',1,2,'GLLV22','2020-05-22 14:03:20.535831','https://i.imgur.com/CNZKtnm.jpg'),(5,'Giày lười Versace họa tiết vân lá GLV08','shoe_thumbnails/GLV08_1.jpg',1,352,3008,2000,'2020-03-20 00:00:00.000000','Giày êm chạy không đau chân',6,2,'GLV08','2020-05-23 06:50:32.900577','https://i.imgur.com/SqAm33C.jpg'),(6,'Giày thể thao T771','shoe_thumbnails/B771_1.jpg',1,289,1413,1970,'2020-02-02 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T771','2020-05-23 05:18:02.370200','https://i.imgur.com/8xaCOw1.jpg'),(7,'Giày thể thao T798','shoe_thumbnails/B798_1.jpg',1,796,2217,2300,'2019-08-19 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T798','2020-05-23 05:29:59.091927','https://i.imgur.com/372dixB.jpg'),(8,'Giày thể thao B967','shoe_thumbnails/B967_1.jpg',1,853,1625,2200,'2019-12-12 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T967','2020-05-22 16:50:48.237088','https://i.imgur.com/DgFwpj3.jpg'),(9,'Giày bata B536','shoe_thumbnails/B536_1.jpg',1,428,1816,2700,'2020-04-08 00:00:00.000000','Giày êm chạy không đau chân',1,6,'B536','2020-05-23 06:22:13.671432','https://i.imgur.com/l53QjH5.jpg'),(10,'Giày mèo','shoe_thumbnails/96809369_138888857717177_6422026695175307264_n.jpg',1,0,6,0,'2020-05-22 09:19:38.000000','',3,5,'V1123','2020-05-23 03:12:38.039211','https://i.imgur.com/DZIZ5eH.png');
-/*!40000 ALTER TABLE `mainapp_shoe` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `order_orderitem`
---
-
-DROP TABLE IF EXISTS `order_orderitem`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order_orderitem` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `quantity` int(11) NOT NULL,
-  `itemPrice` int(11) NOT NULL,
-  `detailShoe_id` int(11) NOT NULL,
-  `orderPackage_id` int(11) NOT NULL,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_item` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `quantity` int NOT NULL,
+  `itemPrice` int NOT NULL,
+  `detailShoe_id` int NOT NULL,
+  `orderPackage_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_orderitem_detailShoe_id_b4b633e3_fk_mainapp_detailshoe_id` (`detailShoe_id`),
   KEY `order_orderitem_orderPackage_id_db2fad4d_fk_order_ord` (`orderPackage_id`),
-  CONSTRAINT `order_orderitem_detailShoe_id_b4b633e3_fk_mainapp_detailshoe_id` FOREIGN KEY (`detailShoe_id`) REFERENCES `mainapp_detailshoe` (`id`),
-  CONSTRAINT `order_orderitem_orderPackage_id_db2fad4d_fk_order_ord` FOREIGN KEY (`orderPackage_id`) REFERENCES `order_orderpackage` (`id`)
+  CONSTRAINT `order_orderitem_detailShoe_id_b4b633e3_fk_mainapp_detailshoe_id` FOREIGN KEY (`detailShoe_id`) REFERENCES `detail_shoe` (`id`),
+  CONSTRAINT `order_orderitem_orderPackage_id_db2fad4d_fk_order_ord` FOREIGN KEY (`orderPackage_id`) REFERENCES `order_package` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_orderitem`
+-- Dumping data for table `order_item`
 --
 
-LOCK TABLES `order_orderitem` WRITE;
-/*!40000 ALTER TABLE `order_orderitem` DISABLE KEYS */;
-INSERT INTO `order_orderitem` VALUES (1,2,440000,5,1),(2,2,440000,5,2),(6,1,520000,90,6),(7,3,580000,87,7),(8,1,520000,89,7),(9,1,580000,81,8),(10,20,580000,85,9),(11,3,440000,8,10),(12,1,580000,81,10),(13,1,520000,89,11),(14,10,520000,91,11),(15,2,260000,107,12),(16,1,260000,105,13),(17,1,580000,82,13),(18,1,580000,82,14),(19,1,580000,82,15),(20,1,580000,82,16),(21,1,580000,17,17),(22,3,520000,95,18),(23,0,440000,7,19),(24,1,440000,6,19),(25,3,580000,85,19),(26,3,580000,85,20),(27,1,260000,108,20),(28,2,260000,108,21),(29,1,400000,15,21),(30,1,580000,97,22),(31,2,580000,103,22),(42,1,580000,18,33);
-/*!40000 ALTER TABLE `order_orderitem` ENABLE KEYS */;
+LOCK TABLES `order_item` WRITE;
+/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
+INSERT INTO `order_item` VALUES (1,2,440000,5,1),(2,2,440000,5,2),(6,1,520000,90,6),(7,3,580000,87,7),(8,1,520000,89,7),(9,1,580000,81,8),(10,20,580000,85,9),(11,3,440000,8,10),(12,1,580000,81,10),(13,1,520000,89,11),(14,10,520000,91,11),(15,2,260000,107,12),(16,1,260000,105,13),(17,1,580000,82,13),(18,1,580000,82,14),(19,1,580000,82,15),(20,1,580000,82,16),(21,1,580000,17,17),(22,3,520000,95,18),(23,0,440000,7,19),(24,1,440000,6,19),(25,3,580000,85,19),(26,3,580000,85,20),(27,1,260000,108,20),(28,2,260000,108,21),(29,1,400000,15,21),(30,1,580000,97,22),(31,2,580000,103,22),(42,1,580000,18,33);
+/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_orderpackage`
+-- Table structure for table `order_package`
 --
 
-DROP TABLE IF EXISTS `order_orderpackage`;
+DROP TABLE IF EXISTS `order_package`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `order_orderpackage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order_package` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `dateOrder` datetime(6) NOT NULL,
   `dateDelivery` datetime(6) NOT NULL,
   `receiver` varchar(128) NOT NULL,
   `receiverNumber` varchar(32) NOT NULL,
   `receiverAddress` varchar(255) NOT NULL,
   `note` longtext NOT NULL,
-  `status` int(11) NOT NULL,
-  `totalPayment` int(11) NOT NULL,
-  `coupon_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `status` int NOT NULL,
+  `totalPayment` int NOT NULL,
+  `coupon_id` int NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `order_orderpackage_coupon_id_6e279c52_fk_coupon_coupon_id` (`coupon_id`),
   KEY `order_orderpackage_user_id_34d2117f_fk_account_user_id` (`user_id`),
-  CONSTRAINT `order_orderpackage_coupon_id_6e279c52_fk_coupon_coupon_id` FOREIGN KEY (`coupon_id`) REFERENCES `coupon_coupon` (`id`),
-  CONSTRAINT `order_orderpackage_user_id_34d2117f_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `account_user` (`id`)
+  CONSTRAINT `order_orderpackage_coupon_id_6e279c52_fk_coupon_coupon_id` FOREIGN KEY (`coupon_id`) REFERENCES `coupon` (`id`),
+  CONSTRAINT `order_orderpackage_user_id_34d2117f_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_orderpackage`
+-- Dumping data for table `order_package`
 --
 
-LOCK TABLES `order_orderpackage` WRITE;
-/*!40000 ALTER TABLE `order_orderpackage` DISABLE KEYS */;
-INSERT INTO `order_orderpackage` VALUES (1,'2020-04-08 00:00:00.000000','2020-05-11 00:00:00.000000','giang nd','098 765 4321','Ha noi','',5,374000,2,9),(2,'2020-05-04 00:00:00.000000','2020-05-11 00:00:00.000000','giang nd','098 765 4321','Ha noi','Đang mưa lũ k giao đc',4,440000,1,9),(6,'2020-05-09 00:00:00.000000','2020-05-16 00:00:00.000000','giang 123','3123123123123','3123123','',3,520000,1,33),(7,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',3,1100000,1,9),(8,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',3,580000,1,9),(9,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',5,9860000,3,9),(10,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1615000,3,9),(11,'2020-05-14 10:16:47.000000','2020-05-21 10:16:47.000000','ND Giang','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm','',5,5720000,1,35),(12,'2020-05-14 10:21:01.523559','2020-05-21 10:21:01.523572','ND Giang','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm','',1,520000,1,35),(13,'2020-05-17 19:02:14.104758','2020-05-24 19:02:14.104766','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,840000,1,9),(14,'2020-05-06 19:07:29.000000','2020-05-12 19:07:29.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(15,'2020-05-06 19:08:49.000000','2020-05-12 19:08:49.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(16,'2020-05-08 19:12:08.000000','2020-05-15 19:12:08.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(17,'2020-05-19 13:26:15.000000','2020-05-26 13:26:15.000000','tài khoản n','123444','ha noi','',3,580000,1,37),(18,'2020-03-18 16:19:36.000000','2020-05-27 16:19:36.000000','random1','098 765 4321','Ha Noi','',3,1560000,1,40),(19,'2020-05-22 08:23:18.992701','2020-05-29 08:23:18.992709','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,2180000,1,9),(20,'2020-05-22 08:43:13.447712','2020-05-29 08:43:13.447717','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1600000,3,9),(21,'2020-05-22 14:03:20.000000','2020-05-29 14:03:20.000000','Nhan vien 1','098 765 4321','Ha Noi 1','',2,920000,1,39),(22,'2020-05-22 14:10:41.625984','2020-05-29 14:10:41.625993','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1740000,1,9),(33,'2020-05-23 06:50:32.857290','2020-05-30 06:50:32.857300','ND Giang','098 765 4321','DHCN Ha Noi','',1,580000,1,34);
-/*!40000 ALTER TABLE `order_orderpackage` ENABLE KEYS */;
+LOCK TABLES `order_package` WRITE;
+/*!40000 ALTER TABLE `order_package` DISABLE KEYS */;
+INSERT INTO `order_package` VALUES (1,'2020-04-08 00:00:00.000000','2020-05-11 00:00:00.000000','giang nd','098 765 4321','Ha noi','',5,374000,2,9),(2,'2020-05-04 00:00:00.000000','2020-05-11 00:00:00.000000','giang nd','098 765 4321','Ha noi','Đang mưa lũ k giao đc',4,440000,1,9),(6,'2020-05-09 00:00:00.000000','2020-05-16 00:00:00.000000','giang 123','3123123123123','3123123','',3,520000,1,33),(7,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',3,1100000,1,9),(8,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',3,580000,1,9),(9,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',5,9860000,3,9),(10,'2020-05-12 00:00:00.000000','2020-05-19 00:00:00.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1615000,3,9),(11,'2020-05-14 10:16:47.000000','2020-05-21 10:16:47.000000','ND Giang','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm','',5,5720000,1,35),(12,'2020-05-14 10:21:01.523559','2020-05-21 10:21:01.523572','ND Giang','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm','',1,520000,1,35),(13,'2020-05-17 19:02:14.104758','2020-05-24 19:02:14.104766','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,840000,1,9),(14,'2020-05-06 19:07:29.000000','2020-05-12 19:07:29.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(15,'2020-05-06 19:08:49.000000','2020-05-12 19:08:49.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(16,'2020-05-08 19:12:08.000000','2020-05-15 19:12:08.000000','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,580000,1,9),(17,'2020-05-19 13:26:15.000000','2020-05-26 13:26:15.000000','tài khoản n','123444','ha noi','',3,580000,1,37),(18,'2020-03-18 16:19:36.000000','2020-05-27 16:19:36.000000','random1','098 765 4321','Ha Noi','',3,1560000,1,40),(19,'2020-05-22 08:23:18.992701','2020-05-29 08:23:18.992709','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,2180000,1,9),(20,'2020-05-22 08:43:13.447712','2020-05-29 08:43:13.447717','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1600000,3,9),(21,'2020-05-22 14:03:20.000000','2020-05-29 14:03:20.000000','Nhan vien 1','098 765 4321','Ha Noi 1','',2,920000,1,39),(22,'2020-05-22 14:10:41.625984','2020-05-29 14:10:41.625993','Nguyễn Đình Giang','098 765 4321','DHCN Hà Nội','',1,1740000,1,9),(33,'2020-05-23 06:50:32.857290','2020-05-30 06:50:32.857300','ND Giang','098 765 4321','DHCN Ha Noi','',1,580000,1,34);
+/*!40000 ALTER TABLE `order_package` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Final view structure for view `HOT_SHOES`
+-- Table structure for table `shoe`
 --
 
-/*!50001 DROP VIEW IF EXISTS `HOT_SHOES`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `HOT_SHOES` AS select distinct `mainapp_shoe`.`id` AS `shoe_id`,`mainapp_shoe`.`shoeName` AS `shoeName`,`mainapp_shoe`.`shoeModel` AS `shoeModel`,`mainapp_shoe`.`viewCount` AS `viewCount`,`mainapp_shoe`.`quantitySold` AS `quantitySold`,`mainapp_shoe`.`favouriteCount` AS `favouriteCount`,`mainapp_shoe`.`shoeThumbnail` AS `shoeThumbnail`,`mainapp_category`.`categoryName` AS `categoryName`,`mainapp_detailshoe`.`newPrice` AS `newPrice`,((`mainapp_shoe`.`viewCount` + `mainapp_shoe`.`quantitySold`) + `mainapp_shoe`.`favouriteCount`) AS `hotCount` from ((`mainapp_shoe` join `mainapp_detailshoe` on((`mainapp_shoe`.`id` = `mainapp_detailshoe`.`shoe_id`))) join `mainapp_category` on((`mainapp_shoe`.`category_id` = `mainapp_category`.`id`))) where (`mainapp_shoe`.`active` = 1) order by `hotCount` desc limit 0,5 */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `shoe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `shoe` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `shoeName` varchar(255) NOT NULL,
+  `shoeThumbnail` varchar(100) NOT NULL,
+  `active` int NOT NULL,
+  `quantitySold` int NOT NULL,
+  `viewCount` int NOT NULL,
+  `favouriteCount` int NOT NULL,
+  `dateCreated` datetime(6) NOT NULL,
+  `shoeDesc` longtext NOT NULL,
+  `brand_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  `shoeModel` varchar(255) NOT NULL,
+  `dateModified` datetime(6) NOT NULL,
+  `image_static` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mainapp_shoe_brand_id_623c0182_fk_mainapp_brand_id` (`brand_id`),
+  KEY `mainapp_shoe_category_id_8c8cc3d8_fk_mainapp_category_id` (`category_id`),
+  CONSTRAINT `mainapp_shoe_brand_id_623c0182_fk_mainapp_brand_id` FOREIGN KEY (`brand_id`) REFERENCES `brand` (`id`),
+  CONSTRAINT `mainapp_shoe_category_id_8c8cc3d8_fk_mainapp_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Final view structure for view `HOT_SHOES_NEXT`
+-- Dumping data for table `shoe`
 --
 
-/*!50001 DROP VIEW IF EXISTS `HOT_SHOES_NEXT`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `HOT_SHOES_NEXT` AS select distinct `mainapp_shoe`.`id` AS `shoe_id`,`mainapp_shoe`.`shoeName` AS `shoeName`,`mainapp_shoe`.`shoeModel` AS `shoeModel`,`mainapp_shoe`.`viewCount` AS `viewCount`,`mainapp_shoe`.`quantitySold` AS `quantitySold`,`mainapp_shoe`.`favouriteCount` AS `favouriteCount`,`mainapp_shoe`.`shoeThumbnail` AS `shoeThumbnail`,`mainapp_category`.`categoryName` AS `categoryName`,`mainapp_detailshoe`.`newPrice` AS `newPrice`,((`mainapp_shoe`.`viewCount` + `mainapp_shoe`.`quantitySold`) + `mainapp_shoe`.`favouriteCount`) AS `hotCount` from ((`mainapp_shoe` join `mainapp_detailshoe` on((`mainapp_shoe`.`id` = `mainapp_detailshoe`.`shoe_id`))) join `mainapp_category` on((`mainapp_shoe`.`category_id` = `mainapp_category`.`id`))) where (`mainapp_shoe`.`active` = 1) order by `hotCount` desc limit 5,5 */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+LOCK TABLES `shoe` WRITE;
+/*!40000 ALTER TABLE `shoe` DISABLE KEYS */;
+INSERT INTO `shoe` VALUES (1,'Giày lười Louis Vuitton họa tiết bàn cờ GLLV12','shoe_thumbnails/GLLV12_1.jpg',1,550,1502,1001,'2019-09-02 00:00:00.000000','Giày êm chạy không đau chân',5,2,'GLLV12','2020-05-20 10:07:39.163945','https://i.imgur.com/EDqqj3U.jpg'),(2,'Giày lười Louis Vuitton họa tiết da nhăn GLLV25','shoe_thumbnails/GLLV25_1.jpg',1,375,1142,2201,'2020-02-22 00:00:00.000000','Giày êm chạy không đau chân',5,2,'GLLV25','2020-05-23 05:31:41.954087','https://i.imgur.com/lxAEOG5.jpg'),(3,'Giày lười Louis Vuitton họa tiết ô rạn GLLV09','shoe_thumbnails/GLLV09_1.jpg',1,480,1933,1600,'2020-02-12 00:00:00.000000','Giày êm chạy không đau chân',1,2,'GLLV09','2020-05-21 15:53:51.874283','https://i.imgur.com/13oSvab.jpg'),(4,'Giày lười Louis Vuitton like au họa tiết rạn GLLV22','shoe_thumbnails/GLLV22_1.jpg',1,291,2006,1900,'2020-01-12 00:00:00.000000','Giày êm chạy không đau chân',1,2,'GLLV22','2020-05-22 14:03:20.535831','https://i.imgur.com/CNZKtnm.jpg'),(5,'Giày lười Versace họa tiết vân lá GLV08','shoe_thumbnails/GLV08_1.jpg',1,352,3008,2000,'2020-03-20 00:00:00.000000','Giày êm chạy không đau chân',6,2,'GLV08','2020-05-23 06:50:32.900577','https://i.imgur.com/SqAm33C.jpg'),(6,'Giày thể thao T771','shoe_thumbnails/B771_1.jpg',1,289,1413,1970,'2020-02-02 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T771','2020-05-23 05:18:02.370200','https://i.imgur.com/8xaCOw1.jpg'),(7,'Giày thể thao T798','shoe_thumbnails/B798_1.jpg',1,796,2217,2300,'2019-08-19 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T798','2020-05-23 05:29:59.091927','https://i.imgur.com/372dixB.jpg'),(8,'Giày thể thao B967','shoe_thumbnails/B967_1.jpg',1,853,1625,2200,'2019-12-12 00:00:00.000000','Giày êm chạy không đau chân',1,3,'T967','2020-05-22 16:50:48.237088','https://i.imgur.com/DgFwpj3.jpg'),(9,'Giày bata B536','shoe_thumbnails/B536_1.jpg',1,428,1816,2700,'2020-04-08 00:00:00.000000','Giày êm chạy không đau chân',1,6,'B536','2020-05-23 06:22:13.671432','https://i.imgur.com/l53QjH5.jpg'),(10,'Giày mèo','shoe_thumbnails/96809369_138888857717177_6422026695175307264_n.jpg',1,0,6,0,'2020-05-22 09:19:38.000000','',3,5,'V1123','2020-05-23 03:12:38.039211','https://i.imgur.com/DZIZ5eH.png');
+/*!40000 ALTER TABLE `shoe` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Final view structure for view `NEW_SHOES`
+-- Table structure for table `user`
 --
 
-/*!50001 DROP VIEW IF EXISTS `NEW_SHOES`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `NEW_SHOES` AS select distinct `mainapp_shoe`.`id` AS `shoe_id`,`mainapp_shoe`.`shoeName` AS `shoeName`,`mainapp_shoe`.`shoeModel` AS `shoeModel`,`mainapp_shoe`.`shoeThumbnail` AS `shoeThumbnail`,`mainapp_shoe`.`dateCreated` AS `dateCreated`,`mainapp_category`.`categoryName` AS `categoryName`,`mainapp_detailshoe`.`newPrice` AS `newPrice` from ((`mainapp_shoe` join `mainapp_detailshoe` on((`mainapp_shoe`.`id` = `mainapp_detailshoe`.`shoe_id`))) join `mainapp_category` on((`mainapp_shoe`.`category_id` = `mainapp_category`.`id`))) where (`mainapp_shoe`.`active` = 1) order by `mainapp_shoe`.`dateCreated` desc limit 0,5 */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  `displayName` varchar(128) NOT NULL,
+  `messengerId` varchar(128) NOT NULL,
+  `phone` varchar(32) NOT NULL,
+  `defaultAddress` varchar(255) NOT NULL,
+  `gender` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Final view structure for view `NEW_SHOES_NEXT`
+-- Dumping data for table `user`
 --
 
-/*!50001 DROP VIEW IF EXISTS `NEW_SHOES_NEXT`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `NEW_SHOES_NEXT` AS select distinct `mainapp_shoe`.`id` AS `shoe_id`,`mainapp_shoe`.`shoeName` AS `shoeName`,`mainapp_shoe`.`shoeModel` AS `shoeModel`,`mainapp_shoe`.`shoeThumbnail` AS `shoeThumbnail`,`mainapp_shoe`.`dateCreated` AS `dateCreated`,`mainapp_category`.`categoryName` AS `categoryName`,`mainapp_detailshoe`.`newPrice` AS `newPrice` from ((`mainapp_shoe` join `mainapp_detailshoe` on((`mainapp_shoe`.`id` = `mainapp_detailshoe`.`shoe_id`))) join `mainapp_category` on((`mainapp_shoe`.`category_id` = `mainapp_category`.`id`))) where (`mainapp_shoe`.`active` = 1) order by `mainapp_shoe`.`dateCreated` desc limit 5,5 */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'pbkdf2_sha256$180000$GhDe2jfiXjod$48dL5zXbOIJlyzpMxfApgobyh8ZD9GjhDa37cOCBMP4=','2020-05-22 18:56:24.909712',1,'admin','','','123@abc.com',1,1,'2019-09-11 08:54:47.000000','Admin','','01234','ha noi',1),(3,'pbkdf2_sha256$180000$FKK9x2N2L82d$KlV9Oj1lCx7q3cf2J6R1gV1srJQLDb1Ed0Jx98T3NGA=','2020-04-23 13:44:19.329647',0,'admin234','','','',0,1,'2020-04-23 13:44:19.143727','dfsdfsdfss','','3123123123123','',1),(4,'pbkdf2_sha256$180000$5VBDXcjNTUTj$tjb8pzPd5/qX3KItDJhA/mkdtK5/95W9iKDus4/cHA8=','2020-04-23 13:47:21.483075',0,'gianguser3','','','',0,1,'2020-04-23 13:47:21.287734','dfsdfsdfss','','3123123123123','',1),(5,'pbkdf2_sha256$180000$3ccBiRKUcwYi$DxH2wztIJ/6Oz8DM9Z8uvDA/PBQr3+Imdxt6Cgbkpnw=','2020-04-23 13:51:50.845786',0,'gianguser4','','','',0,1,'2020-04-23 13:51:50.649102','dfsdfsdfss','','3123123123123','',1),(6,'pbkdf2_sha256$180000$LkUbQRLX0hWo$DU4S1PewyAMSHos8uybhUvisUDw13jXoBFglo97fh80=','2020-04-23 13:52:51.633502',0,'gianguser5','','','',0,1,'2020-04-23 13:52:51.447232','dfsdfsdfss','','3123123123123','',1),(7,'pbkdf2_sha256$180000$jxSFPUe0hvkd$45cWjA8NDRJCyWcNQjxG9QVCoH3XwlF1H5t2QdB4jX8=','2020-04-23 13:55:56.356090',0,'gianguser6','','','',0,1,'2020-04-23 13:55:56.186061','dfsdfsdfss','','3123123123123','',1),(9,'pbkdf2_sha256$180000$yGC0oAKGC9ie$Ft7B2tojGTfHG1BVUF0QvZP/h61iFcIEjaN4JqYuhKo=','2020-05-22 16:59:14.000000',0,'giang3','','','sth@gmail.com',0,1,'2020-04-28 09:35:05.000000','Nguyễn Đình Giang','','098 765 4321','DHCN Hà Nội',1),(31,'pbkdf2_sha256$180000$2SglLVg8zcKc$XC9fVhXhbMWlj04pX+GVXfKwp+QWcCDu1fDh3X7ujJQ=',NULL,0,'98877','','','',0,1,'2020-05-08 15:24:29.054432','giang 1231231231','98877','','',1),(33,'pbkdf2_sha256$180000$9N2JtrIYcwkB$wbUSXw4KwCL9YcOvdIObKlg7M6BqPZ4unVDDtBgM93M=','2020-05-12 13:16:11.583848',0,'1234567','','','',0,1,'2020-05-08 17:56:16.000000','giang 123 messenger user','1234567','098 765 4321000','Ha noi 1123',1),(34,'pbkdf2_sha256$180000$yGC0oAKGC9ie$Ft7B2tojGTfHG1BVUF0QvZP/h61iFcIEjaN4JqYuhKo=','2020-05-23 06:50:21.290502',0,'ndgiang','','','',0,1,'2020-05-09 12:29:00.000000','ND Giang','2674052232724560','098 765 4321','DHCN Ha Noi',1),(35,'pbkdf2_sha256$180000$ohBcbXVytyyx$cSvj5YBshOoRTDsMP3c+zk1m0W5dWBGRo1zz5430BB0=','2020-05-14 10:15:57.328191',0,'giang2','','','sth@gmail.com2',0,1,'2020-05-14 10:15:57.085041','ND Giang','','098 765 4321000','DHCN Hà Nội, Nhổn, Nguyên Xá, Bắc Từ Liêm',1),(36,'pbkdf2_sha256$180000$k1lyGqauCa2Y$kCTuITON73cZ7I2TqOH+GierffyJ+WTQMunSEn3GHiM=','2020-05-17 19:54:51.973878',0,'giang_admin','','','',1,1,'2020-05-17 17:51:05.000000','Giang Ad','','0098 764 321','123 456',1),(37,'pbkdf2_sha256$180000$8iPFYwxTPTEk$LYbY3ccavvm6Aroo3xN/Vx39ZIsOHlgCX4DWdcHHx60=','2020-05-19 13:26:02.000000',0,'tk_nu','','','',0,1,'2020-05-19 13:26:02.000000','tài khoản nữ','','123444','ha noi',1),(38,'pbkdf2_sha256$180000$Xug01gic19pt$JaDuTTdHg7DLy2kxQlQp9QORIZW11bcksscLza/+tsY=','2020-05-19 19:10:32.000000',0,'giangadmin','','','',1,1,'2020-05-19 19:10:32.000000','ND Giang','','3123123123123','13123123',1),(39,'pbkdf2_sha256$180000$dDhQlcVVzxQS$rohaeWPdcm763pR0otWlAPvmqKn83KEBLfhLsJdvSdM=','2020-05-22 13:00:38.068830',0,'nhanvien1','','','',1,1,'2020-05-20 09:27:48.000000','Nhan vien 1','','098 765 4321','Ha Noi 1',1),(40,'pbkdf2_sha256$180000$uCRWoAbPJPEC$yuRCMh325yjyKUeqVBvDWeA9hipC0WBslFCUVqHLPvA=','2020-05-20 16:18:54.061314',0,'random1','','','',0,1,'2020-05-20 16:18:53.879251','random1','','098 765 4321','Ha Noi',1),(41,'pbkdf2_sha256$180000$BoZI6vV4e4bG$jdn3HzY0mNSntNNw47hPCOipeIcpTjJ5KoJrT+nV2G4=','2020-05-22 17:00:09.434083',0,'quanly1','','','sth@gmail.com',1,1,'2020-05-21 16:01:58.000000','quan ly 1','','098 765 4321','Ha Nam',1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_groups`
+--
+
+DROP TABLE IF EXISTS `user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_groups` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_user_groups_user_id_group_id_4d09af3e_uniq` (`user_id`,`group_id`),
+  KEY `account_user_groups_group_id_6c71f749_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `account_user_groups_group_id_6c71f749_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `account_user_groups_user_id_14345e7b_fk_account_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_groups`
+--
+
+LOCK TABLES `user_groups` WRITE;
+/*!40000 ALTER TABLE `user_groups` DISABLE KEYS */;
+INSERT INTO `user_groups` VALUES (1,36,1),(3,39,2),(4,41,3);
+/*!40000 ALTER TABLE `user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_user_permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_user_user_permis_user_id_permission_id_48bdd28b_uniq` (`user_id`,`permission_id`),
+  KEY `account_user_user_pe_permission_id_66c44191_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `account_user_user_pe_permission_id_66c44191_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `account_user_user_pe_user_id_cc42d270_fk_account_u` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_user_permissions`
+--
+
+LOCK TABLES `user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `user_user_permissions` DISABLE KEYS */;
+INSERT INTO `user_user_permissions` VALUES (1,38,21);
+/*!40000 ALTER TABLE `user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -838,4 +684,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-24 15:26:37
+-- Dump completed on 2020-06-13 16:07:58

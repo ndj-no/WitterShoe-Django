@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/migrations/0004_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart/migrations/0003_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contact_us/migrations/0005_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coupon/migrations/0005_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db_backup/backup_db_1.4.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favourite/migrations/0003_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mainapp/migrations/0011_auto_20200613_1554.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/migrations/0005_auto_20200613_1554.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/WitterShoe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WitterShoe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WitterShoe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contact_us/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/contact_us/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coupon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favourite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/favourite/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +80,18 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/db_backup" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -153,16 +190,36 @@
       <workItem from="1590214465318" duration="4101000" />
       <workItem from="1590233647189" duration="531000" />
       <workItem from="1590308640277" duration="271000" />
+      <workItem from="1592037433729" duration="1977000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="387" y="0" key="#WitterShoe" timestamp="1592037515327">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="387" y="0" key="#WitterShoe/0.0.1366.738@0.0.1366.738" timestamp="1592037515327" />
+    <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592037510549">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1592037510549" />
     <state x="438" y="181" width="480" height="399" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588439340856">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -199,9 +256,10 @@
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.right/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
     <state width="813" height="295" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1590234177225" />
-    <state x="182" y="16" key="SettingsEditor" timestamp="1589803040066">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="182" y="15" key="SettingsEditor" timestamp="1592038166143">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
+    <state x="182" y="15" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1592038166143" />
     <state x="182" y="16" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1589803040066" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1590116391430">
       <screen x="0" y="0" width="1366" height="768" />

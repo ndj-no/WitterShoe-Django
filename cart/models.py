@@ -1,7 +1,7 @@
 from django.db import models
-from django.utils import timezone
-from mainapp.models import User, DetailShoe
+
 from coupon.models import Coupon
+from mainapp.models import User, DetailShoe
 
 
 # Create your models here.
@@ -14,3 +14,6 @@ class Cart(models.Model):
     def __str__(self):
         return '[{}] {} - {} - {}' \
             .format(self.id, self.user.username, self.detailShoe.shoe.shoeName, self.quantityOnCart)
+
+    class Meta:
+        db_table = 'cart'

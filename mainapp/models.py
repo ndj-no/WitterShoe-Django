@@ -16,6 +16,7 @@ class Color(models.Model):
 
     class Meta:
         verbose_name_plural = "Màu sắc"
+        db_table = 'color'
 
 
 class Category(models.Model):
@@ -28,6 +29,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Loại giày"
+        db_table = 'category'
 
 
 class Brand(models.Model):
@@ -39,6 +41,7 @@ class Brand(models.Model):
 
     class Meta:
         verbose_name_plural = "Thương hiệu"
+        db_table = 'brand'
 
 
 class Shoe(models.Model):
@@ -70,6 +73,7 @@ class Shoe(models.Model):
 
     class Meta:
         verbose_name_plural = "Giày"
+        db_table = 'shoe'
 
 
 class Image(models.Model):
@@ -83,6 +87,7 @@ class Image(models.Model):
 
     class Meta:
         verbose_name_plural = "Hình ảnh"
+        db_table = 'image'
 
 
 class DetailShoe(models.Model):
@@ -100,3 +105,4 @@ class DetailShoe(models.Model):
 
     class Meta:
         verbose_name_plural = "Thông tin chi tiết giày"
+        db_table = 'detail_shoe'
