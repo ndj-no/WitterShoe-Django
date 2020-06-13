@@ -19,22 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/account/migrations/0005_auto_20200613_2034.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cart/migrations/0004_auto_20200613_2034.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/coupon/migrations/0006_auto_20200613_2034.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/favourite/migrations/0004_auto_20200613_2034.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mainapp/migrations/0012_auto_20200613_2034.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0006_auto_20200613_2034.py" afterDir="false" />
+    <list default="true" id="815f4fc4-0f0d-42b1-894c-65d9b6b824aa" name="Default Changelist" comment="fix bugs. rename tables to default">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WitterShoe/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WitterShoe/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cart/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coupon/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/coupon/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db_backup/backup_db_1.3.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favourite/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/favourite/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,8 +172,16 @@
       <workItem from="1590233647189" duration="531000" />
       <workItem from="1590308640277" duration="271000" />
       <workItem from="1592037433729" duration="1977000" />
-      <workItem from="1592054544596" duration="978000" />
+      <workItem from="1592054544596" duration="2328000" />
     </task>
+    <task id="LOCAL-00001" summary="fix bugs. rename tables to default">
+      <created>1592055628738</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1592055628738</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +201,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fix bugs. rename tables to default" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs. rename tables to default" />
   </component>
   <component name="WindowStateProjectService">
     <state x="387" y="0" key="#WitterShoe" timestamp="1592037515327">
@@ -233,31 +229,35 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="280" y="0" width="795" height="763" key="CommitChangelistDialog2/0.0.1366.768@0.0.1366.768" timestamp="1588352193552" />
-    <state width="813" height="295" key="GridCell.Tab.0.bottom" timestamp="1590234177225">
+    <state width="1286" height="118" key="GridCell.Tab.0.bottom" timestamp="1592055593051">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.bottom/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="813" height="295" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1590234177225" />
-    <state width="813" height="295" key="GridCell.Tab.0.center" timestamp="1590234177225">
+    <state width="1286" height="118" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1592055593051" />
+    <state width="1286" height="118" key="GridCell.Tab.0.center" timestamp="1592055593051">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.center/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="813" height="295" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1590234177225" />
-    <state width="813" height="295" key="GridCell.Tab.0.left" timestamp="1590234177224">
+    <state width="1286" height="118" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1592055593051" />
+    <state width="1286" height="118" key="GridCell.Tab.0.left" timestamp="1592055593051">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.left/0.0.1366.741@0.0.1366.741" timestamp="1588084217226" />
-    <state width="813" height="295" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1590234177224" />
-    <state width="813" height="295" key="GridCell.Tab.0.right" timestamp="1590234177225">
+    <state width="1286" height="118" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1592055593051" />
+    <state width="1286" height="118" key="GridCell.Tab.0.right" timestamp="1592055593051">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1324" height="119" key="GridCell.Tab.0.right/0.0.1366.741@0.0.1366.741" timestamp="1588084217227" />
-    <state width="813" height="295" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1590234177225" />
+    <state width="1286" height="118" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1592055593051" />
     <state x="182" y="16" key="SettingsEditor" timestamp="1592054802301">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="182" y="15" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1592038166143" />
     <state x="182" y="16" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1592054802301" />
+    <state x="265" y="117" key="Vcs.Push.Dialog.v2" timestamp="1592055664634">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="265" y="117" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1592055664634" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1590116391430">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
